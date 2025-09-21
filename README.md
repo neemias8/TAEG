@@ -129,6 +129,6 @@ This project is released under the MIT License. Refer to `LICENSE` for details.
 
 ## Contact
 
-- Author: Your Name
-- Email: your.email@example.com
-- Project page: <https://github.com/your-user/TAEG>
+- Author: Roger A. Finger
+- Email: RFinger@edu.unisinos.br
+- Project page: <https://github.com/neemias8/TAEG>
