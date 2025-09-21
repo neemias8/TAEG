@@ -27,20 +27,20 @@ The chronology file lists verse references for each Gospel; the loader extracts 
 
 ```
 TAEG/
-├── data/                        # XML sources (ignored by Git)
-├── notebooks/
-│   └── 01_data_exploration.ipynb # Exploratory data notebook
-├── src/
-│   ├── __init__.py
-│   ├── data_loader.py            # XML parsing and verse alignment
-│   ├── graph_builder.py          # Temporal event graph construction
-│   ├── models.py                 # TAEG, PEGASUS, PRIMERA, LexRank definitions
-│   ├── train.py                  # Training loop for the TAEG model
-│   ├── evaluate.py               # Metrics, analysis, and plotting
-│   └── main.py                   # Orchestrates data → graph → train → evaluate
-├── requirements.txt              # Python dependencies
-├── setup.py / pyproject.toml     # Package metadata
-└── README.md
+|-- data/                        # XML sources (ignored by Git)
+|-- notebooks/
+|   `-- 01_data_exploration.ipynb # Exploratory data notebook
+|-- src/
+|   |-- __init__.py
+|   |-- data_loader.py            # XML parsing and verse alignment
+|   |-- graph_builder.py          # Temporal event graph construction
+|   |-- models.py                 # TAEG, PEGASUS, PRIMERA, LexRank definitions
+|   |-- train.py                  # Training loop for the TAEG model
+|   |-- evaluate.py               # Metrics, analysis, and plotting
+|   `-- main.py                   # Orchestrates data -> graph -> train -> evaluate
+|-- requirements.txt              # Python dependencies
+|-- setup.py / pyproject.toml     # Package metadata
+`-- README.md
 ```
 
 ## Environment Setup
@@ -66,6 +66,14 @@ TAEG/
    pip install -r requirements.txt
    pip install -e .
    ```
+
+4. Install the PyTorch Geometric stack (choose the wheel that matches your PyTorch/CUDA build). Example for CUDA 11.8:
+   ```bash
+   pip install torch-scatter torch-sparse torch-cluster -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
+   pip install torch-geometric
+   ```
+   Refer to https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html for alternative wheels.
+
 
 ## Usage
 
