@@ -10,6 +10,7 @@ Date: September 2025
 """
 
 import networkx as nx
+import json
 import torch
 from torch_geometric.data import Data
 from torch_geometric.utils import from_networkx
@@ -351,6 +352,18 @@ class TAEGGraphBuilder:
         
         plt.show()
     
+    @staticmethod
+    def _serialize_attribute(value: Any) -> Any:
+        """Convert graph attributes into GraphML-friendly scalar types."""
+        if isinstance(value, np.generic):
+            return value.item()
+        if isinstance(value, (list, tuple, set)):
+            converted = [TAEGGraphBuilder._serialize_attribute(v) for v in value]
+            return ', '.join(str(v) for v in converted)
+        if isinstance(value, dict):
+            return json.dumps({str(k): TAEGGraphBuilder._serialize_attribute(v) for k, v in value.items()})
+        return value
+
     def export_graph(self, filepath: str, format: str = 'graphml') -> None:
         """
         Export graph to file.
@@ -362,15 +375,25 @@ class TAEGGraphBuilder:
         if self.networkx_graph is None:
             raise ValueError("Graph not built yet. Call build_graph() first.")
         
+        sanitized_graph = self.networkx_graph.copy()
+
+        for _, data in sanitized_graph.nodes(data=True):
+            for key, value in list(data.items()):
+                data[key] = self._serialize_attribute(value)
+
+        for _, _, data in sanitized_graph.edges(data=True):
+            for key, value in list(data.items()):
+                data[key] = self._serialize_attribute(value)
+
         if format == 'graphml':
-            nx.write_graphml(self.networkx_graph, filepath)
+            nx.write_graphml(sanitized_graph, filepath)
         elif format == 'gexf':
-            nx.write_gexf(self.networkx_graph, filepath)
+            nx.write_gexf(sanitized_graph, filepath)
         elif format == 'edgelist':
-            nx.write_edgelist(self.networkx_graph, filepath)
+            nx.write_edgelist(sanitized_graph, filepath)
         else:
             raise ValueError(f"Unsupported format: {format}")
-        
+
         logger.info(f"Graph exported to {filepath}")
     
     def get_node_neighborhoods(self, max_hops: int = 2) -> Dict[int, List[int]]:

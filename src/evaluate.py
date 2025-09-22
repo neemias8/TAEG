@@ -94,7 +94,16 @@ class ROUGEEvaluator:
 
         aggregates: Dict[str, List[float]] = {}
         for pred, ref in zip(predictions, references):
-            scores = self.scorer.score(ref, pred)
+            # Ensure both prediction and reference are non-empty strings
+            pred_clean = pred.strip() if pred else "No prediction available."
+            ref_clean = ref.strip() if ref else "No reference available."
+            
+            # Skip empty predictions/references to avoid ROUGE warnings
+            if not pred_clean or not ref_clean:
+                logger.warning("Empty prediction or reference detected, skipping...")
+                continue
+                
+            scores = self.scorer.score(ref_clean, pred_clean)
             for rouge_type in self.rouge_types:
                 for attr in ("precision", "recall", "fmeasure"):
                     key = f"{rouge_type}_{attr}"
@@ -221,21 +230,27 @@ class TAEGEvaluator:
             for idx, _ in enumerate(test_data.events):
                 try:
                     prediction = model.generate_summary((graph_data, idx))
+                    # Ensure prediction is never empty
+                    if not prediction or not prediction.strip():
+                        prediction = "No summary generated."
                     predictions.append(prediction)
                 except Exception as exc:  # pragma: no cover
                     logger.warning("Failed to generate summary for event %d: %s", idx, exc)
-                    predictions.append("")
+                    predictions.append("Error during summary generation.")
         else:
             for event in test_data.events:
                 text = self.data_loader.get_concatenated_text_for_event(event)
                 try:
                     if hasattr(model, 'generate_summary'):
                         prediction = model.generate_summary(text)
+                        # Ensure prediction is never empty
+                        if not prediction or not prediction.strip():
+                            prediction = "No summary generated."
                     else:
-                        prediction = ""
+                        prediction = "Model does not support summarization."
                 except Exception as exc:  # pragma: no cover
                     logger.warning("Baseline generation error: %s", exc)
-                    prediction = ""
+                    prediction = "Error during summary generation."
                 predictions.append(prediction)
         return predictions
 

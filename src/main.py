@@ -30,14 +30,22 @@ import json
 import yaml
 from dataclasses import asdict
 
-# Add src to path for imports
-sys.path.insert(0, str(Path(__file__).parent))
-
-from data_loader import DataLoader
-from graph_builder import TAEGGraphBuilder
-from models import ModelFactory, ModelConfig, TAEGModel
-from train import TAEGTrainer, TrainingConfig
-from evaluate import TAEGEvaluator, EvaluationConfig
+# Support execution both as package (python -m src.main) and as script.
+try:
+    from .data_loader import DataLoader
+    from .graph_builder import TAEGGraphBuilder
+    from .models import ModelFactory, ModelConfig, TAEGModel
+    from .train import TAEGTrainer, TrainingConfig
+    from .evaluate import TAEGEvaluator, EvaluationConfig
+except ImportError:
+    SRC_ROOT = Path(__file__).resolve().parent
+    if str(SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(SRC_ROOT))
+    from data_loader import DataLoader
+    from graph_builder import TAEGGraphBuilder
+    from models import ModelFactory, ModelConfig, TAEGModel
+    from train import TAEGTrainer, TrainingConfig
+    from evaluate import TAEGEvaluator, EvaluationConfig
 
 # Configure logging
 logging.basicConfig(

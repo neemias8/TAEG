@@ -66,6 +66,7 @@ class BaseModel(ABC):
         pass
     
     @abstractmethod
+
     def save_model(self, path: str) -> None:
         """Save model to file."""
         pass
@@ -85,26 +86,22 @@ class GraphAttentionEncoder(nn.Module):
 
         self.gat_layers = nn.ModuleList()
         input_dim = 768  # BERT base hidden size
+        current_in_dim = input_dim
 
         for layer_idx in range(config.num_gat_layers):
-            in_channels = input_dim if layer_idx == 0 else config.hidden_dim
-            out_channels = config.hidden_dim
-            self.gat_layers.append(
-                GATConv(
-                    in_channels=in_channels,
-                    out_channels=out_channels,
-                    heads=config.num_attention_heads,
-                    dropout=config.dropout_rate,
-                    concat=layer_idx < config.num_gat_layers - 1,
-                )
+            concat = layer_idx < config.num_gat_layers - 1
+            gat_layer = GATConv(
+                in_channels=current_in_dim,
+                out_channels=config.hidden_dim,
+                heads=config.num_attention_heads,
+                dropout=config.dropout_rate,
+                concat=concat,
             )
+            self.gat_layers.append(gat_layer)
+            current_in_dim = config.hidden_dim * (config.num_attention_heads if concat else 1)
 
-        final_dim = (
-            config.hidden_dim * config.num_attention_heads
-            if config.num_gat_layers == 1
-            else config.hidden_dim
-        )
-        self.graph_projection = nn.Linear(final_dim, config.hidden_dim)
+        self._post_gat_dim = current_in_dim
+        self.graph_projection = nn.Linear(self._post_gat_dim, config.hidden_dim)
         self.dropout = nn.Dropout(config.dropout_rate)
 
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
@@ -424,28 +421,54 @@ class LexRankBaseline(BaseModel):
     
     def generate_summary(self, input_text: str) -> str:
         """Generate extractive summary using LexRank."""
-        # Split into sentences (simple approach)
-        sentences = [s.strip() for s in input_text.split('.') if s.strip()]
+        if not input_text or not input_text.strip():
+            return 'No content available for summarization.'
+
+        # Clean and split sentences more robustly
+        cleaned_text = input_text.strip()
+        sentences = [s.strip() for s in cleaned_text.split('.') if s.strip() and len(s.strip()) > 3]
         
+        if not sentences:
+            # If no valid sentences found, return the original text truncated
+            words = cleaned_text.split()
+            if len(words) > 20:
+                return ' '.join(words[:20]) + '...'
+            return cleaned_text if cleaned_text else 'No content available for summarization.'
+
         if len(sentences) <= self.num_sentences:
-            return input_text
-        
-        # Compute similarity matrix
-        similarity_matrix = self._sentence_similarity(sentences)
-        
-        # Compute LexRank scores
-        scores = self._lexrank_scores(similarity_matrix)
-        
-        # Select top sentences
-        top_indices = np.argsort(scores)[-self.num_sentences:]
-        top_indices = sorted(top_indices)  # Maintain original order
-        
-        # Generate summary
-        summary_sentences = [sentences[i] for i in top_indices]
-        summary = '. '.join(summary_sentences) + '.'
-        
-        return summary
-    
+            summary = '. '.join(sentences).strip()
+            if not summary.endswith('.'):
+                summary += '.'
+            return summary
+
+        try:
+            similarity_matrix = self._sentence_similarity(sentences)
+            scores = self._lexrank_scores(similarity_matrix)
+
+            top_indices = np.argsort(scores)[-self.num_sentences:]
+            top_indices = sorted(top_indices)
+
+            summary_sentences = [sentences[i] for i in top_indices if i < len(sentences)]
+            
+            if not summary_sentences:
+                # Fallback to first sentence
+                summary = sentences[0]
+            else:
+                summary = '. '.join(summary_sentences).strip()
+
+            if not summary:
+                # Final fallback
+                summary = sentences[0] if sentences else 'No content available for summarization.'
+
+            if not summary.endswith('.'):
+                summary += '.'
+
+            return summary
+            
+        except Exception as e:
+            logger.warning(f"LexRank summarization failed: {e}")
+            # Return first sentence as fallback
+            return sentences[0] + '.' if sentences else 'No content available for summarization.'
     def save_model(self, path: str) -> None:
         """Save LexRank parameters."""
         torch.save({

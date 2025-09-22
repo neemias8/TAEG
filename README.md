@@ -53,11 +53,11 @@ TAEG/
 
 2. Create and activate a virtual environment:
    ```bash
-   python -m venv .venv
+   python -m venv .TAEG
    # Windows
-   .venv\Scripts\activate
+   .TAEG\Scripts\activate
    # Linux / macOS
-   source .venv/bin/activate
+   source .TAEG/bin/activate
    ```
 
 3. Install dependencies and local package:
