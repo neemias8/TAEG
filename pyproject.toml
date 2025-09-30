@@ -1,102 +1,29 @@
+[tool.poetry]
+name = "taeg"
+version = "1.0.0"
+description = "Text Analysis of Evangelic Gospels - A modular system for consolidating and evaluating biblical text summaries"
+authors = ["TAEG Team <taeg@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+beautifulsoup4 = "^4.12.3"
+lxml = "^5.2.2"
+lexrank = "^0.1.0"
+nltk = "^3.8.1"
+rouge-score = "^0.1.2"
+bert-score = "^0.3.13"
+transformers = "^4.41.2"
+torch = "^2.3.1"
+scipy = "^1.13.1"
+pandas = "^2.2.2"
+numpy = "^1.26.4"
+tqdm = "^4.66.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+black = "^23.12.1"
+flake8 = "^6.1.0"
+
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project]
-name = "taeg-project"
-version = "0.1.0"
-description = "TAEG: Temporal Alignment Event Graph for Multi-Document Narrative Summarization"
-readme = "README.md"
-requires-python = ">=3.8"
-license = {file = "LICENSE"}
-authors = [
-    {name = "Your Name", email = "your.email@example.com"},
-]
-classifiers = [
-    "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-]
-dependencies = [
-    "numpy>=1.21.0",
-    "pandas>=1.3.0",
-    "requests>=2.25.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0.0",
-    "pytest-cov>=4.0.0",
-    "black>=22.0.0",
-    "flake8>=4.0.0",
-    "mypy>=0.950",
-    "pre-commit>=2.15.0",
-]
-docs = [
-    "sphinx>=4.0.0",
-    "sphinx-rtd-theme>=1.0.0",
-]
-jupyter = [
-    "jupyter>=1.0.0",
-    "ipykernel>=6.0.0",
-]
-
-[project.urls]
-Homepage = "https://github.com/yourusername/taeg-project"
-Documentation = "https://taeg-project.readthedocs.io"
-Repository = "https://github.com/yourusername/taeg-project"
-"Bug Tracker" = "https://github.com/yourusername/taeg-project/issues"
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.black]
-line-length = 88
-target-version = ['py38']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
-
-[tool.mypy]
-python_version = "3.8"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_no_return = true
-warn_unreachable = true
-strict_equality = true
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-addopts = [
-    "--cov=src",
-    "--cov-report=term-missing",
-    "--cov-report=html",
-    "--cov-report=xml",
-    "-v"
-]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

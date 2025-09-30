@@ -1,21 +1,7 @@
-"""TAEG package initialization."""
+"""
+TAEG - Text Analysis of Evangelic Gospels
+A modular system for consolidating and evaluating biblical text summaries.
+"""
 
-__version__ = "0.1.0"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
-
-from .data_loader import DataLoader, Event, VerseReference, Verse
-from .graph_builder import TAEGGraphBuilder
-from .models import TAEGModel, PegasusBaseline, PrimeraBaseline, LexRankBaseline
-
-__all__ = [
-    "DataLoader",
-    "Event", 
-    "VerseReference",
-    "Verse",
-    "TAEGGraphBuilder",
-    "TAEGModel",
-    "PegasusBaseline",
-    "PrimeraBaseline", 
-    "LexRankBaseline"
-]
+__version__ = "1.0.0"
+__author__ = "TAEG Team"
