@@ -18,8 +18,7 @@ def compare_methods():
 
     methods = [
         ("lexrank", 338, "LEXRANK (338 sentences total)"),
-        ("lexrank-ta", 2, "LEXRANK-TA (2 sentences per event)"),
-        ("lexrank-ta-best", 1, "LEXRANK-TA-BEST (best gospel per event)")
+        ("lexrank-ta", 1, "LEXRANK-TA (optimized temporal anchoring)")
     ]
 
     results = {}

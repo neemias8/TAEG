@@ -16,9 +16,9 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="TAEG - Text Analysis of Evangelic Gospels")
-    parser.add_argument("--method", choices=["lexrank", "lexrank-ta", "lexrank-ta-best"],
+    parser.add_argument("--method", choices=["lexrank", "lexrank-ta"],
                        default="lexrank",
-                       help="Summarization method: lexrank (original), lexrank-ta (temporal anchoring with summary), or lexrank-ta-best (temporal anchoring with best gospel)")
+                       help="Summarization method: lexrank (semantic quality) or lexrank-ta (optimized temporal anchoring)")
     parser.add_argument("--length", type=int, default=500, help="Number of sentences in summary (or sentences per event for lexrank-ta)")
 
     args = parser.parse_args()

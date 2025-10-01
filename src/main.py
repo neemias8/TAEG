@@ -68,10 +68,7 @@ class TAEGPipeline:
                 texts_list = list(gospel_texts.values())
                 consolidated_summary = self.summarizer_lexrank.summarize_texts(texts_list, summary_length)
             elif summarization_method.lower() == "lexrank-ta":
-                # For LEXRANK-TA, summary_length represents sentences per event
-                consolidated_summary = self.summarizer_ta.summarize_with_temporal_anchoring(summary_length)
-            elif summarization_method.lower() == "lexrank-ta-best":
-                # For LEXRANK-TA-BEST, use the best gospel for each event
+                # For LEXRANK-TA, use the optimized approach with best gospel selection
                 consolidated_summary = self.summarizer_ta.summarize_with_temporal_anchoring(summary_length, use_best_gospel=True)
             else:
                 raise ValueError(f"Unknown summarization method: {summarization_method}")
@@ -87,7 +84,7 @@ class TAEGPipeline:
         print("\n3. Evaluating summary against Golden Sample...")
         try:
             # Determine if this is a temporal anchoring method
-            is_temporal_anchored = summarization_method.lower() in ["lexrank-ta", "lexrank-ta-best"]
+            is_temporal_anchored = summarization_method.lower() == "lexrank-ta"
             evaluation_results = self.evaluator.evaluate_summary(consolidated_summary, golden_sample, is_temporal_anchored)
 
             print("   Evaluation completed successfully")
@@ -154,7 +151,7 @@ def main():
     parser.add_argument("--summary-length", type=int, default=500, help="Number of sentences in summary (or sentences per event for lexrank-ta)")
     parser.add_argument("--method", choices=["lexrank", "lexrank-ta"],
                        default="lexrank",
-                       help="Summarization method: lexrank (original) or lexrank-ta (temporal anchoring)")
+                       help="Summarization method: lexrank (semantic quality) or lexrank-ta (optimized temporal anchoring)")
     parser.add_argument("--output-dir", default="outputs", help="Directory to save results")
 
     args = parser.parse_args()
