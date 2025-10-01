@@ -227,17 +227,15 @@ The latest version of LEXRANK-TA implements a revolutionary **gospel-specific** 
 - Each event summarized in chronological context
 - Preserves historical narrative of Holy Week
 
-### 📈 Impact on Metrics
+### 📈 Current Metrics Status
 
-Compared to standard LEXRANK, the gospel-specific LEXRANK-TA achieves:
+**Note**: Comprehensive metric evaluation is currently in progress. The temporal evaluation (Kendall's Tau) has been recently validated:
 
-- **+46.1% ROUGE-1 F1** (16.9% → 63.0%)
-- **+14.3% ROUGE-2 F1** (15.0% → 29.4%) 
-- **+151.6% ROUGE-L F1** (9.3% → 23.4%)
-- **+1.3% BERTScore F1** (83.5% → 84.8%)
-- **+417.0% METEOR** (5.3% → 27.4%)
-- **+19.1% Kendall's Tau** (-9.4% → -7.6%)
-- **Output file**: `outputs/taeg_summary_lexrank-ta.txt` (52,603 characters)
+- **LEXRANK**: Kendall's Tau = 0.287 (partial temporal disorder)
+- **LEXRANK-TA**: Kendall's Tau = 1.000 (perfect temporal order)
+- **LEXRANK-TA-BEST**: Kendall's Tau = 1.000 (perfect temporal order)
+
+ROUGE, BERTScore, and METEOR metrics are being updated and will be available in future releases.
 
 ## 🚀 Usage Examples
 
@@ -346,29 +344,6 @@ The temporal evaluation metric has been thoroughly validated:
 - `pandas`: Data manipulation
 - `numpy`: Numerical computing
 
-## 🔧 Improved Architecture
-
-### Correct Implementation of Multi-Document LEXRANK
-
-Initially, the program concatenated all gospel texts into a single sentence list. After analysis, we implemented three correct approaches for multi-document summarization:
-
-1. **Multi-Document LEXRANK (`multi_doc`)**: Treats all gospels as a single corpus, allowing LEXRANK to find cross-document relationships
-2. **Alternative Approach (`alternative`)**: Summarizes each gospel individually, then combines the summaries
-3. **Hybrid Approach (`hybrid`)**: Multi-document LEXRANK with document diversity weighting
-
-### Why Multi-Document LEXRANK is Better
-
-- **Cross-Document Relationships**: LEXRANK identifies sentences that appear in similar contexts across different gospels
-- **Global Centrality**: Finds the most central sentences in the entire Holy Week narrative
-- **Cohesion**: Produces a more cohesive and unified summary
-
-### Comparison with Previous Approach
-
-**Before**: Simple concatenation → **Now**: Three specialized methods for multi-document
-
-- ✅ Better utilization of the LEXRANK algorithm
-- ✅ Consideration of relationships between documents
-- ✅ Flexible options for different needs
 
 ## Contribution
 
