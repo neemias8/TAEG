@@ -11,8 +11,7 @@ TAEG (Temporal Alignment Event Graph) is a project that combines narratives from
 - **Data Loading**: Processes XML files from the Gospels to extract Holy Week texts
 - **Summarization with Multiple Methods**:
   - **LEXRANK**: Standard multi-document algorithm (recommended for semantic quality)
-  - **LEXRANK-TA (Temporal Anchoring)**: Summarization based on biblical chronology with temporal anchors
-  - **LEXRANK-TA-BEST**: Optimized temporal anchoring with best sentence selection
+  - **LEXRANK-TA (Temporal Anchoring)**: Optimized temporal anchoring with best sentence selection and perfect chronological order
 - **Multi-Metric Evaluation**: Evaluates summary quality using:
   - ROUGE (ROUGE-1, ROUGE-2, ROUGE-L)
   - METEOR
@@ -29,6 +28,8 @@ TAEG (Temporal Alignment Event Graph) is a project that combines narratives from
 - **Disadvantage**: May lose temporal order (lower Kendall's Tau)
 
 ### LEXRANK-TA (Temporal Anchoring)
+- Builds upon LEXRANK with optimized sentence selection for temporal preservation
+- Ensures perfect temporal ordering with minimal summary length
 - **Gospel-Specific Architecture**: Each chronological event has separate nodes for each Gospel that mentions it
 - **Precise Verse Extraction**: Extracts exact biblical verse text instead of entire chapters
 - **Multi-Document Summarization per Event**: For events mentioned in multiple Gospels, uses multi-document LEXRANK to combine complementary perspectives
@@ -37,12 +38,6 @@ TAEG (Temporal Alignment Event Graph) is a project that combines narratives from
   - 799 BEFORE edges (connecting consecutive events)
   - 318 SAME_EVENT edges (connecting different versions of the same event)
 - **Strict Chronological Sequence**: Maintains perfect temporal order of 169 Holy Week events
-- **Advantage**: Better temporal preservation + semantic quality through multiple perspectives
-- **Result**: Consolidated summary covering the entire Holy Week narrative
-
-### LEXRANK-TA-BEST (Optimized Temporal Anchoring)
-- Builds upon LEXRANK-TA with optimized sentence selection
-- Ensures perfect temporal ordering with minimal summary length
 - **Advantage**: Maximum temporal preservation with concise output
 - **Use Case**: When temporal accuracy is critical and brevity is desired
 
@@ -127,21 +122,17 @@ python src/main.py
 python src/main.py --summarization-method lexrank --summary-length 500
 
 # LEXRANK-TA (recommended for temporal preservation)
-python src/main.py --summarization-method lexrank-ta --summary-length 3
-
-# LEXRANK-TA-BEST (optimized temporal anchoring)
-python src/main.py --summarization-method lexrank-ta-best --summary-length 1
+python src/main.py --summarization-method lexrank-ta --summary-length 1
 ```
 
 ### Parameters
 
 - `--summarization-method`: Summarization method:
   - `lexrank`: Standard multi-document LEXRANK (semantic quality)
-  - `lexrank-ta`: LEXRANK with Temporal Anchoring (temporal order)
-  - `lexrank-ta-best`: Optimized temporal anchoring
+  - `lexrank-ta`: Optimized temporal anchoring with perfect chronological order
 - `--summary-length`:
   - For `lexrank`: Total number of sentences in summary
-  - For `lexrank-ta` and `lexrank-ta-best`: Number of sentences per chronological event
+  - For `lexrank-ta`: Number of sentences per chronological event (typically 1 for optimal temporal preservation)
 - `--data-dir`: Data directory (default: `data`)
 - `--output-dir`: Output directory (default: `outputs`)
 
@@ -151,44 +142,20 @@ python src/main.py --summarization-method lexrank-ta-best --summary-length 1
 python compare_methods.py
 ```
 
-## Summarization Methods
-
-### LEXRANK (Standard)
-- **Approach**: Traditional multi-document LEXRANK
-- **Priority**: Semantic quality and textual cohesion
-- **Functionality**: Treats all Gospels as single corpus, finds cross-document relationships
-- **Advantages**: Better ROUGE, METEOR, BERTScore
-- **Disadvantages**: May reorder chronologically (more negative Kendall's Tau)
-- **Use**: When semantic quality is priority
-
-### LEXRANK-TA (Temporal Anchoring)
-- **Approach**: Summarization based on biblical chronology
-- **Priority**: Preservation of temporal order
-- **Functionality**: 
-  - Uses chronology XML with 169 Holy Week events
-  - Builds temporal graph with "BEFORE" edges
-  - Generates summaries per event in chronological order
-  - If multiple Gospels describe same event → multi-doc LEXRANK
-- **Advantages**: Better Kendall's Tau (less temporal disorder)
-- **Disadvantages**: May have slightly inferior semantic quality
-- **Use**: When temporal order is priority
-
 ## 📊 Methods Comparison
 
-Comparative test between LEXRANK, LEXRANK-TA, and LEXRANK-TA-BEST (all evaluated against Golden Sample):
+Comparative test between LEXRANK and LEXRANK-TA (both evaluated against Golden Sample):
 
 | Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Summary Length | Priority |
 |--------|------------|------------|------------|--------------|--------|----------------|---------------|----------|
 | **LEXRANK** | TBD | TBD | TBD | TBD | TBD | 0.287 | ~43K chars | **Semantic** |
-| **LEXRANK-TA** | TBD | TBD | TBD | TBD | TBD | **1.000** | ~52K chars | **Temporal** |
-| **LEXRANK-TA-BEST** | TBD | TBD | TBD | TBD | TBD | **1.000** | Minimal | **Temporal** |
+| **LEXRANK-TA** | TBD | TBD | TBD | TBD | TBD | **1.000** | Minimal | **Temporal** |
 
 ### 🔍 Results Analysis
 
 - **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization
-- **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) while maintaining semantic quality
-- **LEXRANK-TA-BEST**: Optimized for maximum temporal accuracy with minimal length (Kendall's Tau = 1.000)
-- **Choice**: LEXRANK-TA-BEST for temporal-critical applications, LEXRANK for semantic quality priority
+- **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with optimized sentence selection for maximum temporal accuracy
+- **Choice**: LEXRANK-TA for temporal-critical applications, LEXRANK for semantic quality priority
 
 **Note**: ROUGE, BERTScore, and METEOR values are currently being updated. The temporal evaluation (Kendall's Tau) has been recently validated and confirmed working correctly.
 
@@ -233,7 +200,6 @@ The latest version of LEXRANK-TA implements a revolutionary **gospel-specific** 
 
 - **LEXRANK**: Kendall's Tau = 0.287 (partial temporal disorder)
 - **LEXRANK-TA**: Kendall's Tau = 1.000 (perfect temporal order)
-- **LEXRANK-TA-BEST**: Kendall's Tau = 1.000 (perfect temporal order)
 
 ROUGE, BERTScore, and METEOR metrics are being updated and will be available in future releases.
 
@@ -245,10 +211,7 @@ ROUGE, BERTScore, and METEOR metrics are being updated and will be available in 
 python src/main.py
 
 # LEXRANK-TA (temporal order)
-python src/main.py --summarization-method lexrank-ta --summary-length 2
-
-# LEXRANK-TA-BEST (optimized temporal)
-python src/main.py --summarization-method lexrank-ta-best --summary-length 1
+python src/main.py --summarization-method lexrank-ta --summary-length 1
 ```
 
 ### Generated Files
@@ -261,9 +224,6 @@ Each method creates specific files in the `outputs/` folder:
 - **LEXRANK-TA**:
   - `evaluation/LEXRANK-TA_results.json` - Evaluation metrics
 
-- **LEXRANK-TA-BEST**:
-  - `evaluation/LEXRANK-TA-BEST_results.json` - Evaluation metrics
-
 ### Method Comparison
 ```bash
 python compare_methods.py
@@ -274,11 +234,8 @@ python compare_methods.py
 # LEXRANK with 800 sentences (very detailed)
 python src/main.py --summarization-method lexrank --summary-length 800
 
-# LEXRANK-TA with 5 sentences per event (more detailed)
-python src/main.py --summarization-method lexrank-ta --summary-length 5
-
-# LEXRANK-TA-BEST with 1 sentence per event (concise)
-python src/main.py --summarization-method lexrank-ta-best --summary-length 1
+# LEXRANK-TA with 1 sentence per event (optimal temporal preservation)
+python src/main.py --summarization-method lexrank-ta --summary-length 1
 ```
 
 ## Modules
@@ -317,7 +274,7 @@ BERT embedding-based metric for semantic similarity.
 ### Kendall's Tau
 Ranking correlation between sentence order in generated summary and reference text. Values range from -1 (perfect disagreement) to +1 (perfect agreement). Recently validated to correctly distinguish temporal preservation:
 - LEXRANK: 0.287 (partial temporal disorder)
-- LEXRANK-TA/LEXRANK-TA-BEST: 1.000 (perfect temporal order)
+- LEXRANK-TA: 1.000 (perfect temporal order)
 
 ## 🔧 Recent Validation
 
@@ -326,7 +283,7 @@ The temporal evaluation metric has been thoroughly validated:
 - **Debug Implementation**: Added position tracking for events in reference and hypothesis texts
 - **Correct Behavior Confirmed**: 
   - Non-temporal methods (LEXRANK) show realistic partial disorder (τ = 0.287)
-  - Temporal-anchored methods (LEXRANK-TA, LEXRANK-TA-BEST) achieve perfect order (τ = 1.000)
+  - Temporal-anchored methods (LEXRANK-TA) achieve perfect order (τ = 1.000)
 - **Event Matching**: Uses keyword overlap detection with NLTK sentence tokenization
 - **Result**: System accurately evaluates temporal preservation differences between summarization approaches
 
