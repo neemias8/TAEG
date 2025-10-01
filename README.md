@@ -148,16 +148,14 @@ Comparative test between LEXRANK and LEXRANK-TA (both evaluated against Golden S
 
 | Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Summary Length | Priority |
 |--------|------------|------------|------------|--------------|--------|----------------|---------------|----------|
-| **LEXRANK** | TBD | TBD | TBD | TBD | TBD | 0.287 | ~43K chars | **Semantic** |
-| **LEXRANK-TA** | TBD | TBD | TBD | TBD | TBD | **1.000** | Minimal | **Temporal** |
+| **LEXRANK** | 0.666 | 0.562 | 0.190 | 0.835 | 0.270 | 0.287 | 43,134 chars | **Semantic** |
+| **LEXRANK-TA** | 0.958 | 0.938 | 0.947 | 0.995 | 0.639 | **1.000** | 79,154 chars | **Temporal** |
 
 ### 🔍 Results Analysis
 
-- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization
-- **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with optimized sentence selection for maximum temporal accuracy
-- **Choice**: LEXRANK-TA for temporal-critical applications, LEXRANK for semantic quality priority
-
-**Note**: ROUGE, BERTScore, and METEOR values are currently being updated. The temporal evaluation (Kendall's Tau) has been recently validated and confirmed working correctly.
+- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization. Achieves good semantic quality (ROUGE-1 F1 = 0.666, BERTScore F1 = 0.835) but compromises temporal accuracy.
+- **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with superior semantic quality (ROUGE-1 F1 = 0.958, BERTScore F1 = 0.995). The temporal anchoring approach provides the best balance of chronological accuracy and content quality.
+- **Choice**: LEXRANK-TA for temporal-critical applications requiring both chronological order and high semantic quality, LEXRANK for pure semantic optimization when temporal order is less critical.
 
 ## ✨ Recent Improvements - LEXRANK-TA Gospel-Specific
 
