@@ -1,0 +1,13 @@
+{
+  "total_events": 169,
+  "total_nodes": 169,
+  "before_edges": 168,
+  "same_event_edges": 335,
+  "events_with_multiple_gospels": 96,
+  "gospel_distribution": {
+    "matthew": 104,
+    "mark": 98,
+    "luke": 97,
+    "john": 64
+  }
+}
