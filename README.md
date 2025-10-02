@@ -132,7 +132,7 @@ python src/main.py --summarization-method lexrank-ta --summary-length 1
   - `lexrank-ta`: Optimized temporal anchoring with perfect chronological order
 - `--summary-length`:
   - For `lexrank`: Total number of sentences in summary
-  - For `lexrank-ta`: Number of sentences per chronological event (typically 1 for optimal temporal preservation)
+  - For `lexrank-ta`: Number of sentences per chronological event 
 - `--data-dir`: Data directory (default: `data`)
 - `--output-dir`: Output directory (default: `outputs`)
 
