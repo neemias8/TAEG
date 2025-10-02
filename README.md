@@ -10,7 +10,7 @@ TAEG (Temporal Alignment Event Graph) is a project that combines narratives from
 
 - **Data Loading**: Processes XML files from the Gospels to extract Holy Week texts
 - **Summarization with Multiple Methods**:
-  - **LEXRANK**: Standard multi-document algorithm (recommended for semantic quality)
+  - **LEXRANK**: Standard multi-document algorithm 
   - **LEXRANK-TA (Temporal Anchoring)**: Optimized temporal anchoring with best sentence selection and perfect chronological order
 - **Multi-Metric Evaluation**: Evaluates summary quality using:
   - ROUGE (ROUGE-1, ROUGE-2, ROUGE-L)
@@ -24,12 +24,11 @@ TAEG (Temporal Alignment Event Graph) is a project that combines narratives from
 - Uses traditional multi-document LEXRANK algorithm
 - Prioritizes **semantic quality** and textual cohesion
 - May reorder sentences chronologically to optimize narrative flow
-- **Advantage**: Better semantic quality (ROUGE, METEOR, BERTScore)
 - **Disadvantage**: May lose temporal order (lower Kendall's Tau)
 
 ### LEXRANK-TA (Temporal Anchoring)
 - Builds upon LEXRANK with optimized sentence selection for temporal preservation
-- Ensures perfect temporal ordering with minimal summary length
+- Ensures perfect temporal ordering
 - **Gospel-Specific Architecture**: Each chronological event has separate nodes for each Gospel that mentions it
 - **Precise Verse Extraction**: Extracts exact biblical verse text instead of entire chapters
 - **Multi-Document Summarization per Event**: For events mentioned in multiple Gospels, uses multi-document LEXRANK to combine complementary perspectives
@@ -153,7 +152,7 @@ Comparative test between LEXRANK and LEXRANK-TA (both evaluated against Golden S
 
 ### 🔍 Results Analysis
 
-- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization. Achieves good semantic quality (ROUGE-1 F1 = 0.666, BERTScore F1 = 0.835) but compromises temporal accuracy.
+- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization. Achieves some semantic quality (ROUGE-1 F1 = 0.666, BERTScore F1 = 0.835) but compromises temporal accuracy.
 - **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with superior semantic quality (ROUGE-1 F1 = 0.958, BERTScore F1 = 0.995). The temporal anchoring approach provides the best balance of chronological accuracy and content quality.
 - **Choice**: LEXRANK-TA for temporal-critical applications requiring both chronological order and high semantic quality, LEXRANK for pure semantic optimization when temporal order is less critical.
 
@@ -196,7 +195,7 @@ The latest version of LEXRANK-TA implements a revolutionary **gospel-specific** 
 - Graceful fallback for cases where extraction fails
 
 #### Perfect Chronological Sequence
-- Maintains strict temporal order of 169 events
+- Maintains strict temporal order of 269 events
 - Each event summarized in chronological context
 - Preserves historical narrative of Holy Week
 
