@@ -124,10 +124,6 @@ class SummarizationEvaluator:
         Returns:
             Kendall's Tau correlation coefficient (-1 to 1)
         """
-        if is_temporal_anchored:
-            # For temporal anchoring methods, order is guaranteed to be chronological
-            return 1.0
-
         # Use Golden Sample to determine event ordering
         return self._calculate_kendall_tau_from_golden_sample(hypothesis, reference)
 
