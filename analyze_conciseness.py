@@ -38,6 +38,8 @@ def analyze_conciseness_vs_consolidation():
 
         # Extract metrics
         rouge1_f1 = result["evaluation"]["rouge"]["rouge1"]["f1"]
+        rouge2_f1 = result["evaluation"]["rouge"]["rouge2"]["f1"]
+        rougeL_f1 = result["evaluation"]["rouge"]["rougeL"]["f1"]
         bert_f1 = result["evaluation"]["bertscore"]["f1"]
         meteor = result["evaluation"]["meteor"]
         kendall_tau = result["evaluation"]["kendall_tau"]
@@ -45,6 +47,8 @@ def analyze_conciseness_vs_consolidation():
 
         lexrank_results[length] = {
             "rouge1_f1": rouge1_f1,
+            "rouge2_f1": rouge2_f1,
+            "rougeL_f1": rougeL_f1,
             "bertscore_f1": bert_f1,
             "meteor": meteor,
             "kendall_tau": kendall_tau,
@@ -52,6 +56,8 @@ def analyze_conciseness_vs_consolidation():
         }
 
         print(f"📊 ROUGE-1 F1: {rouge1_f1:.3f}")
+        print(f"📊 ROUGE-2 F1: {rouge2_f1:.3f}")
+        print(f"📊 ROUGE-L F1: {rougeL_f1:.3f}")
         print(f"🤖 BERTScore F1: {bert_f1:.3f}")
         print(f"📈 METEOR: {meteor:.3f}")
         print(f"⏰ Kendall's Tau: {kendall_tau:.3f}")
@@ -67,6 +73,8 @@ def analyze_conciseness_vs_consolidation():
     if "error" not in ta_result:
         ta_metrics = {
             "rouge1_f1": ta_result["evaluation"]["rouge"]["rouge1"]["f1"],
+            "rouge2_f1": ta_result["evaluation"]["rouge"]["rouge2"]["f1"],
+            "rougeL_f1": ta_result["evaluation"]["rouge"]["rougeL"]["f1"],
             "bertscore_f1": ta_result["evaluation"]["bertscore"]["f1"],
             "meteor": ta_result["evaluation"]["meteor"],
             "kendall_tau": ta_result["evaluation"]["kendall_tau"],
@@ -74,6 +82,8 @@ def analyze_conciseness_vs_consolidation():
         }
 
         print(f"📊 ROUGE-1 F1: {ta_metrics['rouge1_f1']:.3f}")
+        print(f"📊 ROUGE-2 F1: {ta_metrics['rouge2_f1']:.3f}")
+        print(f"📊 ROUGE-L F1: {ta_metrics['rougeL_f1']:.3f}")
         print(f"🤖 BERTScore F1: {ta_metrics['bertscore_f1']:.3f}")
         print(f"📈 METEOR: {ta_metrics['meteor']:.3f}")
         print(f"⏰ Kendall's Tau: {ta_metrics['kendall_tau']:.3f}")
@@ -84,17 +94,26 @@ def analyze_conciseness_vs_consolidation():
     print("📊 CONCISENESS vs CONSOLIDATION ANALYSIS")
     print("="*90)
 
-    print("\n🎯 LEXRANK Performance by Length:")
-    print("Length | ROUGE-1 F1 | BERTScore F1 | METEOR | Kendall's Tau | Size (chars)")
-    print("-------|------------|--------------|--------|---------------|-------------")
-
+    print("\n🎯 PERFORMANCE COMPARISON TABLE:")
+    print("-" * 120)
+    
+    # Table header
+    print(f"{'Method':<15} {'ROUGE-1':<8} {'ROUGE-2':<8} {'ROUGE-L':<8} {'BERTScore':<10} {'METEOR':<8} {'Kendall τ':<10} {'Length':<10}")
+    print("-" * 120)
+    
+    # LEXRANK results
     for length in lexrank_lengths:
         if length in lexrank_results:
             r = lexrank_results[length]
-            print(f"{length:6} | {r['rouge1_f1']:10.3f} | {r['bertscore_f1']:12.3f} | {r['meteor']:6.3f} | {r['kendall_tau']:13.3f} | {r['summary_length_chars']:11,}")
+            method_name = f"LEXRANK({length})"
+            print(f"{method_name:<15} {r['rouge1_f1']:<8.3f} {r['rouge2_f1']:<8.3f} {r['rougeL_f1']:<8.3f} {r['bertscore_f1']:<10.3f} {r['meteor']:<8.3f} {r['kendall_tau']:<10.3f} {r['summary_length_chars']:<10,}")
+    
+    # LEXRANK-TA result
+    if 'ta_metrics' in locals():
+        print(f"{'LEXRANK-TA':<15} {ta_metrics['rouge1_f1']:<8.3f} {ta_metrics['rouge2_f1']:<8.3f} {ta_metrics['rougeL_f1']:<8.3f} {ta_metrics['bertscore_f1']:<10.3f} {ta_metrics['meteor']:<8.3f} {ta_metrics['kendall_tau']:<10.3f} {ta_metrics['summary_length_chars']:<10,}")
+    
+    print("-" * 120)
 
-    print("\n🎯 LEXRANK-TA (Reference):")
-    print(f"TA     | {ta_metrics['rouge1_f1']:10.3f} | {ta_metrics['bertscore_f1']:12.3f} | {ta_metrics['meteor']:6.3f} | {ta_metrics['kendall_tau']:13.3f} | {ta_metrics['summary_length_chars']:11,}")
     # Key insights
     print("\n🔍 KEY INSIGHTS:")
     print("1. 📈 Quality improves with length - longer summaries capture more biblical content")
@@ -105,7 +124,8 @@ def analyze_conciseness_vs_consolidation():
     # Demonstrate the trade-off
     if lexrank_results and ta_metrics:
         print("\n⚖️ TRADE-OFF ANALYSIS:")
-        print(f"   • LEXRANK (1500 sent): Temporal τ={lexrank_results[1500]['kendall_tau']:.3f}, Semantic F1={lexrank_results[1500]['bertscore_f1']:.3f}")
+        if 1500 in lexrank_results:
+            print(f"   • LEXRANK (1500 sent): Temporal τ={lexrank_results[1500]['kendall_tau']:.3f}, Semantic F1={lexrank_results[1500]['bertscore_f1']:.3f}")
         print(f"   • LEXRANK-TA: Temporal τ={ta_metrics['kendall_tau']:.3f}, Semantic F1={ta_metrics['bertscore_f1']:.3f}")
         print("   • Conclusion: For biblical narratives, temporal accuracy + comprehensive content wins!")
 
