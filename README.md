@@ -1,200 +1,135 @@
-# TAEG - Temporal Alignment Event Graph
 
-A modular system for consolidating and evaluating biblical narratives using natural language processing techniques.
-
-## Overview
-
-TAEG (Temporal Alignment Event Graph) is a project that combines narratives from the four Gospels (Matthew, Mark, Luke, and John) into a consolidated summary of Holy Week using advanced summarization algorithms, and evaluates the summary quality by comparing it with a reference sample (Golden Sample) using multiple evaluation metrics.
-
-## Features
-
-- **Data Loading**: Processes XML files from the Gospels to extract Holy Week texts
-- **Summarization with Multiple Methods**:
-  - **LEXRANK**: Standard multi-document algorithm 
-  - **LEXRANK-TA (Temporal Anchoring)**: Optimized temporal anchoring with best sentence selection and perfect chronological order
-- **Multi-Metric Evaluation**: Evaluates summary quality using:
-  - ROUGE (ROUGE-1, ROUGE-2, ROUGE-L)
-  - METEOR
-  - BERTScore
-  - Kendall's Tau (temporal correlation)
-
-## Summarization Methods
-
-### LEXRANK (Standard)
-- Uses traditional multi-document LEXRANK algorithm
-- Prioritizes **semantic quality** and textual cohesion
-- May reorder sentences chronologically to optimize narrative flow
-- **Disadvantage**: It loses temporal order (lower Kendall's Tau)
-
-### LEXRANK-TA (Temporal Anchoring)
-- Builds upon LEXRANK with optimized sentence selection for temporal preservation
-- Ensures perfect temporal ordering
-- **Gospel-Specific Architecture**: Each chronological event has separate nodes for each Gospel that mentions it
-- **Precise Verse Extraction**: Extracts exact biblical verse text instead of entire chapters
-- **Multi-Document Summarization per Event**: For events mentioned in multiple Gospels, uses multi-document LEXRANK to combine complementary perspectives
-- **Enhanced Temporal Graph**:
-  - 363 gospel-specific nodes (one per Gospel per event)
-  - 799 BEFORE edges (connecting consecutive events)
-  - 318 SAME_EVENT edges (connecting different versions of the same event)
-- **Strict Chronological Sequence**: Maintains perfect temporal order of 169 Holy Week events
-- **Advantage**: Maximum temporal preservation with coherent output
-- **Use Case**: When temporal accuracy is critical and completeness is desired
+# **TAEG: From Summarization to Consolidation with Temporal Alignment Event Graphs**
 
 
-## Installation
+This repository contains the official implementation and resources for the paper **"From Summarization to Consolidation: A Temporal Alignment Event Graph (TAEG) Approach for Unifying Narratives"**, currently under review for the LREC-COLING 2026 conference.
 
-1. **Clone the repository** (if applicable) or navigate to the project directory
+## **Abstract**
 
-2. **Set up virtual environment**:
-   ```bash
-   python -m venv .TAEG
-   ```
+In Multi-Document Summarization (MDS) of long narratives, such as legal testimonies or historical accounts, the primary goal is often not compression but coherent **consolidation**.1 Standard graph-based methods like LexRank, focused on semantic similarity, fail to preserve chronological flow. This paper reframes the task as narrative consolidation and introduces the
 
-3. **Activate virtual environment**:
-   - Windows: `.TAEG\Scripts\activate`
-   - Linux/Mac: `source .TAEG/bin/activate`
+**Temporal Alignment Event Graph (TAEG)**, a novel structure that explicitly models chronology and event alignment. By applying the LexRank algorithm to a TAEG, our method serves as a version selection mechanism, choosing the most central representation of each event in its correct chronological position. This approach guarantees perfect temporal ordering (Kendall's Tau of 1.000) by design. In a study on the four Biblical Gospels, our TAEG-based method dramatically improves content metrics (e.g., \+357.2% in ROUGE-L), demonstrating that for complex narratives, comprehensive unification is a more meaningful goal than simple summarization.1
 
-4. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## **The Core Problem: Summarization vs. Narrative Consolidation**
 
-## Usage
+The central premise of this work is a fundamental reframing of how we process multiple, overlapping narrative documents. The goal is not to make the story shorter, but to make it **whole**.
 
-### Simple Execution
+Traditional Multi-Document Summarization (MDS) is defined by its focus on **conciseness**.1 However, in contexts like a criminal investigation with multiple witness testimonies or a historical analysis of overlapping accounts like the Biblical Gospels, the primary objective is to produce a single, unified, and chronologically sound narrative. The final text must eliminate redundancy while integrating crucial details from all sources into a cohesive whole.1
 
-Run the complete pipeline with default settings (LEXRANK):
+Classic graph-based algorithms like LexRank are fundamentally mismatched for this task. By optimizing for semantic centrality, they inherently ignore the chronological flow of the narrative, resulting in a collection of salient but temporally disordered facts.1
 
-```bash
-python src/main.py
-```
+This project advocates for a paradigm shift from summarization to **narrative consolidation**, where coherence, completeness, and temporal integrity are prioritized over brevity.
 
-### Choose Summarization Method
+## **The Solution: Temporal Alignment Event Graph (TAEG)**
 
-```bash
-# Standard LEXRANK (recommended for semantic quality)
-python src/main.py --summarization-method lexrank --summary-length 750
+To achieve true narrative consolidation, we introduce the **Temporal Alignment Event Graph (TAEG)**, a structure that prioritizes temporal order and event alignment over simple semantic similarity.
 
-# LEXRANK-TA (recommended for temporal preservation)
-python src/main.py --summarization-method lexrank-ta --summary-length 1
-```
+Unlike standard methods that infer structure from textual similarity, the TAEG's construction is driven by external knowledge—a pre-defined, canonical chronology of events that serves as a structural backbone.1
 
-### Parameters
+### **TAEG Architecture**
 
-- `--summarization-method`: Summarization method:
-  - `lexrank`: Standard multi-document LEXRANK (semantic quality)
-  - `lexrank-ta`: Optimized temporal anchoring with perfect chronological order
-- `--summary-length`:
-  - For `lexrank`: Total number of sentences in summary
-  - For `lexrank-ta`: Number of sentences per chronological event 
-- `--data-dir`: Data directory (default: `data`)
-- `--output-dir`: Output directory (default: `outputs`)
+The TAEG is a multi-relational graph designed to separate the challenges of chronological ordering and version selection:
 
-### Methods Comparison
+* **Nodes**: A distinct node is created for each *version* of a canonical event. For example, if an event is described in Matthew, Mark, and Luke, three separate nodes are created for that single event.1  
+* **Edges**: The graph contains two functionally distinct types of edges:  
+  1. **Temporal Edges (BEFORE)**: *Directed* edges that connect nodes representing sequential events *within the same source document*. These edges form the known chronological backbone of each narrative.  
+  2. **Anchoral Edges (SAME\_EVENT)**: *Undirected* edges that interconnect all nodes (versions) that refer to the *same canonical event*, creating a cluster for each event in the timeline.1
 
-```bash
-python compare_methods.py
-```
+This dual-edge architecture decouples the two primary challenges: BEFORE edges solve the sequencing problem, while SAME\_EVENT edges isolate the version selection problem.
 
-## 📊 Methods Comparison
+## **Methodology & Results**
 
-Comparative test between LEXRANK and LEXRANK-TA (both evaluated against Golden Sample):
+We used the exact same centrality algorithm, LexRank, for both the standard baseline and our TAEG-based system. The only variable was the underlying graph structure. When applied to the TAEG, LexRank is repurposed into a powerful **version selection engine**.1
 
-| Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Summary Length | Priority |
-|--------|------------|------------|------------|--------------|--------|----------------|---------------|----------|
-| **LEXRANK** | 0.887 | 0.712 | 0.207 | 0.835 | 0.453 | 0.320 | 81,418 chars | **Semantic** |
-| **LEXRANK-TA** | 0.958 | 0.938 | 0.947 | 0.995 | 0.639 | **1.000** | 79,154 chars | **Temporal** |
+The results are definitive. The TAEG-based approach is not just incrementally better; it represents a categorical improvement, guaranteeing perfect temporal coherence *by design*.
 
-### 🔍 Results Analysis
+| Metric | Baseline (Standard LexRank) | TAEG-LexRank | Improvement |
+| :---- | :---- | :---- | :---- |
+| ROUGE-1 F1 | 0.887 | 0.958 | \+8.0% |
+| ROUGE-2 F1 | 0.712 | 0.938 | \+31.7% |
+| ROUGE-L F1 | 0.207 | 0.947 | **\+357.2%** |
+| BERTScore F1 | 0.835 | 0.995 | \+19.1% |
+| METEOR | 0.453 | 0.639 | \+41.0% |
+| Kendall's Tau | 0.320 | **1.000** | \+212.5% |
 
-- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.320), indicating some chronological reordering for semantic optimization. Achieves some semantic quality (ROUGE-1 F1 = 0.887, BERTScore F1 = 0.835) but compromises temporal accuracy.
-- **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with superior semantic quality (ROUGE-1 F1 = 0.958, BERTScore F1 = 0.995). The temporal anchoring approach provides the best balance of chronological accuracy and content quality.
-- **Choice**: LEXRANK-TA for temporal-critical applications requiring both chronological order and high semantic quality, LEXRANK for pure semantic optimization when temporal order is not critical.
+The perfect Kendall's Tau score is an architectural property of the TAEG, not a learned outcome. This perfect ordering is the direct cause of the massive **\+357.2% improvement in ROUGE-L**, which measures the longest common subsequence.1
 
-### Conciseness vs Consolidation Analysis
+### **Conciseness vs. Consolidation Analysis**
 
-```bash
-python analyze_conciseness.py
-```
+The results for the standard LexRank baseline in the table above reflect a parameter setting of 750 sentences. To prove that the TAEG's superiority is structural and not a matter of parameter tuning, the table below shows the baseline's performance across various summary lengths.
 
-This script demonstrates that conciseness is not the most important factor in biblical narrative consolidation, showing that comprehensive consolidation with temporal accuracy outperforms brevity-focused approaches.
+| Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Length (chars) |
+| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| **LexRank Baseline** |  |  |  |  |  |  |  |
+| *100 sentences* | 0.296 | 0.263 | 0.129 | 0.835 | 0.097 | 0.268 | 14,710 |
+| *500 sentences* | 0.804 | 0.655 | 0.206 | 0.835 | 0.361 | 0.305 | 59,408 |
+| *1000 sentences* | 0.862 | 0.728 | 0.199 | 0.835 | 0.483 | 0.320 | 100,770 |
+| *1500 sentences* | 0.784 | 0.733 | 0.188 | 0.835 | 0.484 | 0.320 | 128,930 |
+| **TAEG-LexRank** | **0.958** | **0.938** | **0.947** | **0.995** | **0.639** | **1.000** | **79,154** |
 
-## ✨ Recent Improvements - LEXRANK-TA Gospel-Specific
+This analysis clearly demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence. While some metrics improve up to a point, the temporal coherence (Kendall's Tau) remains consistently low. Even at its peak performance, the standard LexRank approach fails to come close to the quality and temporal integrity of the TAEG-based method. This reinforces our central argument: for long and complex narratives, **comprehensive coverage and chronological soundness are far more critical than mere conciseness**.1
 
-### 🎯 Enhanced Architecture
+## **The Gospel Consolidation Language Resource**
 
-The latest version of LEXRANK-TA implements a revolutionary **gospel-specific** architecture:
+To facilitate this research, we have developed and publicly released the **Gospel Consolidation Language Resource**. The dataset comprises the English New International Version (NIV, 2011\) texts of the four Gospels, mapped to 169 canonical events from the Holy Week, and a high-quality, manually created reference consolidation (the "Golden Sample").1
 
-#### 📊 Temporal Graph Statistics
-- **363 gospel-specific nodes** (one per Gospel per mentioned event)
-- **799 BEFORE edges** (connecting consecutive events across all Gospels)
-- **318 SAME_EVENT edges** (connecting different versions of the same event)
-- **96 events** with multiple Gospel versions (diverse coverage)
+### **Language and Version Agnostic Format**
 
-#### 📖 Distribution by Gospel
-- **Matthew**: 104 events mentioned
-- **Mark**: 98 events mentioned  
-- **Luke**: 97 events mentioned
-- **John**: 64 events mentioned
+A crucial design choice was the use of a 'book:chapter:verse' system for alignment. This decouples the chronological structure from any specific translation or language. This means other researchers can easily apply our framework to the Gospels in different languages or biblical versions (e.g., KJV, ESV) without recreating the temporal alignment from scratch.1
 
-### 🔬 Advanced Features
+The system is designed to parse any XML file where book, chapter, and verse identifiers are clearly tagged as attributes. As long as the verse references can be parsed, the TAEG can align them regardless of the specific XML schema or textual content.
 
-#### Multi-Document Summarization per Event
-- Unique events: Single-document LEXRANK summarization
-- Multi-gospel events: Multi-document LEXRANK combining complementary perspectives
-- **Result**: Consolidated summary of **52,603 characters** with complete Holy Week narrative
+For example, consider Matthew 21:1 from two different versions in a simple XML format:
 
-#### Precise Verse Extraction
-- Extracts exact text from biblical verses (not entire chapters)
-- Handles complex references (e.g., "26:6-13", "21:19b-22")
-- Graceful fallback for cases where extraction fails
+**NIV (New International Version) XML:**
 
-#### Perfect Chronological Sequence
-- Maintains strict temporal order of 169 events
-- Each event summarized in chronological context
-- Preserves historical narrative of Holy Week
+XML
 
-### 📈 Current Metrics Status
+\<bible version\="NIV"\>  
+  \<book name\="Matthew"\>  
+    \<chapter number\="21"\>  
+      \<verse number\="1"\>As they approached Jerusalem and came to Bethphage on the Mount of Olives, Jesus sent two disciples,\</verse\>  
+    \</chapter\>  
+  \</book\>  
+\</bible\>
 
-**Note**: Comprehensive metric evaluation is currently in progress. The temporal evaluation (Kendall's Tau) has been recently validated:
+**KJV (King James Version) XML:**
 
-- **LEXRANK**: Kendall's Tau = 0.320 (partial temporal disorder)
-- **LEXRANK-TA**: Kendall's Tau = 1.000 (perfect temporal order)
+XML
 
-ROUGE, BERTScore, and METEOR metrics are being updated and will be available in future releases.
+\<bible version\="KJV"\>  
+  \<book name\="Matthew"\>  
+    \<chapter number\="21"\>  
+      \<verse number\="1"\>And when they drew nigh unto Jerusalem, and were come to Bethphage, unto the mount of Olives, then sent Jesus two disciples,\</verse\>  
+    \</chapter\>  
+  \</book\>  
+\</bible\>
 
-## � Conciseness vs Consolidation Analysis
+Our system aligns both passages to the same canonical event by parsing the attributes book name="Matthew", chapter number="21", and verse number="1", making the framework highly adaptable and reusable across different XML-formatted biblical texts.
 
-Recent empirical analysis demonstrates that **conciseness is not the most important factor** in biblical narrative consolidation. Comprehensive consolidation that preserves multiple perspectives and maintains temporal accuracy is far more valuable than brevity.
+## **Getting Started**
 
-### 🎯 Key Findings
+### **Installation**
 
-The analysis compared LEXRANK at different summary lengths (100, 500, 1000, 1500 sentences) against LEXRANK-TA to determine the optimal balance between conciseness and quality:
+To set up the environment and install the required dependencies, follow these steps:
 
-| Method | ROUGE-1 F1 | BERTScore F1 | METEOR | Kendall's Tau | Length (chars) |
-|--------|------------|--------------|--------|---------------|----------------|
-| **LEXRANK (100 sent)** | 0.296 | 0.835 | 0.097 | 0.268 | 14,710 |
-| **LEXRANK (500 sent)** | 0.804 | 0.835 | 0.361 | 0.305 | 59,408 |
-| **LEXRANK (1000 sent)** | 0.862 | 0.835 | 0.483 | 0.320 | 100,770 |
-| **LEXRANK (1500 sent)** | 0.784 | 0.835 | 0.484 | 0.320 | 128,930 |
-| **LEXRANK-TA (Reference)** | **0.958** | **0.995** | **0.639** | **1.000** | 79,154 |
+Bash
 
-### 🔍 Analysis Insights
+\# Clone the repository  
+git clone https://github.com/neemias8/TAEG.git  
+cd TAEG
 
-1. **📈 Quality improves with length**: Longer LEXRANK summaries capture more biblical content and achieve better semantic quality (ROUGE, METEOR scores increase significantly from 100 to 1000 sentences)
+\# Install dependencies  
+pip install \-r requirements.txt
 
-2. **⏰ Temporal order consistency**: LEXRANK maintains relatively stable temporal correlation (Kendall's Tau ~0.3) across different lengths, indicating consistent chronological behavior
+### **Usage**
 
-3. **🎯 LEXRANK-TA superiority**: Maintains perfect temporal order (τ = 1.000) with superior semantic quality, demonstrating that temporal anchoring + comprehensive consolidation wins over pure conciseness
+To run the narrative consolidation process and replicate the paper's core findings, use the following command:
 
-4. **📚 Biblical narrative conclusion**: For consolidating multiple Gospel perspectives, **comprehensive coverage with temporal accuracy is more valuable than brevity**
+Bash
 
-### ⚖️ Trade-off Analysis
-
-- **LEXRANK (1500 sentences)**: Temporal τ=0.320, Semantic F1=0.835, Length=128,930 chars
-- **LEXRANK-TA**: Temporal τ=**1.000**, Semantic F1=**0.995**, Length=79,154 chars
-
-**Conclusion**: In biblical narrative consolidation, temporal accuracy + comprehensive content consistently outperforms conciseness-focused approaches.
+\# Run the consolidation using the TAEG-LexRank method  
+python main.py \--method taeg \--output consolidated\_narrative.txt
 
 ## �🚀 Usage Examples
 
@@ -231,26 +166,6 @@ python src/main.py --summarization-method lexrank --summary-length 800
 python src/main.py --summarization-method lexrank-ta --summary-length 1
 ```
 
-## Modules
-
-### `data_loader.py`
-Responsible for loading and processing the XML files of the gospels, specifically extracting the Holy Week chapters and chronology data.
-
-### `graph_builder.py`
-Constructs the temporal graph with chronological events and relationships between them.
-
-### `models.py`
-Defines the neural network models used for training and summarization.
-
-### `train.py`
-Handles the training process for the summarization models.
-
-### `evaluate.py`
-Calculates multiple evaluation metrics including ROUGE, METEOR, BERTScore, and Kendall's Tau to compare generated summaries with reference texts.
-
-### `main.py`
-Orchestrates the entire TAEG pipeline, coordinating data loading, graph construction, summarization, and evaluation.
-
 ## Evaluation Metrics
 
 ### ROUGE
@@ -266,7 +181,7 @@ BERT embedding-based metric for semantic similarity.
 
 ### Kendall's Tau
 Ranking correlation between sentence order in generated summary and reference text. Values range from -1 (perfect disagreement) to +1 (perfect agreement). Recently validated to correctly distinguish temporal preservation:
-- LEXRANK: 0.287 (partial temporal disorder)
+- LEXRANK: 0.320 (partial temporal disorder)
 - LEXRANK-TA: 1.000 (perfect temporal order)
 
 ## 🔧 Recent Validation
@@ -275,7 +190,7 @@ Ranking correlation between sentence order in generated summary and reference te
 The temporal evaluation metric has been thoroughly validated:
 - **Debug Implementation**: Added position tracking for events in reference and hypothesis texts
 - **Correct Behavior Confirmed**: 
-  - Non-temporal methods (LEXRANK) show realistic partial disorder (τ = 0.287)
+  - Non-temporal methods (LEXRANK) show realistic partial disorder (τ = 0.320)
   - Temporal-anchored methods (LEXRANK-TA) achieve perfect order (τ = 1.000)
 - **Event Matching**: Uses keyword overlap detection with NLTK sentence tokenization
 - **Result**: System accurately evaluates temporal preservation differences between summarization approaches
