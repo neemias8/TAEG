@@ -73,7 +73,7 @@ python src/main.py
 
 ```bash
 # Standard LEXRANK (recommended for semantic quality)
-python src/main.py --summarization-method lexrank --summary-length 800
+python src/main.py --summarization-method lexrank --summary-length 750
 
 # LEXRANK-TA (recommended for temporal preservation)
 python src/main.py --summarization-method lexrank-ta --summary-length 1
@@ -102,12 +102,12 @@ Comparative test between LEXRANK and LEXRANK-TA (both evaluated against Golden S
 
 | Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Summary Length | Priority |
 |--------|------------|------------|------------|--------------|--------|----------------|---------------|----------|
-| **LEXRANK** | 0.666 | 0.562 | 0.190 | 0.835 | 0.270 | 0.287 | 43,134 chars | **Semantic** |
+| **LEXRANK** | 0.887 | 0.712 | 0.207 | 0.835 | 0.453 | 0.320 | 81,418 chars | **Semantic** |
 | **LEXRANK-TA** | 0.958 | 0.938 | 0.947 | 0.995 | 0.639 | **1.000** | 79,154 chars | **Temporal** |
 
 ### 🔍 Results Analysis
 
-- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.287), indicating some chronological reordering for semantic optimization. Achieves some semantic quality (ROUGE-1 F1 = 0.666, BERTScore F1 = 0.835) but compromises temporal accuracy.
+- **LEXRANK**: Shows partial temporal disorder (Kendall's Tau = 0.320), indicating some chronological reordering for semantic optimization. Achieves some semantic quality (ROUGE-1 F1 = 0.887, BERTScore F1 = 0.835) but compromises temporal accuracy.
 - **LEXRANK-TA**: Achieves perfect temporal preservation (Kendall's Tau = 1.000) with superior semantic quality (ROUGE-1 F1 = 0.958, BERTScore F1 = 0.995). The temporal anchoring approach provides the best balance of chronological accuracy and content quality.
 - **Choice**: LEXRANK-TA for temporal-critical applications requiring both chronological order and high semantic quality, LEXRANK for pure semantic optimization when temporal order is not critical.
 
@@ -158,7 +158,7 @@ The latest version of LEXRANK-TA implements a revolutionary **gospel-specific** 
 
 **Note**: Comprehensive metric evaluation is currently in progress. The temporal evaluation (Kendall's Tau) has been recently validated:
 
-- **LEXRANK**: Kendall's Tau = 0.287 (partial temporal disorder)
+- **LEXRANK**: Kendall's Tau = 0.320 (partial temporal disorder)
 - **LEXRANK-TA**: Kendall's Tau = 1.000 (perfect temporal order)
 
 ROUGE, BERTScore, and METEOR metrics are being updated and will be available in future releases.
