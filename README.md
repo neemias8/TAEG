@@ -1,30 +1,29 @@
 
-# **TAEG: From Summarization to Consolidation with Temporal Alignment Event Graphs**
+# **Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts**
 
 
-This repository contains the official implementation and resources for the paper **"From Summarization to Consolidation: A Temporal Alignment Event Graph (TAEG) Approach for Unifying Narratives"**, currently under review for the LREC-COLING 2026 conference.
+This repository contains the official implementation and resources for the paper **"Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts"**, currently under review for the LREC 2026 conference.
 
 ## **Abstract**
 
-In Multi-Document Summarization (MDS) of long narratives, such as legal testimonies or historical accounts, the primary goal is often not compression but coherent **consolidation**.1 Standard graph-based methods like LexRank, focused on semantic similarity, fail to preserve chronological flow. This paper reframes the task as narrative consolidation and introduces the
+Processing overlapping narrative documents, such as legal testimonies or historical accounts, often aims not for compression but for a unified, coherent, and chronologically sound text. Standard Multi-Document Summarization (MDS), with its focus on conciseness, fails to preserve narrative flow. This paper formally defines this challenge as a new NLP task: **Narrative Consolidation**, where the central objectives are chronological integrity, completeness, and the fusion of complementary details. To demonstrate the critical role of temporal structure in this task, we introduce **Temporal Alignment Event Graph (TAEG)**, a graph structure that explicitly models chronology and event alignment. By applying a standard centrality algorithm to TAEG, our method functions as a version selection mechanism, choosing the most central representation of each event in its correct temporal position. In a study on the four Biblical Gospels, this structure-focused approach guarantees perfect temporal ordering (Kendall's Tau of 1.000) by design and dramatically improves content metrics (e.g., +357.2% in ROUGE-L F1). The success of this baseline method validates the formulation of Narrative Consolidation as a relevant task and establishes that an explicit temporal backbone is a fundamental component for its resolution.
 
-**Temporal Alignment Event Graph (TAEG)**, a novel structure that explicitly models chronology and event alignment. By applying the LexRank algorithm to a TAEG, our method serves as a version selection mechanism, choosing the most central representation of each event in its correct chronological position. This approach guarantees perfect temporal ordering (Kendall's Tau of 1.000) by design. In a study on the four Biblical Gospels, our TAEG-based method dramatically improves content metrics (e.g., \+357.2% in ROUGE-L), demonstrating that for complex narratives, comprehensive unification is a more meaningful goal than simple summarization.1
 
 ## **The Core Problem: Summarization vs. Narrative Consolidation**
 
 The central premise of this work is a fundamental reframing of how we process multiple, overlapping narrative documents. The goal is not to make the story shorter, but to make it **whole**.
 
-Traditional Multi-Document Summarization (MDS) is defined by its focus on **conciseness**.1 However, in contexts like a criminal investigation with multiple witness testimonies or a historical analysis of overlapping accounts like the Biblical Gospels, the primary objective is to produce a single, unified, and chronologically sound narrative. The final text must eliminate redundancy while integrating crucial details from all sources into a cohesive whole.1
+Traditional Multi-Document Summarization (MDS) is defined by its focus on **conciseness**.1 However, in contexts like a criminal investigation with multiple witness testimonies or a historical analysis of overlapping accounts like the Biblical Gospels, the primary objective is to produce a single, unified, and chronologically sound narrative. The final text must eliminate redundancy while integrating crucial details from all sources into a cohesive whole.
 
-Classic graph-based algorithms like LexRank are fundamentally mismatched for this task. By optimizing for semantic centrality, they inherently ignore the chronological flow of the narrative, resulting in a collection of salient but temporally disordered facts.1
+Classic graph-based algorithms like LexRank are fundamentally mismatched for this task. By optimizing for semantic centrality, they inherently ignore the chronological flow of the narrative, resulting in a collection of salient but temporally disordered facts.
 
-This project advocates for a paradigm shift from summarization to **narrative consolidation**, where coherence, completeness, and temporal integrity are prioritized over brevity.
+This project advocates for a paradigm shift from summarization to **Narrative Consolidation**, where coherence, completeness, and temporal integrity are prioritized over brevity.
 
-## **The Solution: Temporal Alignment Event Graph (TAEG)**
+## **Temporal Alignment Event Graph (TAEG)**
 
-To achieve true narrative consolidation, we introduce the **Temporal Alignment Event Graph (TAEG)**, a structure that prioritizes temporal order and event alignment over simple semantic similarity.
+As a narrative consolidation experiment, we introduce the **Temporal Alignment Event Graph (TAEG)**, a structure that prioritizes temporal order and event alignment over simple semantic similarity.
 
-Unlike standard methods that infer structure from textual similarity, the TAEG's construction is driven by external knowledge—a pre-defined, canonical chronology of events that serves as a structural backbone.1
+Unlike standard methods that infer structure from textual similarity, the TAEG's construction is driven by external knowledge—a pre-defined, canonical chronology of events that serves as a structural backbone.
 
 ### **TAEG Architecture**
 
@@ -39,7 +38,7 @@ This dual-edge architecture decouples the two primary challenges: BEFORE edges s
 
 ## **Methodology & Results**
 
-We used the exact same centrality algorithm, LexRank, for both the standard baseline and our TAEG-based system. The only variable was the underlying graph structure. When applied to the TAEG, LexRank is repurposed into a powerful **version selection engine**.1
+We used the exact same centrality algorithm, LexRank, for both the standard baseline and our TAEG-based system. The only variable was the underlying graph structure. When applied to the TAEG, LexRank is repurposed into a **version selection engine**.
 
 The results are definitive. The TAEG-based approach is not just incrementally better; it represents a categorical improvement, guaranteeing perfect temporal coherence *by design*.
 
@@ -52,7 +51,7 @@ The results are definitive. The TAEG-based approach is not just incrementally be
 | METEOR | 0.453 | 0.639 | \+41.0% |
 | Kendall's Tau | 0.320 | **1.000** | \+212.5% |
 
-The perfect Kendall's Tau score is an architectural property of the TAEG, not a learned outcome. This perfect ordering is the direct cause of the massive **\+357.2% improvement in ROUGE-L**, which measures the longest common subsequence.1
+The perfect Kendall's Tau score is an architectural property of the TAEG, not a learned outcome. This perfect ordering is the direct cause of the massive **\+357.2% improvement in ROUGE-L**, which measures the longest common subsequence.
 
 ### **Conciseness vs. Consolidation Analysis**
 
@@ -67,15 +66,15 @@ The results for the standard LexRank baseline in the table above reflect a param
 | *1500 sentences* | 0.784 | 0.733 | 0.188 | 0.835 | 0.484 | 0.320 | 128,930 |
 | **TAEG-LexRank** | **0.958** | **0.938** | **0.947** | **0.995** | **0.639** | **1.000** | **79,154** |
 
-This analysis clearly demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence. While some metrics improve up to a point, the temporal coherence (Kendall's Tau) remains consistently low. Even at its peak performance, the standard LexRank approach fails to come close to the quality and temporal integrity of the TAEG-based method. This reinforces our central argument: for long and complex narratives, **comprehensive coverage and chronological soundness are far more critical than mere conciseness**.1
+This analysis clearly demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence. While some metrics improve up to a point, the temporal coherence (Kendall's Tau) remains consistently low. Even at its peak performance, the standard LexRank approach fails to come close to the quality and temporal integrity of the TAEG-based method. This reinforces our central argument: for long and complex narratives, **comprehensive coverage and chronological soundness are far more critical than mere conciseness**.
 
 ## **The Gospel Consolidation Language Resource**
 
-To facilitate this research, we have developed and publicly released the **Gospel Consolidation Language Resource**. The dataset comprises the English New International Version (NIV, 2011\) texts of the four Gospels, mapped to 169 canonical events from the Holy Week, and a high-quality, manually created reference consolidation (the "Golden Sample").1
+To facilitate this research, we have developed and publicly released the **Gospel Consolidation Language Resource**. The dataset comprises the English New International Version (NIV, 2011\) texts of the four Gospels, mapped to 169 canonical events from the Holy Week, and a high-quality, manually created reference consolidation (the "Golden Sample").
 
 ### **Language and Version Agnostic Format**
 
-A crucial design choice was the use of a 'book:chapter:verse' system for alignment. This decouples the chronological structure from any specific translation or language. This means other researchers can easily apply our framework to the Gospels in different languages or biblical versions (e.g., KJV, ESV) without recreating the temporal alignment from scratch.1
+A crucial design choice was the use of a 'book:chapter:verse' system for alignment. This decouples the chronological structure from any specific translation or language. This means other researchers can easily apply our framework to the Gospels in different languages or biblical versions (e.g., KJV, ESV) without recreating the temporal alignment from scratch.
 
 The system is designed to parse any XML file where book, chapter, and verse identifiers are clearly tagged as attributes. As long as the verse references can be parsed, the TAEG can align them regardless of the specific XML schema or textual content.
 
