@@ -16,10 +16,11 @@ from summarizer import LexRankSummarizer, LexRankTemporalAnchoring
 from evaluator import SummarizationEvaluator
 from selection_strategies import get_strategy
 
-# Timeline-aware selection strategies (JBCS revision, Task 2).
+# Timeline-aware selection strategies (JBCS revision, Tasks 1-2).
 # "lexrank-ta" is kept as a backward-compatible alias for "longest",
-# which is the pre-revision published behavior.
-STRATEGY_METHODS = ["longest", "random", "priority", "centroid"]
+# which is the pre-revision published behavior. "taeg" is Algorithm 1 of
+# the paper: max LexRank centrality over the TAEG graph.
+STRATEGY_METHODS = ["longest", "random", "priority", "centroid", "taeg"]
 
 
 class TAEGPipeline:
@@ -83,9 +84,19 @@ class TAEGPipeline:
                 # Timeline-aware consolidation: identical loop for every
                 # strategy, differing only in the per-event selection rule.
                 strategy_key = "longest" if method == "lexrank-ta" else method
-                strategy = get_strategy(strategy_key, seed=seed)
+                graph = None
+                if strategy_key.startswith("taeg"):
+                    from taeg_centrality import ablation_flags, build_graph_and_centrality
+                    graph, centrality, info = build_graph_and_centrality(
+                        verbose=True, **ablation_flags(strategy_key))
+                    print(f"   LexRank centrality over the TAEG: "
+                          f"{info['n_nodes']} nodes, edges used {info['edges_used']}, "
+                          f"converged in {info['iterations']} iterations")
+                    strategy = get_strategy(strategy_key, centrality=centrality)
+                else:
+                    strategy = get_strategy(strategy_key, seed=seed)
                 consolidated_summary, selection_records = \
-                    self.summarizer_ta.consolidate_with_strategy(strategy)
+                    self.summarizer_ta.consolidate_with_strategy(strategy, graph=graph)
             else:
                 raise ValueError(f"Unknown summarization method: {summarization_method}")
 
