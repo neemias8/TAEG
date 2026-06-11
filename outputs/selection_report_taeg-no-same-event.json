@@ -1,0 +1,4024 @@
+{
+  "method": "taeg-no-same-event",
+  "seed": null,
+  "events": [
+    {
+      "event_id": 1,
+      "description": "Mary anoints Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_1_matthew",
+          "gospel": "matthew",
+          "reference": "26:6-13",
+          "text_length": 762,
+          "score": 0.001173312258829534
+        },
+        {
+          "node_id": "event_1_mark",
+          "gospel": "mark",
+          "reference": "14:3-9",
+          "text_length": 870,
+          "score": 0.0011553083580430744
+        },
+        {
+          "node_id": "event_1_john",
+          "gospel": "john",
+          "reference": "12:1-8",
+          "text_length": 937,
+          "score": 0.0019107446146848488
+        }
+      ],
+      "chosen_node": "event_1_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 2,
+      "description": "The plan to kill Lazarus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_2_john",
+          "gospel": "john",
+          "reference": "12:9-11",
+          "text_length": 308,
+          "score": 0.004755405864550092
+        }
+      ],
+      "chosen_node": "event_2_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 3,
+      "description": "The people come out to meet Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_3_john",
+          "gospel": "john",
+          "reference": "12:12-13",
+          "text_length": 252,
+          "score": 0.0038091547251865006
+        }
+      ],
+      "chosen_node": "event_3_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 4,
+      "description": "Jesus sends for the donkey's colt",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_4_matthew",
+          "gospel": "matthew",
+          "reference": "21:1-7",
+          "text_length": 690,
+          "score": 0.0034891219866313556
+        },
+        {
+          "node_id": "event_4_mark",
+          "gospel": "mark",
+          "reference": "11:1-7",
+          "text_length": 712,
+          "score": 0.002829793470039394
+        },
+        {
+          "node_id": "event_4_luke",
+          "gospel": "luke",
+          "reference": "19:29-35",
+          "text_length": 616,
+          "score": 0.0030402689932759112
+        },
+        {
+          "node_id": "event_4_john",
+          "gospel": "john",
+          "reference": "12:14-16",
+          "text_length": 343,
+          "score": 0.0017030401647189245
+        }
+      ],
+      "chosen_node": "event_4_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 5,
+      "description": "The Triumphal Entry",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_5_matthew",
+          "gospel": "matthew",
+          "reference": "21:8-9",
+          "text_length": 290,
+          "score": 0.0030643308499497084
+        },
+        {
+          "node_id": "event_5_mark",
+          "gospel": "mark",
+          "reference": "11:8-10",
+          "text_length": 290,
+          "score": 0.0026349605962722985
+        },
+        {
+          "node_id": "event_5_luke",
+          "gospel": "luke",
+          "reference": "19:36-40",
+          "text_length": 495,
+          "score": 0.0041700197328487275
+        }
+      ],
+      "chosen_node": "event_5_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 6,
+      "description": "Predicts destruction of Jerusalem",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_6_luke",
+          "gospel": "luke",
+          "reference": "19:41-44",
+          "text_length": 491,
+          "score": 0.0030930766498835434
+        }
+      ],
+      "chosen_node": "event_6_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 7,
+      "description": "Jesus is recognized",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_7_matthew",
+          "gospel": "matthew",
+          "reference": "21:10-11",
+          "text_length": 158,
+          "score": 0.002295538931538861
+        },
+        {
+          "node_id": "event_7_john",
+          "gospel": "john",
+          "reference": "12:17-19",
+          "text_length": 343,
+          "score": 0.0021697080891148134
+        }
+      ],
+      "chosen_node": "event_7_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 8,
+      "description": "Return to Bethany",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_8_matthew",
+          "gospel": "matthew",
+          "reference": "21:17",
+          "text_length": 79,
+          "score": 0.0026229599043614406
+        },
+        {
+          "node_id": "event_8_mark",
+          "gospel": "mark",
+          "reference": "11:11",
+          "text_length": 150,
+          "score": 0.0029817150014577365
+        }
+      ],
+      "chosen_node": "event_8_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 9,
+      "description": "The fig tree without fruit",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_9_mark",
+          "gospel": "mark",
+          "reference": "11:12-14",
+          "text_length": 339,
+          "score": 0.003993572474106054
+        }
+      ],
+      "chosen_node": "event_9_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 10,
+      "description": "Jesus clears the temple, second time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_10_matthew",
+          "gospel": "matthew",
+          "reference": "21:12-13",
+          "text_length": 292,
+          "score": 0.0022180660640768422
+        },
+        {
+          "node_id": "event_10_mark",
+          "gospel": "mark",
+          "reference": "11:15-17",
+          "text_length": 433,
+          "score": 0.0025449140545632737
+        },
+        {
+          "node_id": "event_10_luke",
+          "gospel": "luke",
+          "reference": "19:45-46",
+          "text_length": 192,
+          "score": 0.0021337332536046963
+        }
+      ],
+      "chosen_node": "event_10_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 11,
+      "description": "His enemies continue planning",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_11_mark",
+          "gospel": "mark",
+          "reference": "11:18",
+          "text_length": 170,
+          "score": 0.002792394769346731
+        },
+        {
+          "node_id": "event_11_luke",
+          "gospel": "luke",
+          "reference": "19:47-48",
+          "text_length": 229,
+          "score": 0.003688851121236375
+        }
+      ],
+      "chosen_node": "event_11_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 12,
+      "description": "The children praise Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_12_matthew",
+          "gospel": "matthew",
+          "reference": "21:14-16",
+          "text_length": 428,
+          "score": 0.003395189208192334
+        }
+      ],
+      "chosen_node": "event_12_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 13,
+      "description": "They go out of the city",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_13_mark",
+          "gospel": "mark",
+          "reference": "11:19",
+          "text_length": 45,
+          "score": 0.0021691163249540663
+        }
+      ],
+      "chosen_node": "event_13_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 14,
+      "description": "daily plan, morning and evening",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_14_luke",
+          "gospel": "luke",
+          "reference": "21:37-38",
+          "text_length": 202,
+          "score": 0.002306949422673051
+        }
+      ],
+      "chosen_node": "event_14_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 15,
+      "description": "The fig tree dries up",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_15_mark",
+          "gospel": "mark",
+          "reference": "11:20-26",
+          "text_length": 660,
+          "score": 0.0037425473034278147
+        }
+      ],
+      "chosen_node": "event_15_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 16,
+      "description": "The authority of Jesus questioned",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_16_matthew",
+          "gospel": "matthew",
+          "reference": "21:23-27",
+          "text_length": 759,
+          "score": 0.002382426421731839
+        },
+        {
+          "node_id": "event_16_mark",
+          "gospel": "mark",
+          "reference": "11:27-33",
+          "text_length": 781,
+          "score": 0.0023398700007548926
+        },
+        {
+          "node_id": "event_16_luke",
+          "gospel": "luke",
+          "reference": "20:1-8",
+          "text_length": 734,
+          "score": 0.0023827686607590915
+        }
+      ],
+      "chosen_node": "event_16_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 17,
+      "description": "Parable of the two sons",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_17_matthew",
+          "gospel": "matthew",
+          "reference": "21:28-32",
+          "text_length": 706,
+          "score": 0.005977597362165399
+        }
+      ],
+      "chosen_node": "event_17_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 18,
+      "description": "Parable of the tenants",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_18_matthew",
+          "gospel": "matthew",
+          "reference": "21:33-41",
+          "text_length": 1024,
+          "score": 0.002654081885721876
+        },
+        {
+          "node_id": "event_18_mark",
+          "gospel": "mark",
+          "reference": "12:1-9",
+          "text_length": 1005,
+          "score": 0.002635336519074199
+        },
+        {
+          "node_id": "event_18_luke",
+          "gospel": "luke",
+          "reference": "20:9-16",
+          "text_length": 960,
+          "score": 0.0028221973377868057
+        }
+      ],
+      "chosen_node": "event_18_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 19,
+      "description": "The stone the builders rejected",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_19_matthew",
+          "gospel": "matthew",
+          "reference": "21:42-44",
+          "text_length": 395,
+          "score": 0.003417248088043221
+        },
+        {
+          "node_id": "event_19_mark",
+          "gospel": "mark",
+          "reference": "12:10-11",
+          "text_length": 150,
+          "score": 0.0018761357662562806
+        },
+        {
+          "node_id": "event_19_luke",
+          "gospel": "luke",
+          "reference": "20:17-18",
+          "text_length": 254,
+          "score": 0.00293896888228474
+        }
+      ],
+      "chosen_node": "event_19_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 20,
+      "description": "Leaders are offended",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_20_matthew",
+          "gospel": "matthew",
+          "reference": "21:45-46",
+          "text_length": 218,
+          "score": 0.0018597664567461985
+        },
+        {
+          "node_id": "event_20_mark",
+          "gospel": "mark",
+          "reference": "12:12",
+          "text_length": 165,
+          "score": 0.0015395631255085238
+        },
+        {
+          "node_id": "event_20_luke",
+          "gospel": "luke",
+          "reference": "20:19",
+          "text_length": 184,
+          "score": 0.0019342773319085652
+        }
+      ],
+      "chosen_node": "event_20_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 21,
+      "description": "Parable of the wedding banquet",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_21_matthew",
+          "gospel": "matthew",
+          "reference": "22:1-14",
+          "text_length": 1421,
+          "score": 0.0035663092137850844
+        }
+      ],
+      "chosen_node": "event_21_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 22,
+      "description": "Question about taxes",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_22_matthew",
+          "gospel": "matthew",
+          "reference": "22:15-22",
+          "text_length": 814,
+          "score": 0.0027632346651482705
+        },
+        {
+          "node_id": "event_22_mark",
+          "gospel": "mark",
+          "reference": "12:13-17",
+          "text_length": 714,
+          "score": 0.002638224211996967
+        },
+        {
+          "node_id": "event_22_luke",
+          "gospel": "luke",
+          "reference": "20:20-26",
+          "text_length": 765,
+          "score": 0.0026291349816009156
+        }
+      ],
+      "chosen_node": "event_22_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 23,
+      "description": "Question about the resurrection",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_23_matthew",
+          "gospel": "matthew",
+          "reference": "22:23-33",
+          "text_length": 1055,
+          "score": 0.003811241489767624
+        },
+        {
+          "node_id": "event_23_mark",
+          "gospel": "mark",
+          "reference": "12:18-27",
+          "text_length": 1072,
+          "score": 0.003647848243621008
+        },
+        {
+          "node_id": "event_23_luke",
+          "gospel": "luke",
+          "reference": "20:27-38",
+          "text_length": 1140,
+          "score": 0.003471158363493484
+        }
+      ],
+      "chosen_node": "event_23_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 24,
+      "description": "The greatest commandment",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_24_matthew",
+          "gospel": "matthew",
+          "reference": "22:34-40",
+          "text_length": 472,
+          "score": 0.003313766283735615
+        },
+        {
+          "node_id": "event_24_mark",
+          "gospel": "mark",
+          "reference": "12:28-34",
+          "text_length": 960,
+          "score": 0.0039046977843668067
+        },
+        {
+          "node_id": "event_24_luke",
+          "gospel": "luke",
+          "reference": "20:39-40",
+          "text_length": 112,
+          "score": 0.0025608002508490445
+        }
+      ],
+      "chosen_node": "event_24_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 25,
+      "description": "Whose son is the Christ?",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_25_matthew",
+          "gospel": "matthew",
+          "reference": "22:41-46",
+          "text_length": 496,
+          "score": 0.0031446667531274944
+        },
+        {
+          "node_id": "event_25_mark",
+          "gospel": "mark",
+          "reference": "12:35-37",
+          "text_length": 392,
+          "score": 0.0028828010658815562
+        },
+        {
+          "node_id": "event_25_luke",
+          "gospel": "luke",
+          "reference": "20:41-44",
+          "text_length": 285,
+          "score": 0.002535433405403068
+        }
+      ],
+      "chosen_node": "event_25_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 26,
+      "description": "Jesus condemns pride",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_26_matthew",
+          "gospel": "matthew",
+          "reference": "23:1-12",
+          "text_length": 1040,
+          "score": 0.0026705887275943747
+        },
+        {
+          "node_id": "event_26_mark",
+          "gospel": "mark",
+          "reference": "12:38-40",
+          "text_length": 338,
+          "score": 0.0017791964517959403
+        },
+        {
+          "node_id": "event_26_luke",
+          "gospel": "luke",
+          "reference": "20:45-47",
+          "text_length": 381,
+          "score": 0.0019346701111025073
+        }
+      ],
+      "chosen_node": "event_26_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 27,
+      "description": "Seven woes",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_27_matthew",
+          "gospel": "matthew",
+          "reference": "23:13-36",
+          "text_length": 2991,
+          "score": 0.0037170205205391705
+        }
+      ],
+      "chosen_node": "event_27_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 28,
+      "description": "Lament about Jerusalem",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_28_matthew",
+          "gospel": "matthew",
+          "reference": "23:37-39",
+          "text_length": 359,
+          "score": 0.0019616190934634626
+        }
+      ],
+      "chosen_node": "event_28_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 29,
+      "description": "The example of the poor widow",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_29_mark",
+          "gospel": "mark",
+          "reference": "12:41-44",
+          "text_length": 508,
+          "score": 0.0019823798182324994
+        },
+        {
+          "node_id": "event_29_luke",
+          "gospel": "luke",
+          "reference": "21:1-4",
+          "text_length": 343,
+          "score": 0.0020062783696635817
+        }
+      ],
+      "chosen_node": "event_29_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 30,
+      "description": "The temple will be destroyed",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_30_matthew",
+          "gospel": "matthew",
+          "reference": "24:1-2",
+          "text_length": 256,
+          "score": 0.0031863697238748443
+        },
+        {
+          "node_id": "event_30_mark",
+          "gospel": "mark",
+          "reference": "13:1-2",
+          "text_length": 261,
+          "score": 0.0025956805276761458
+        },
+        {
+          "node_id": "event_30_luke",
+          "gospel": "luke",
+          "reference": "21:5-6",
+          "text_length": 270,
+          "score": 0.0030193714938598648
+        }
+      ],
+      "chosen_node": "event_30_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 31,
+      "description": "The disciples ask questions",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_31_matthew",
+          "gospel": "matthew",
+          "reference": "24:3",
+          "text_length": 196,
+          "score": 0.0027659138194634177
+        },
+        {
+          "node_id": "event_31_mark",
+          "gospel": "mark",
+          "reference": "13:3-4",
+          "text_length": 224,
+          "score": 0.002937875702749559
+        },
+        {
+          "node_id": "event_31_luke",
+          "gospel": "luke",
+          "reference": "21:7",
+          "text_length": 116,
+          "score": 0.0029473821454338058
+        }
+      ],
+      "chosen_node": "event_31_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 32,
+      "description": "\"See that no one leads you astray\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_32_matthew",
+          "gospel": "matthew",
+          "reference": "24:4-5",
+          "text_length": 135,
+          "score": 0.0025793645739696377
+        },
+        {
+          "node_id": "event_32_mark",
+          "gospel": "mark",
+          "reference": "13:5-6",
+          "text_length": 127,
+          "score": 0.0027092789189449564
+        },
+        {
+          "node_id": "event_32_luke",
+          "gospel": "luke",
+          "reference": "21:8",
+          "text_length": 146,
+          "score": 0.00237361754973826
+        }
+      ],
+      "chosen_node": "event_32_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 33,
+      "description": "Wars and Persecution",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_33_matthew",
+          "gospel": "matthew",
+          "reference": "24:6-14",
+          "text_length": 809,
+          "score": 0.004227552255330318
+        },
+        {
+          "node_id": "event_33_mark",
+          "gospel": "mark",
+          "reference": "13:7-13",
+          "text_length": 918,
+          "score": 0.0033337842081700804
+        },
+        {
+          "node_id": "event_33_luke",
+          "gospel": "luke",
+          "reference": "21:9-19",
+          "text_length": 999,
+          "score": 0.003665984654899494
+        }
+      ],
+      "chosen_node": "event_33_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 34,
+      "description": "Abomination and Tribulation",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_34_matthew",
+          "gospel": "matthew",
+          "reference": "24:15-22",
+          "text_length": 727,
+          "score": 0.0031475708447703398
+        },
+        {
+          "node_id": "event_34_mark",
+          "gospel": "mark",
+          "reference": "13:14-20",
+          "text_length": 707,
+          "score": 0.002815849436773994
+        },
+        {
+          "node_id": "event_34_luke",
+          "gospel": "luke",
+          "reference": "21:20-24",
+          "text_length": 631,
+          "score": 0.0036403729991548125
+        }
+      ],
+      "chosen_node": "event_34_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 35,
+      "description": "False Christs",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_35_matthew",
+          "gospel": "matthew",
+          "reference": "24:23-27",
+          "text_length": 516,
+          "score": 0.002522240181709984
+        },
+        {
+          "node_id": "event_35_mark",
+          "gospel": "mark",
+          "reference": "13:21-23",
+          "text_length": 295,
+          "score": 0.0017403216009150386
+        }
+      ],
+      "chosen_node": "event_35_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 36,
+      "description": "The corpse and the vultures",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_36_matthew",
+          "gospel": "matthew",
+          "reference": "24:28",
+          "text_length": 60,
+          "score": 0.002260773076196384
+        }
+      ],
+      "chosen_node": "event_36_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 37,
+      "description": "The coming of the Son of Man",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_37_matthew",
+          "gospel": "matthew",
+          "reference": "24:29-31",
+          "text_length": 534,
+          "score": 0.002712224647395868
+        },
+        {
+          "node_id": "event_37_mark",
+          "gospel": "mark",
+          "reference": "13:24-27",
+          "text_length": 397,
+          "score": 0.002677724163570615
+        },
+        {
+          "node_id": "event_37_luke",
+          "gospel": "luke",
+          "reference": "21:25-28",
+          "text_length": 458,
+          "score": 0.002715702738402949
+        }
+      ],
+      "chosen_node": "event_37_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 38,
+      "description": "The Lesson of the Fig Tree",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_38_matthew",
+          "gospel": "matthew",
+          "reference": "24:32-35",
+          "text_length": 386,
+          "score": 0.002984684457583084
+        },
+        {
+          "node_id": "event_38_mark",
+          "gospel": "mark",
+          "reference": "13:28-31",
+          "text_length": 392,
+          "score": 0.0029612954809362622
+        },
+        {
+          "node_id": "event_38_luke",
+          "gospel": "luke",
+          "reference": "21:29-33",
+          "text_length": 411,
+          "score": 0.00318573970027325
+        }
+      ],
+      "chosen_node": "event_38_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 39,
+      "description": "No One Knows That Day or Hour",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_39_matthew",
+          "gospel": "matthew",
+          "reference": "24:36",
+          "text_length": 102,
+          "score": 0.002144079770061392
+        },
+        {
+          "node_id": "event_39_mark",
+          "gospel": "mark",
+          "reference": "13:32",
+          "text_length": 102,
+          "score": 0.002144079770061392
+        }
+      ],
+      "chosen_node": "event_39_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 40,
+      "description": "As in the days of Noah",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_40_matthew",
+          "gospel": "matthew",
+          "reference": "24:37-39",
+          "text_length": 360,
+          "score": 0.002631191995018494
+        }
+      ],
+      "chosen_node": "event_40_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 41,
+      "description": "Some taken, some left",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_41_matthew",
+          "gospel": "matthew",
+          "reference": "24:40-43",
+          "text_length": 405,
+          "score": 0.004820178088604666
+        }
+      ],
+      "chosen_node": "event_41_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 42,
+      "description": "Keep watch",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_42_matthew",
+          "gospel": "matthew",
+          "reference": "24:44-51",
+          "text_length": 818,
+          "score": 0.002146284974217445
+        },
+        {
+          "node_id": "event_42_mark",
+          "gospel": "mark",
+          "reference": "13:33-37",
+          "text_length": 492,
+          "score": 0.002779326985345047
+        },
+        {
+          "node_id": "event_42_luke",
+          "gospel": "luke",
+          "reference": "21:34-36",
+          "text_length": 386,
+          "score": 0.0020747904200119076
+        }
+      ],
+      "chosen_node": "event_42_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 43,
+      "description": "Parable of the ten virgins",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_43_matthew",
+          "gospel": "matthew",
+          "reference": "25:1-13",
+          "text_length": 1100,
+          "score": 0.003931025369242793
+        }
+      ],
+      "chosen_node": "event_43_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 44,
+      "description": "Parable of the talents",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_44_matthew",
+          "gospel": "matthew",
+          "reference": "25:14-30",
+          "text_length": 2149,
+          "score": 0.0028274687481938876
+        }
+      ],
+      "chosen_node": "event_44_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 45,
+      "description": "The sheep and the goats",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_45_matthew",
+          "gospel": "matthew",
+          "reference": "25:31-46",
+          "text_length": 1882,
+          "score": 0.0022730476998449904
+        }
+      ],
+      "chosen_node": "event_45_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 46,
+      "description": "Jesus again predicts his death",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 47,
+      "description": "Completion of his public ministry",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 48,
+      "description": "He reminds disciples of crucifixion",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_48_matthew",
+          "gospel": "matthew",
+          "reference": "26:1-2",
+          "text_length": 176,
+          "score": 0.00300789831687883
+        }
+      ],
+      "chosen_node": "event_48_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 49,
+      "description": "The plot against Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_49_matthew",
+          "gospel": "matthew",
+          "reference": "26:3-5",
+          "text_length": 265,
+          "score": 0.002915839776034486
+        },
+        {
+          "node_id": "event_49_mark",
+          "gospel": "mark",
+          "reference": "14:1-2",
+          "text_length": 250,
+          "score": 0.0035842579573684722
+        },
+        {
+          "node_id": "event_49_luke",
+          "gospel": "luke",
+          "reference": "22:1-2",
+          "text_length": 205,
+          "score": 0.0036027475683865877
+        }
+      ],
+      "chosen_node": "event_49_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 50,
+      "description": "Judas agrees to betray Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_50_matthew",
+          "gospel": "matthew",
+          "reference": "26:14-16",
+          "text_length": 265,
+          "score": 0.002777652163594981
+        },
+        {
+          "node_id": "event_50_mark",
+          "gospel": "mark",
+          "reference": "14:10-11",
+          "text_length": 206,
+          "score": 0.0031092615950715796
+        },
+        {
+          "node_id": "event_50_luke",
+          "gospel": "luke",
+          "reference": "22:3-6",
+          "text_length": 334,
+          "score": 0.0035097470584471535
+        }
+      ],
+      "chosen_node": "event_50_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 51,
+      "description": "Unbelief of the Jews",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_51_john",
+          "gospel": "john",
+          "reference": "12:37-43",
+          "text_length": 789,
+          "score": 0.0028692035648942675
+        }
+      ],
+      "chosen_node": "event_51_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 52,
+      "description": "Summary of Jesus' message",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_52_john",
+          "gospel": "john",
+          "reference": "12:44-50",
+          "text_length": 750,
+          "score": 0.0011819520084996994
+        }
+      ],
+      "chosen_node": "event_52_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 53,
+      "description": "(Jesus rests?)",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 54,
+      "description": "Preparations for the Lord's Supper",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_54_matthew",
+          "gospel": "matthew",
+          "reference": "26:17-19",
+          "text_length": 416,
+          "score": 0.0029258668160999706
+        },
+        {
+          "node_id": "event_54_mark",
+          "gospel": "mark",
+          "reference": "14:12-16",
+          "text_length": 679,
+          "score": 0.0022555839493547426
+        },
+        {
+          "node_id": "event_54_luke",
+          "gospel": "luke",
+          "reference": "22:7-13",
+          "text_length": 644,
+          "score": 0.0022443790208669357
+        }
+      ],
+      "chosen_node": "event_54_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 55,
+      "description": "They recline at the table",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_55_matthew",
+          "gospel": "matthew",
+          "reference": "26:20",
+          "text_length": 68,
+          "score": 0.0029065827945945507
+        },
+        {
+          "node_id": "event_55_mark",
+          "gospel": "mark",
+          "reference": "14:17",
+          "text_length": 49,
+          "score": 0.002321859136242842
+        },
+        {
+          "node_id": "event_55_luke",
+          "gospel": "luke",
+          "reference": "22:14",
+          "text_length": 65,
+          "score": 0.0027252265354704825
+        }
+      ],
+      "chosen_node": "event_55_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 56,
+      "description": "The importance of this supper",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_56_luke",
+          "gospel": "luke",
+          "reference": "22:15-16",
+          "text_length": 182,
+          "score": 0.001558061600603896
+        }
+      ],
+      "chosen_node": "event_56_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 57,
+      "description": "Jesus washes his disciples feet",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_57_john",
+          "gospel": "john",
+          "reference": "13:1-17",
+          "text_length": 1865,
+          "score": 0.0039749222633544325
+        }
+      ],
+      "chosen_node": "event_57_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 58,
+      "description": "Jesus talks about his betrayer",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_58_matthew",
+          "gospel": "matthew",
+          "reference": "26:21",
+          "text_length": 87,
+          "score": 0.002977593236155452
+        },
+        {
+          "node_id": "event_58_mark",
+          "gospel": "mark",
+          "reference": "14:18",
+          "text_length": 133,
+          "score": 0.0032331575934755018
+        },
+        {
+          "node_id": "event_58_luke",
+          "gospel": "luke",
+          "reference": "22:21-22",
+          "text_length": 157,
+          "score": 0.004417330992646134
+        },
+        {
+          "node_id": "event_58_john",
+          "gospel": "john",
+          "reference": "13:18-21",
+          "text_length": 503,
+          "score": 0.0031102510570511772
+        }
+      ],
+      "chosen_node": "event_58_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 59,
+      "description": "They ask who it is",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_59_matthew",
+          "gospel": "matthew",
+          "reference": "26:22-25",
+          "text_length": 433,
+          "score": 0.004329000136888576
+        },
+        {
+          "node_id": "event_59_mark",
+          "gospel": "mark",
+          "reference": "14:19-21",
+          "text_length": 307,
+          "score": 0.0037661744908533755
+        },
+        {
+          "node_id": "event_59_luke",
+          "gospel": "luke",
+          "reference": "22:23",
+          "text_length": 84,
+          "score": 0.0013110902110543892
+        },
+        {
+          "node_id": "event_59_john",
+          "gospel": "john",
+          "reference": "13:22-25",
+          "text_length": 288,
+          "score": 0.0022157067442934828
+        }
+      ],
+      "chosen_node": "event_59_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 60,
+      "description": "Jesus identifies the betrayer",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 61,
+      "description": "Judas leaves",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 62,
+      "description": "The new commandment",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_62_john",
+          "gospel": "john",
+          "reference": "13:31-35",
+          "text_length": 521,
+          "score": 0.0014822452851306846
+        }
+      ],
+      "chosen_node": "event_62_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 63,
+      "description": "Institution of the Supper: the bread",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_63_matthew",
+          "gospel": "matthew",
+          "reference": "26:26",
+          "text_length": 138,
+          "score": 0.002623207375378806
+        },
+        {
+          "node_id": "event_63_mark",
+          "gospel": "mark",
+          "reference": "14:22",
+          "text_length": 133,
+          "score": 0.0027033855341492352
+        },
+        {
+          "node_id": "event_63_luke",
+          "gospel": "luke",
+          "reference": "22:19",
+          "text_length": 136,
+          "score": 0.0033657969258779584
+        }
+      ],
+      "chosen_node": "event_63_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 64,
+      "description": "Institution of the Supper: the wine",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_64_matthew",
+          "gospel": "matthew",
+          "reference": "26:27-28",
+          "text_length": 185,
+          "score": 0.005399749594814933
+        },
+        {
+          "node_id": "event_64_mark",
+          "gospel": "mark",
+          "reference": "14:23-24",
+          "text_length": 168,
+          "score": 0.004418266344853261
+        },
+        {
+          "node_id": "event_64_luke",
+          "gospel": "luke",
+          "reference": "22:20",
+          "text_length": 130,
+          "score": 0.0026989917048224317
+        }
+      ],
+      "chosen_node": "event_64_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 65,
+      "description": "Jesus will not drink wine again",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_65_matthew",
+          "gospel": "matthew",
+          "reference": "26:29",
+          "text_length": 136,
+          "score": 0.002147098680464997
+        },
+        {
+          "node_id": "event_65_mark",
+          "gospel": "mark",
+          "reference": "14:25",
+          "text_length": 130,
+          "score": 0.0020297744561170576
+        },
+        {
+          "node_id": "event_65_luke",
+          "gospel": "luke",
+          "reference": "22:17-18",
+          "text_length": 178,
+          "score": 0.00321710828635301
+        }
+      ],
+      "chosen_node": "event_65_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 66,
+      "description": "Greatness through service",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_66_luke",
+          "gospel": "luke",
+          "reference": "22:24-30",
+          "text_length": 741,
+          "score": 0.003327637567409438
+        }
+      ],
+      "chosen_node": "event_66_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 67,
+      "description": "Jesus predicts Peter's denial",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_67_luke",
+          "gospel": "luke",
+          "reference": "22:31-34",
+          "text_length": 361,
+          "score": 0.002263501206631576
+        },
+        {
+          "node_id": "event_67_john",
+          "gospel": "john",
+          "reference": "13:36-38",
+          "text_length": 363,
+          "score": 0.0022789252307889958
+        }
+      ],
+      "chosen_node": "event_67_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 68,
+      "description": "Jesus, the way to the Father",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_68_john",
+          "gospel": "john",
+          "reference": "14:1-14",
+          "text_length": 1531,
+          "score": 0.0035190943383491477
+        }
+      ],
+      "chosen_node": "event_68_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 69,
+      "description": "The promise of the Holy Spirit",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 70,
+      "description": "Purse, bag, and sword",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_70_luke",
+          "gospel": "luke",
+          "reference": "22:35-38",
+          "text_length": 501,
+          "score": 0.002658476961625592
+        }
+      ],
+      "chosen_node": "event_70_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 71,
+      "description": "They go out to the Mount of Olives",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_71_matthew",
+          "gospel": "matthew",
+          "reference": "26:30",
+          "text_length": 64,
+          "score": 0.0013137737367955014
+        },
+        {
+          "node_id": "event_71_mark",
+          "gospel": "mark",
+          "reference": "14:26",
+          "text_length": 64,
+          "score": 0.0013137737367955014
+        },
+        {
+          "node_id": "event_71_luke",
+          "gospel": "luke",
+          "reference": "22:39",
+          "text_length": 79,
+          "score": 0.0019638903503546392
+        }
+      ],
+      "chosen_node": "event_71_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 72,
+      "description": "Jesus predicts Peter's denial",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_72_matthew",
+          "gospel": "matthew",
+          "reference": "26:31-35",
+          "text_length": 548,
+          "score": 0.00446161264529352
+        },
+        {
+          "node_id": "event_72_mark",
+          "gospel": "mark",
+          "reference": "14:27-31",
+          "text_length": 502,
+          "score": 0.0037746957707538525
+        }
+      ],
+      "chosen_node": "event_72_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 73,
+      "description": "\"I am the true vine\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_73_john",
+          "gospel": "john",
+          "reference": "15:1-17",
+          "text_length": 1734,
+          "score": 0.00492062001834939
+        }
+      ],
+      "chosen_node": "event_73_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 74,
+      "description": "The hatred of the world",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 75,
+      "description": "The work of the Holy Spirit",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_75_john",
+          "gospel": "john",
+          "reference": "16:5-15",
+          "text_length": 1078,
+          "score": 0.0022728186243147546
+        }
+      ],
+      "chosen_node": "event_75_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 76,
+      "description": "\"Your sorrow will turn into joy\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_76_john",
+          "gospel": "john",
+          "reference": "16:16-24",
+          "text_length": 1264,
+          "score": 0.003490390518540207
+        }
+      ],
+      "chosen_node": "event_76_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 77,
+      "description": "\"I have overcome the world\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_77_john",
+          "gospel": "john",
+          "reference": "16:25-33",
+          "text_length": 1036,
+          "score": 0.0035952814984410815
+        }
+      ],
+      "chosen_node": "event_77_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 78,
+      "description": "The high priestly prayer",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_78_john",
+          "gospel": "john",
+          "reference": "17:1-26",
+          "text_length": 2952,
+          "score": 0.0038802800978768124
+        }
+      ],
+      "chosen_node": "event_78_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 79,
+      "description": "They arrive at Gethsemane",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_79_matthew",
+          "gospel": "matthew",
+          "reference": "26:36-38",
+          "text_length": 345,
+          "score": 0.002024083534708717
+        },
+        {
+          "node_id": "event_79_mark",
+          "gospel": "mark",
+          "reference": "14:32-34",
+          "text_length": 299,
+          "score": 0.0017351854373898537
+        },
+        {
+          "node_id": "event_79_luke",
+          "gospel": "luke",
+          "reference": "22:40",
+          "text_length": 86,
+          "score": 0.0017947689485433964
+        },
+        {
+          "node_id": "event_79_john",
+          "gospel": "john",
+          "reference": "18:1",
+          "text_length": 173,
+          "score": 0.0012669057466768397
+        }
+      ],
+      "chosen_node": "event_79_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 80,
+      "description": "Jesus prays in agony",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_80_matthew",
+          "gospel": "matthew",
+          "reference": "26:39",
+          "text_length": 170,
+          "score": 0.003167873443664097
+        },
+        {
+          "node_id": "event_80_mark",
+          "gospel": "mark",
+          "reference": "14:35-36",
+          "text_length": 225,
+          "score": 0.0030004693220715907
+        },
+        {
+          "node_id": "event_80_luke",
+          "gospel": "luke",
+          "reference": "22:41-45",
+          "text_length": 428,
+          "score": 0.00384059615155135
+        }
+      ],
+      "chosen_node": "event_80_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 81,
+      "description": "Jesus prays the second time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_81_matthew",
+          "gospel": "matthew",
+          "reference": "26:40-42",
+          "text_length": 378,
+          "score": 0.004369928290501492
+        },
+        {
+          "node_id": "event_81_mark",
+          "gospel": "mark",
+          "reference": "14:37-39",
+          "text_length": 295,
+          "score": 0.0038459574607906167
+        },
+        {
+          "node_id": "event_81_luke",
+          "gospel": "luke",
+          "reference": "22:46",
+          "text_length": 99,
+          "score": 0.002371393366627913
+        }
+      ],
+      "chosen_node": "event_81_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 82,
+      "description": "Jesus prays the third time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_82_matthew",
+          "gospel": "matthew",
+          "reference": "26:43-46",
+          "text_length": 382,
+          "score": 0.005256115590199076
+        },
+        {
+          "node_id": "event_82_mark",
+          "gospel": "mark",
+          "reference": "14:40-42",
+          "text_length": 326,
+          "score": 0.004092798705154712
+        }
+      ],
+      "chosen_node": "event_82_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 83,
+      "description": "Judas betrays Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_83_matthew",
+          "gospel": "matthew",
+          "reference": "26:47-50",
+          "text_length": 387,
+          "score": 0.0022246942770834384
+        },
+        {
+          "node_id": "event_83_mark",
+          "gospel": "mark",
+          "reference": "14:43-45",
+          "text_length": 362,
+          "score": 0.0020488294163993562
+        },
+        {
+          "node_id": "event_83_luke",
+          "gospel": "luke",
+          "reference": "22:47-48",
+          "text_length": 224,
+          "score": 0.0021708255563015035
+        },
+        {
+          "node_id": "event_83_john",
+          "gospel": "john",
+          "reference": "18:2-3",
+          "text_length": 266,
+          "score": 0.0015858083315491926
+        }
+      ],
+      "chosen_node": "event_83_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 84,
+      "description": "Jesus asks for safety of disciples",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_84_john",
+          "gospel": "john",
+          "reference": "18:4-9",
+          "text_length": 561,
+          "score": 0.006196882530595608
+        }
+      ],
+      "chosen_node": "event_84_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 85,
+      "description": "Peter cuts off Malchus's ear",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_85_matthew",
+          "gospel": "matthew",
+          "reference": "26:51-54",
+          "text_length": 502,
+          "score": 0.002885266476132875
+        },
+        {
+          "node_id": "event_85_mark",
+          "gospel": "mark",
+          "reference": "14:46-47",
+          "text_length": 149,
+          "score": 0.0019005365091068933
+        },
+        {
+          "node_id": "event_85_luke",
+          "gospel": "luke",
+          "reference": "22:49-51",
+          "text_length": 270,
+          "score": 0.0026804806175391603
+        },
+        {
+          "node_id": "event_85_john",
+          "gospel": "john",
+          "reference": "18:10-11",
+          "text_length": 238,
+          "score": 0.001895972921453325
+        }
+      ],
+      "chosen_node": "event_85_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 86,
+      "description": "Jesus questions manner of arrest",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_86_mark",
+          "gospel": "mark",
+          "reference": "14:48-49",
+          "text_length": 223,
+          "score": 0.0028607617419018723
+        },
+        {
+          "node_id": "event_86_luke",
+          "gospel": "luke",
+          "reference": "22:52-53",
+          "text_length": 305,
+          "score": 0.003822120729792071
+        }
+      ],
+      "chosen_node": "event_86_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 87,
+      "description": "Jesus is arrested, disciples flee",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_87_mark",
+          "gospel": "mark",
+          "reference": "14:50",
+          "text_length": 36,
+          "score": 0.001929988851405384
+        },
+        {
+          "node_id": "event_87_john",
+          "gospel": "john",
+          "reference": "18:12",
+          "text_length": 106,
+          "score": 0.0015808118609943723
+        }
+      ],
+      "chosen_node": "event_87_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 88,
+      "description": "A young man flees naked (Mark??)",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_88_mark",
+          "gospel": "mark",
+          "reference": "14:51-52",
+          "text_length": 135,
+          "score": 0.002376047033189472
+        }
+      ],
+      "chosen_node": "event_88_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 89,
+      "description": "To Annas' and Caiaphas' house",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_89_matthew",
+          "gospel": "matthew",
+          "reference": "26:57",
+          "text_length": 127,
+          "score": 0.002183837083813656
+        },
+        {
+          "node_id": "event_89_mark",
+          "gospel": "mark",
+          "reference": "14:53",
+          "text_length": 108,
+          "score": 0.0015410063215622557
+        }
+      ],
+      "chosen_node": "event_89_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 90,
+      "description": "Before Annas first",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_90_john",
+          "gospel": "john",
+          "reference": "18:13-14",
+          "text_length": 197,
+          "score": 0.006346180835251057
+        }
+      ],
+      "chosen_node": "event_90_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 91,
+      "description": "Peter follows into the courtyard",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_91_matthew",
+          "gospel": "matthew",
+          "reference": "26:58",
+          "text_length": 143,
+          "score": 0.0034657022775082184
+        },
+        {
+          "node_id": "event_91_mark",
+          "gospel": "mark",
+          "reference": "14:54",
+          "text_length": 139,
+          "score": 0.003774057594957663
+        },
+        {
+          "node_id": "event_91_john",
+          "gospel": "john",
+          "reference": "18:15-16",
+          "text_length": 321,
+          "score": 0.003610513202752775
+        }
+      ],
+      "chosen_node": "event_91_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 92,
+      "description": "Peter denies Jesus the first time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_92_luke",
+          "gospel": "luke",
+          "reference": "22:55-57",
+          "text_length": 285,
+          "score": 0.004266973093071958
+        },
+        {
+          "node_id": "event_92_john",
+          "gospel": "john",
+          "reference": "18:17-18",
+          "text_length": 246,
+          "score": 0.003354709742529081
+        }
+      ],
+      "chosen_node": "event_92_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 93,
+      "description": "A rooster crows (the first time)",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 94,
+      "description": "Trial before Annas",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_94_john",
+          "gospel": "john",
+          "reference": "18:19-24",
+          "text_length": 634,
+          "score": 0.00365030724415364
+        }
+      ],
+      "chosen_node": "event_94_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 95,
+      "description": "Trial before Caiaphas & Sanhedrin",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_95_matthew",
+          "gospel": "matthew",
+          "reference": "26:59-66",
+          "text_length": 1010,
+          "score": 0.0041085616373214865
+        },
+        {
+          "node_id": "event_95_mark",
+          "gospel": "mark",
+          "reference": "14:55-64",
+          "text_length": 986,
+          "score": 0.0038555733283539935
+        }
+      ],
+      "chosen_node": "event_95_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 96,
+      "description": "They beat and mock Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_96_matthew",
+          "gospel": "matthew",
+          "reference": "26:67-68",
+          "text_length": 127,
+          "score": 0.002632853850464537
+        },
+        {
+          "node_id": "event_96_mark",
+          "gospel": "mark",
+          "reference": "14:65",
+          "text_length": 185,
+          "score": 0.0030053695811458098
+        },
+        {
+          "node_id": "event_96_luke",
+          "gospel": "luke",
+          "reference": "22:63-65",
+          "text_length": 172,
+          "score": 0.0026420702055208324
+        }
+      ],
+      "chosen_node": "event_96_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 97,
+      "description": "Peter denies Jesus the second time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_97_luke",
+          "gospel": "luke",
+          "reference": "22:58",
+          "text_length": 102,
+          "score": 0.002565399799189277
+        },
+        {
+          "node_id": "event_97_john",
+          "gospel": "john",
+          "reference": "18:25",
+          "text_length": 130,
+          "score": 0.0019013181952699282
+        }
+      ],
+      "chosen_node": "event_97_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 98,
+      "description": "Peter denies Jesus the third time",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 99,
+      "description": "A rooster crows (the second time)",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 100,
+      "description": "Jesus looks at Peter, who weeps",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_100_matthew",
+          "gospel": "matthew",
+          "reference": "26:75",
+          "text_length": 177,
+          "score": 0.002624514811930164
+        },
+        {
+          "node_id": "event_100_luke",
+          "gospel": "luke",
+          "reference": "22:61-62",
+          "text_length": 209,
+          "score": 0.002967299946306887
+        }
+      ],
+      "chosen_node": "event_100_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 101,
+      "description": "The Sanhedrin condemns Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_101_matthew",
+          "gospel": "matthew",
+          "reference": "27:1",
+          "text_length": 116,
+          "score": 0.0025110758434436376
+        },
+        {
+          "node_id": "event_101_luke",
+          "gospel": "luke",
+          "reference": "22:66-71",
+          "text_length": 556,
+          "score": 0.0028946974579585213
+        }
+      ],
+      "chosen_node": "event_101_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 102,
+      "description": "Judas commits suicide",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_102_matthew",
+          "gospel": "matthew",
+          "reference": "27:3-10",
+          "text_length": 879,
+          "score": 0.004473698685217245
+        }
+      ],
+      "chosen_node": "event_102_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 103,
+      "description": "Before Pilate",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_103_matthew",
+          "gospel": "matthew",
+          "reference": "27:2",
+          "text_length": 73,
+          "score": 0.0029959955586062806
+        },
+        {
+          "node_id": "event_103_luke",
+          "gospel": "luke",
+          "reference": "23:1-2",
+          "text_length": 212,
+          "score": 0.002435715525578373
+        },
+        {
+          "node_id": "event_103_john",
+          "gospel": "john",
+          "reference": "18:28-32",
+          "text_length": 638,
+          "score": 0.005094605794452414
+        }
+      ],
+      "chosen_node": "event_103_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 104,
+      "description": "Pilate interrogates Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_104_matthew",
+          "gospel": "matthew",
+          "reference": "27:11-14",
+          "text_length": 394,
+          "score": 0.0033089362886763577
+        },
+        {
+          "node_id": "event_104_mark",
+          "gospel": "mark",
+          "reference": "15:2-5",
+          "text_length": 288,
+          "score": 0.0029254794812836665
+        },
+        {
+          "node_id": "event_104_luke",
+          "gospel": "luke",
+          "reference": "23:3-4",
+          "text_length": 198,
+          "score": 0.002741252773816887
+        },
+        {
+          "node_id": "event_104_john",
+          "gospel": "john",
+          "reference": "18:33-38",
+          "text_length": 823,
+          "score": 0.0033963579910270512
+        }
+      ],
+      "chosen_node": "event_104_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 105,
+      "description": "Before Herod",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_105_luke",
+          "gospel": "luke",
+          "reference": "23:5-12",
+          "text_length": 834,
+          "score": 0.0033986812771460637
+        }
+      ],
+      "chosen_node": "event_105_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 106,
+      "description": "Message from Pilate's wife",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_106_matthew",
+          "gospel": "matthew",
+          "reference": "27:19",
+          "text_length": 195,
+          "score": 0.0013108308050810808
+        }
+      ],
+      "chosen_node": "event_106_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 107,
+      "description": "Pilate wants to release him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_107_luke",
+          "gospel": "luke",
+          "reference": "23:13-16",
+          "text_length": 404,
+          "score": 0.0027224292113135094
+        }
+      ],
+      "chosen_node": "event_107_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 108,
+      "description": "Jesus or Barrabas",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_108_matthew",
+          "gospel": "matthew",
+          "reference": "27:15-18",
+          "text_length": 358,
+          "score": 0.0038823243648814037
+        },
+        {
+          "node_id": "event_108_mark",
+          "gospel": "mark",
+          "reference": "15:6-10",
+          "text_length": 409,
+          "score": 0.00389701812538014
+        },
+        {
+          "node_id": "event_108_luke",
+          "gospel": "luke",
+          "reference": "23:17",
+          "text_length": 12,
+          "score": 0.0009741093805335711
+        },
+        {
+          "node_id": "event_108_john",
+          "gospel": "john",
+          "reference": "18:39",
+          "text_length": 139,
+          "score": 0.002970956047656969
+        }
+      ],
+      "chosen_node": "event_108_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 109,
+      "description": "The crowd chooses Barrabas",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_109_matthew",
+          "gospel": "matthew",
+          "reference": "27:20-21",
+          "text_length": 204,
+          "score": 0.0045236273751803535
+        },
+        {
+          "node_id": "event_109_mark",
+          "gospel": "mark",
+          "reference": "15:11",
+          "text_length": 83,
+          "score": 0.003764631218292398
+        },
+        {
+          "node_id": "event_109_luke",
+          "gospel": "luke",
+          "reference": "23:18-19",
+          "text_length": 164,
+          "score": 0.0028157379323097112
+        },
+        {
+          "node_id": "event_109_john",
+          "gospel": "john",
+          "reference": "18:40",
+          "text_length": 95,
+          "score": 0.002269624749909098
+        }
+      ],
+      "chosen_node": "event_109_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 110,
+      "description": "\"Crucify him!\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_110_matthew",
+          "gospel": "matthew",
+          "reference": "27:22-23",
+          "text_length": 203,
+          "score": 0.002206435049790423
+        },
+        {
+          "node_id": "event_110_mark",
+          "gospel": "mark",
+          "reference": "15:12-14",
+          "text_length": 214,
+          "score": 0.0029297864138492224
+        },
+        {
+          "node_id": "event_110_luke",
+          "gospel": "luke",
+          "reference": "23:20-23",
+          "text_length": 395,
+          "score": 0.003142461926113718
+        }
+      ],
+      "chosen_node": "event_110_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 111,
+      "description": "Crown of thorns",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_111_matthew",
+          "gospel": "matthew",
+          "reference": "27:27-30",
+          "text_length": 426,
+          "score": 0.0021113604770334827
+        },
+        {
+          "node_id": "event_111_mark",
+          "gospel": "mark",
+          "reference": "15:16-19",
+          "text_length": 394,
+          "score": 0.002431927659644282
+        },
+        {
+          "node_id": "event_111_john",
+          "gospel": "john",
+          "reference": "19:1-3",
+          "text_length": 252,
+          "score": 0.002495529365794833
+        }
+      ],
+      "chosen_node": "event_111_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 112,
+      "description": "Pilate tries to release him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_112_john",
+          "gospel": "john",
+          "reference": "19:4-15",
+          "text_length": 1607,
+          "score": 0.0033531018993575904
+        }
+      ],
+      "chosen_node": "event_112_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 113,
+      "description": "Pilate washes his hands",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_113_matthew",
+          "gospel": "matthew",
+          "reference": "27:24-25",
+          "text_length": 289,
+          "score": 0.002430229499601116
+        }
+      ],
+      "chosen_node": "event_113_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 114,
+      "description": "Barrabas is released",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_114_matthew",
+          "gospel": "matthew",
+          "reference": "27:26",
+          "text_length": 97,
+          "score": 0.0020303393084656718
+        },
+        {
+          "node_id": "event_114_mark",
+          "gospel": "mark",
+          "reference": "15:15",
+          "text_length": 122,
+          "score": 0.0019092238334092898
+        },
+        {
+          "node_id": "event_114_luke",
+          "gospel": "luke",
+          "reference": "23:24-25",
+          "text_length": 182,
+          "score": 0.0015897951932790399
+        },
+        {
+          "node_id": "event_114_john",
+          "gospel": "john",
+          "reference": "19:16",
+          "text_length": 55,
+          "score": 0.0015397991923601204
+        }
+      ],
+      "chosen_node": "event_114_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 115,
+      "description": "They lead him out to crucify him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_115_matthew",
+          "gospel": "matthew",
+          "reference": "27:31",
+          "text_length": 120,
+          "score": 0.00498218335191572
+        },
+        {
+          "node_id": "event_115_mark",
+          "gospel": "mark",
+          "reference": "15:20",
+          "text_length": 129,
+          "score": 0.005032982396708646
+        },
+        {
+          "node_id": "event_115_john",
+          "gospel": "john",
+          "reference": "19:17",
+          "text_length": 138,
+          "score": 0.0030401637776503324
+        }
+      ],
+      "chosen_node": "event_115_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 116,
+      "description": "Simon of Cyrene",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_116_matthew",
+          "gospel": "matthew",
+          "reference": "27:32",
+          "text_length": 104,
+          "score": 0.0028119066997058196
+        },
+        {
+          "node_id": "event_116_mark",
+          "gospel": "mark",
+          "reference": "15:21",
+          "text_length": 155,
+          "score": 0.002580299882229381
+        },
+        {
+          "node_id": "event_116_luke",
+          "gospel": "luke",
+          "reference": "23:26",
+          "text_length": 153,
+          "score": 0.004439830855561931
+        }
+      ],
+      "chosen_node": "event_116_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 117,
+      "description": "The women weep for him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_117_luke",
+          "gospel": "luke",
+          "reference": "23:27-31",
+          "text_length": 509,
+          "score": 0.004376515474674955
+        }
+      ],
+      "chosen_node": "event_117_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 118,
+      "description": "Jesus is crucified",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_118_luke",
+          "gospel": "luke",
+          "reference": "23:33",
+          "text_length": 138,
+          "score": 0.0016806993279175788
+        },
+        {
+          "node_id": "event_118_john",
+          "gospel": "john",
+          "reference": "19:18",
+          "text_length": 91,
+          "score": 0.0014758392625914905
+        }
+      ],
+      "chosen_node": "event_118_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 119,
+      "description": "\"Father, forgive them\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 120,
+      "description": "they cast lots for his clothes",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_120_john",
+          "gospel": "john",
+          "reference": "19:23-24",
+          "text_length": 463,
+          "score": 0.0020637861293302485
+        }
+      ],
+      "chosen_node": "event_120_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 121,
+      "description": "It was the third hour (9 a.m.)",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_121_mark",
+          "gospel": "mark",
+          "reference": "15:25",
+          "text_length": 46,
+          "score": 0.0064963062780716
+        }
+      ],
+      "chosen_node": "event_121_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 122,
+      "description": "The written notice above his head",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_122_matthew",
+          "gospel": "matthew",
+          "reference": "27:37",
+          "text_length": 95,
+          "score": 0.0021805378396299196
+        },
+        {
+          "node_id": "event_122_mark",
+          "gospel": "mark",
+          "reference": "15:26",
+          "text_length": 72,
+          "score": 0.001415494824697162
+        },
+        {
+          "node_id": "event_122_luke",
+          "gospel": "luke",
+          "reference": "23:38",
+          "text_length": 82,
+          "score": 0.0014232726233100199
+        },
+        {
+          "node_id": "event_122_john",
+          "gospel": "john",
+          "reference": "19:19-22",
+          "text_length": 450,
+          "score": 0.0020488197527510233
+        }
+      ],
+      "chosen_node": "event_122_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 123,
+      "description": "They crucify two robbers with him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_123_matthew",
+          "gospel": "matthew",
+          "reference": "27:38",
+          "text_length": 74,
+          "score": 0.00320362002211807
+        },
+        {
+          "node_id": "event_123_mark",
+          "gospel": "mark",
+          "reference": "15:27",
+          "text_length": 74,
+          "score": 0.0034380160127893953
+        },
+        {
+          "node_id": "event_123_luke",
+          "gospel": "luke",
+          "reference": "23:32",
+          "text_length": 73,
+          "score": 0.0017558796707281402
+        }
+      ],
+      "chosen_node": "event_123_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 124,
+      "description": "Everyone insults him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_124_matthew",
+          "gospel": "matthew",
+          "reference": "27:39-44",
+          "text_length": 626,
+          "score": 0.004219071284856138
+        },
+        {
+          "node_id": "event_124_mark",
+          "gospel": "mark",
+          "reference": "15:28-32",
+          "text_length": 505,
+          "score": 0.0035474696923488134
+        },
+        {
+          "node_id": "event_124_luke",
+          "gospel": "luke",
+          "reference": "23:35",
+          "text_length": 157,
+          "score": 0.0026450537881122288
+        }
+      ],
+      "chosen_node": "event_124_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 125,
+      "description": "The soldiers insult him",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_125_luke",
+          "gospel": "luke",
+          "reference": "23:36-37",
+          "text_length": 131,
+          "score": 0.006287255642950751
+        }
+      ],
+      "chosen_node": "event_125_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 126,
+      "description": "\"You will be with me in paradise\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_126_luke",
+          "gospel": "luke",
+          "reference": "23:39-43",
+          "text_length": 469,
+          "score": 0.002105952544558155
+        }
+      ],
+      "chosen_node": "event_126_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 127,
+      "description": "\"Here is your mother\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_127_john",
+          "gospel": "john",
+          "reference": "19:25-27",
+          "text_length": 344,
+          "score": 0.0018487524723753538
+        }
+      ],
+      "chosen_node": "event_127_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 128,
+      "description": "Darkness over all the land",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_128_matthew",
+          "gospel": "matthew",
+          "reference": "27:45",
+          "text_length": 73,
+          "score": 0.0032373808427262757
+        },
+        {
+          "node_id": "event_128_mark",
+          "gospel": "mark",
+          "reference": "15:33",
+          "text_length": 73,
+          "score": 0.003205807737201916
+        }
+      ],
+      "chosen_node": "event_128_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 129,
+      "description": "\"Why have you forsaken me?\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_129_matthew",
+          "gospel": "matthew",
+          "reference": "27:46-47",
+          "text_length": 223,
+          "score": 0.004459048290565415
+        },
+        {
+          "node_id": "event_129_mark",
+          "gospel": "mark",
+          "reference": "15:34-35",
+          "text_length": 231,
+          "score": 0.004499577587522172
+        }
+      ],
+      "chosen_node": "event_129_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 130,
+      "description": "\"I am thirsty\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_130_matthew",
+          "gospel": "matthew",
+          "reference": "27:48",
+          "text_length": 130,
+          "score": 0.0014103060928793586
+        },
+        {
+          "node_id": "event_130_john",
+          "gospel": "john",
+          "reference": "19:28-29",
+          "text_length": 257,
+          "score": 0.0021851938014382554
+        }
+      ],
+      "chosen_node": "event_130_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 131,
+      "description": "\"Let's see if Elijah comes\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_131_matthew",
+          "gospel": "matthew",
+          "reference": "27:49",
+          "text_length": 76,
+          "score": 0.0021242976140987005
+        }
+      ],
+      "chosen_node": "event_131_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 132,
+      "description": "\"It is finished\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 133,
+      "description": "\"into your hands I commit spirit\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 134,
+      "description": "The death of Jesus",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_134_matthew",
+          "gospel": "matthew",
+          "reference": "27:50",
+          "text_length": 74,
+          "score": 0.0018227545984191235
+        },
+        {
+          "node_id": "event_134_mark",
+          "gospel": "mark",
+          "reference": "15:37",
+          "text_length": 41,
+          "score": 0.0016791337612186547
+        }
+      ],
+      "chosen_node": "event_134_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 135,
+      "description": "Miraculous events",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_135_matthew",
+          "gospel": "matthew",
+          "reference": "27:51-53",
+          "text_length": 319,
+          "score": 0.004440664409548553
+        },
+        {
+          "node_id": "event_135_mark",
+          "gospel": "mark",
+          "reference": "15:38",
+          "text_length": 61,
+          "score": 0.0031589958432003402
+        }
+      ],
+      "chosen_node": "event_135_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 136,
+      "description": "The centurion believes",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_136_matthew",
+          "gospel": "matthew",
+          "reference": "27:54",
+          "text_length": 175,
+          "score": 0.0033396166186765827
+        },
+        {
+          "node_id": "event_136_mark",
+          "gospel": "mark",
+          "reference": "15:39",
+          "text_length": 140,
+          "score": 0.003239827596206179
+        },
+        {
+          "node_id": "event_136_luke",
+          "gospel": "luke",
+          "reference": "23:47",
+          "text_length": 97,
+          "score": 0.0020257467943366244
+        }
+      ],
+      "chosen_node": "event_136_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 137,
+      "description": "The crowd is amazed",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_137_luke",
+          "gospel": "luke",
+          "reference": "23:48",
+          "text_length": 118,
+          "score": 0.003925529802938604
+        }
+      ],
+      "chosen_node": "event_137_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 138,
+      "description": "The women and his followers",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_138_matthew",
+          "gospel": "matthew",
+          "reference": "27:55-56",
+          "text_length": 210,
+          "score": 0.0010442485667457378
+        },
+        {
+          "node_id": "event_138_mark",
+          "gospel": "mark",
+          "reference": "15:40-41",
+          "text_length": 273,
+          "score": 0.001179104828902257
+        },
+        {
+          "node_id": "event_138_luke",
+          "gospel": "luke",
+          "reference": "23:49",
+          "text_length": 126,
+          "score": 0.0012664394785892206
+        }
+      ],
+      "chosen_node": "event_138_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 139,
+      "description": "Jesus' side is pierced",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_139_john",
+          "gospel": "john",
+          "reference": "19:31-37",
+          "text_length": 887,
+          "score": 0.004985869351432231
+        }
+      ],
+      "chosen_node": "event_139_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 140,
+      "description": "Joseph of Arimathea asks for body",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_140_matthew",
+          "gospel": "matthew",
+          "reference": "27:57-58",
+          "text_length": 205,
+          "score": 0.0021724974119912434
+        },
+        {
+          "node_id": "event_140_mark",
+          "gospel": "mark",
+          "reference": "15:42-45",
+          "text_length": 439,
+          "score": 0.003936773404098901
+        },
+        {
+          "node_id": "event_140_luke",
+          "gospel": "luke",
+          "reference": "23:50-52",
+          "text_length": 262,
+          "score": 0.002777758841306108
+        },
+        {
+          "node_id": "event_140_john",
+          "gospel": "john",
+          "reference": "19:38",
+          "text_length": 197,
+          "score": 0.0031312340017458787
+        }
+      ],
+      "chosen_node": "event_140_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 141,
+      "description": "Jesus is buried",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 4,
+      "candidates": [
+        {
+          "node_id": "event_141_matthew",
+          "gospel": "matthew",
+          "reference": "27:59-60",
+          "text_length": 197,
+          "score": 0.004156908046807021
+        },
+        {
+          "node_id": "event_141_mark",
+          "gospel": "mark",
+          "reference": "15:46",
+          "text_length": 177,
+          "score": 0.003713531926913494
+        },
+        {
+          "node_id": "event_141_luke",
+          "gospel": "luke",
+          "reference": "23:53-54",
+          "text_length": 187,
+          "score": 0.003129628189237011
+        },
+        {
+          "node_id": "event_141_john",
+          "gospel": "john",
+          "reference": "19:39-42",
+          "text_length": 516,
+          "score": 0.004294630575609022
+        }
+      ],
+      "chosen_node": "event_141_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 142,
+      "description": "The women observe",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_142_matthew",
+          "gospel": "matthew",
+          "reference": "27:61",
+          "text_length": 71,
+          "score": 0.001880024346798266
+        },
+        {
+          "node_id": "event_142_mark",
+          "gospel": "mark",
+          "reference": "15:47",
+          "text_length": 66,
+          "score": 0.0016962703660014873
+        },
+        {
+          "node_id": "event_142_luke",
+          "gospel": "luke",
+          "reference": "23:55",
+          "text_length": 112,
+          "score": 0.004119354925196388
+        }
+      ],
+      "chosen_node": "event_142_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 143,
+      "description": "The women prepare spices",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_143_luke",
+          "gospel": "luke",
+          "reference": "23:56",
+          "text_length": 117,
+          "score": 0.0015152965808642276
+        }
+      ],
+      "chosen_node": "event_143_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 144,
+      "description": "The guard before the tomb",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_144_matthew",
+          "gospel": "matthew",
+          "reference": "27:62-66",
+          "text_length": 620,
+          "score": 0.0016783949044910644
+        }
+      ],
+      "chosen_node": "event_144_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 145,
+      "description": "The women buy more spices",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_145_mark",
+          "gospel": "mark",
+          "reference": "16:1",
+          "text_length": 138,
+          "score": 0.004881229463207983
+        }
+      ],
+      "chosen_node": "event_145_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 146,
+      "description": "The women go to the tomb",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_146_matthew",
+          "gospel": "matthew",
+          "reference": "28:1",
+          "text_length": 116,
+          "score": 0.0030984565431945066
+        },
+        {
+          "node_id": "event_146_mark",
+          "gospel": "mark",
+          "reference": "16:2-3",
+          "text_length": 184,
+          "score": 0.0019974299070555394
+        },
+        {
+          "node_id": "event_146_luke",
+          "gospel": "luke",
+          "reference": "24:1",
+          "text_length": 122,
+          "score": 0.0020842688290871178
+        }
+      ],
+      "chosen_node": "event_146_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 147,
+      "description": "The stone is rolled back",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_147_matthew",
+          "gospel": "matthew",
+          "reference": "28:2-4",
+          "text_length": 285,
+          "score": 0.00678206414606224
+        }
+      ],
+      "chosen_node": "event_147_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 148,
+      "description": "The women see that it is!",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_148_mark",
+          "gospel": "mark",
+          "reference": "16:4",
+          "text_length": 93,
+          "score": 0.002569879875939741
+        },
+        {
+          "node_id": "event_148_luke",
+          "gospel": "luke",
+          "reference": "24:2",
+          "text_length": 47,
+          "score": 0.0028123260931748146
+        }
+      ],
+      "chosen_node": "event_148_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 149,
+      "description": "They do not find the body",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_149_luke",
+          "gospel": "luke",
+          "reference": "24:3",
+          "text_length": 68,
+          "score": 0.005040850134059604
+        }
+      ],
+      "chosen_node": "event_149_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 150,
+      "description": "They see the angels",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_150_mark",
+          "gospel": "mark",
+          "reference": "16:5",
+          "text_length": 120,
+          "score": 0.004608904792151649
+        },
+        {
+          "node_id": "event_150_luke",
+          "gospel": "luke",
+          "reference": "24:4",
+          "text_length": 112,
+          "score": 0.0014941172115297801
+        }
+      ],
+      "chosen_node": "event_150_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 151,
+      "description": "Angels proclaim the resurrection",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_151_matthew",
+          "gospel": "matthew",
+          "reference": "28:5-6",
+          "text_length": 193,
+          "score": 0.0015937028953915279
+        },
+        {
+          "node_id": "event_151_mark",
+          "gospel": "mark",
+          "reference": "16:6",
+          "text_length": 153,
+          "score": 0.0023346659505091116
+        }
+      ],
+      "chosen_node": "event_151_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 152,
+      "description": "\"Remember how he told you\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 153,
+      "description": "\"go quickly and tell his disciples\"",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_153_matthew",
+          "gospel": "matthew",
+          "reference": "28:7",
+          "text_length": 154,
+          "score": 0.0020655005974363925
+        },
+        {
+          "node_id": "event_153_mark",
+          "gospel": "mark",
+          "reference": "16:7",
+          "text_length": 124,
+          "score": 0.0013076719999069427
+        }
+      ],
+      "chosen_node": "event_153_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 154,
+      "description": "At first they say nothing out of fear",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_154_mark",
+          "gospel": "mark",
+          "reference": "16:8",
+          "text_length": 123,
+          "score": 0.002497049389206304
+        }
+      ],
+      "chosen_node": "event_154_mark",
+      "chosen_gospel": "mark",
+      "fallback": false
+    },
+    {
+      "event_id": 155,
+      "description": "Then they run to tell his disciples",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 156,
+      "description": "Mary M. runs ahead, unbelieving",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 157,
+      "description": "Mary M. tells Peter and John",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 158,
+      "description": "Peter and John see the tomb",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_158_luke",
+          "gospel": "luke",
+          "reference": "24:12",
+          "text_length": 163,
+          "score": 0.0027113613717758833
+        },
+        {
+          "node_id": "event_158_john",
+          "gospel": "john",
+          "reference": "20:3-10",
+          "text_length": 678,
+          "score": 0.004063531694901978
+        }
+      ],
+      "chosen_node": "event_158_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 159,
+      "description": "Jesus appears to Mary Magdalene",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_159_mark",
+          "gospel": "mark",
+          "reference": "16:9",
+          "text_length": 128,
+          "score": 0.0027075938928428625
+        },
+        {
+          "node_id": "event_159_john",
+          "gospel": "john",
+          "reference": "20:11-17",
+          "text_length": 926,
+          "score": 0.0038919022465272158
+        }
+      ],
+      "chosen_node": "event_159_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 160,
+      "description": "Jesus appears to the (other) women",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 0,
+      "candidates": [],
+      "chosen_node": null,
+      "chosen_gospel": null,
+      "fallback": true
+    },
+    {
+      "event_id": 161,
+      "description": "The report of the guard",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_161_matthew",
+          "gospel": "matthew",
+          "reference": "28:11-15",
+          "text_length": 584,
+          "score": 0.004501499130283215
+        }
+      ],
+      "chosen_node": "event_161_matthew",
+      "chosen_gospel": "matthew",
+      "fallback": false
+    },
+    {
+      "event_id": 162,
+      "description": "Women tell news to disciples",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_162_mark",
+          "gospel": "mark",
+          "reference": "16:10-11",
+          "text_length": 169,
+          "score": 0.0018676254762321736
+        },
+        {
+          "node_id": "event_162_luke",
+          "gospel": "luke",
+          "reference": "24:9-11",
+          "text_length": 297,
+          "score": 0.0022588726642594047
+        },
+        {
+          "node_id": "event_162_john",
+          "gospel": "john",
+          "reference": "20:18",
+          "text_length": 131,
+          "score": 0.002096786832706371
+        }
+      ],
+      "chosen_node": "event_162_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 163,
+      "description": "Jesus appears to Peter",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_163_luke",
+          "gospel": "luke",
+          "reference": "24:34",
+          "text_length": 71,
+          "score": 0.0031961339185463695
+        }
+      ],
+      "chosen_node": "event_163_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 164,
+      "description": "Jesus appears to Cleopas and another",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_164_mark",
+          "gospel": "mark",
+          "reference": "16:12",
+          "text_length": 99,
+          "score": 0.0016571428292932308
+        },
+        {
+          "node_id": "event_164_luke",
+          "gospel": "luke",
+          "reference": "24:13-27",
+          "text_length": 1561,
+          "score": 0.002640750716315776
+        }
+      ],
+      "chosen_node": "event_164_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 165,
+      "description": "Jesus reveals himself to them",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_165_luke",
+          "gospel": "luke",
+          "reference": "24:28-32",
+          "text_length": 550,
+          "score": 0.004529782267026419
+        }
+      ],
+      "chosen_node": "event_165_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 166,
+      "description": "They return to Jerusalem",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 2,
+      "candidates": [
+        {
+          "node_id": "event_166_mark",
+          "gospel": "mark",
+          "reference": "16:13",
+          "text_length": 81,
+          "score": 0.002454269478312595
+        },
+        {
+          "node_id": "event_166_luke",
+          "gospel": "luke",
+          "reference": "24:33-35",
+          "text_length": 296,
+          "score": 0.004441835274123587
+        }
+      ],
+      "chosen_node": "event_166_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 167,
+      "description": "Jesus appears to the Eleven",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 3,
+      "candidates": [
+        {
+          "node_id": "event_167_mark",
+          "gospel": "mark",
+          "reference": "16:14",
+          "text_length": 176,
+          "score": 0.002122703232335274
+        },
+        {
+          "node_id": "event_167_luke",
+          "gospel": "luke",
+          "reference": "24:36-43",
+          "text_length": 637,
+          "score": 0.0029533061643836245
+        },
+        {
+          "node_id": "event_167_john",
+          "gospel": "john",
+          "reference": "20:19-20",
+          "text_length": 294,
+          "score": 0.002618230750685702
+        }
+      ],
+      "chosen_node": "event_167_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    },
+    {
+      "event_id": 168,
+      "description": "The apostles receive authority",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_168_john",
+          "gospel": "john",
+          "reference": "20:21-23",
+          "text_length": 256,
+          "score": 0.0036194491582184534
+        }
+      ],
+      "chosen_node": "event_168_john",
+      "chosen_gospel": "john",
+      "fallback": false
+    },
+    {
+      "event_id": 169,
+      "description": "He opens their minds to understand",
+      "strategy": "taeg-no-same-event",
+      "n_candidates": 1,
+      "candidates": [
+        {
+          "node_id": "event_169_luke",
+          "gospel": "luke",
+          "reference": "24:44-48",
+          "text_length": 489,
+          "score": 0.0012922514170645813
+        }
+      ],
+      "chosen_node": "event_169_luke",
+      "chosen_gospel": "luke",
+      "fallback": false
+    }
+  ]
+}

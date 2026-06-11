@@ -1,0 +1,2584 @@
+{
+  "methods": {
+    "lexrank": {
+      "kind": "timeline-agnostic",
+      "config": {
+        "summary_length_sentences": 750
+      },
+      "metrics": {
+        "rouge1_f1": 0.8874980730692154,
+        "rouge2_f1": 0.7119292079055283,
+        "rougeL_f1": 0.20644365654385693,
+        "bertscore_f1": 0.8351287245750427,
+        "meteor": 0.4528721023577291,
+        "kendall_tau": 0.32000163957597805,
+        "length_chars": 81418
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9030052073530335,
+            "recall": 0.8725145489815713,
+            "f1": 0.8874980730692154
+          },
+          "rouge2": {
+            "precision": 0.7243694315472455,
+            "recall": 0.6999090633525311,
+            "f1": 0.7119292079055283
+          },
+          "rougeL": {
+            "precision": 0.2100508187464709,
+            "recall": 0.20295829291949563,
+            "f1": 0.20644365654385693
+          }
+        },
+        "meteor": 0.4528721023577291,
+        "bertscore": {
+          "precision": 0.8362696766853333,
+          "recall": 0.8339908123016357,
+          "f1": 0.8351287245750427
+        },
+        "kendall_tau": 0.32000163957597805
+      }
+    },
+    "longest": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.9583123742454729,
+        "rouge2_f1": 0.9379362384455764,
+        "rougeL_f1": 0.9467429577464789,
+        "bertscore_f1": 0.9947085976600647,
+        "meteor": 0.6387522684944461,
+        "kendall_tau": 1.0,
+        "length_chars": 79154
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9953631138975967,
+            "recall": 0.9239209505334627,
+            "f1": 0.9583123742454729
+          },
+          "rouge2": {
+            "precision": 0.9742015544379857,
+            "recall": 0.9042740224310397,
+            "f1": 0.9379362384455764
+          },
+          "rougeL": {
+            "precision": 0.983346394984326,
+            "recall": 0.912766731328807,
+            "f1": 0.9467429577464789
+          }
+        },
+        "meteor": 0.6387522684944461,
+        "bertscore": {
+          "precision": 0.9952279329299927,
+          "recall": 0.9941898584365845,
+          "f1": 0.9947085976600647
+        },
+        "kendall_tau": 1.0
+      }
+    },
+    "priority": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.8860708803310419,
+        "rouge2_f1": 0.8139100253637698,
+        "rougeL_f1": 0.8109857838884069,
+        "bertscore_f1": 0.8973938822746277,
+        "meteor": 0.4530927486126294,
+        "kendall_tau": 0.6216508089265314,
+        "length_chars": 69295
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9855976243504083,
+            "recall": 0.8048011639185257,
+            "f1": 0.8860708803310419
+          },
+          "rouge2": {
+            "precision": 0.9053381839780236,
+            "recall": 0.7392543194907548,
+            "f1": 0.8139100253637698
+          },
+          "rougeL": {
+            "precision": 0.9020786933927246,
+            "recall": 0.7366028128031038,
+            "f1": 0.8109857838884069
+          }
+        },
+        "meteor": 0.4530927486126294,
+        "bertscore": {
+          "precision": 0.8978880047798157,
+          "recall": 0.8969002366065979,
+          "f1": 0.8973938822746277
+        },
+        "kendall_tau": 0.6216508089265314
+      }
+    },
+    "centroid": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.890587609678277,
+        "rouge2_f1": 0.8207139533337765,
+        "rougeL_f1": 0.8179340600904016,
+        "bertscore_f1": 0.9346712231636047,
+        "meteor": 0.4724206927315984,
+        "kendall_tau": 0.4672718883596365,
+        "length_chars": 69929
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9857268981753973,
+            "recall": 0.8121968962172648,
+            "f1": 0.890587609678277
+          },
+          "rouge2": {
+            "precision": 0.9083952615701567,
+            "recall": 0.7484692331009397,
+            "f1": 0.8207139533337765
+          },
+          "rougeL": {
+            "precision": 0.9053119482048264,
+            "recall": 0.7459384093113482,
+            "f1": 0.8179340600904016
+          }
+        },
+        "meteor": 0.4724206927315984,
+        "bertscore": {
+          "precision": 0.9347326755523682,
+          "recall": 0.9346097111701965,
+          "f1": 0.9346712231636047
+        },
+        "kendall_tau": 0.4672718883596365
+      }
+    },
+    "taeg": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.9175291073738681,
+        "rouge2_f1": 0.8476615563749272,
+        "rougeL_f1": 0.8461190168175938,
+        "bertscore_f1": 0.9060124158859253,
+        "meteor": 0.5503120936254435,
+        "kendall_tau": 0.4670409086817524,
+        "length_chars": 74280
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9834303937881309,
+            "recall": 0.8599054316197866,
+            "f1": 0.9175291073738681
+          },
+          "rouge2": {
+            "precision": 0.9085488455938432,
+            "recall": 0.7944225522885723,
+            "f1": 0.8476615563749272
+          },
+          "rougeL": {
+            "precision": 0.9068912922906267,
+            "recall": 0.7929801163918526,
+            "f1": 0.8461190168175938
+          }
+        },
+        "meteor": 0.5503120936254435,
+        "bertscore": {
+          "precision": 0.9047639966011047,
+          "recall": 0.907264232635498,
+          "f1": 0.9060124158859253
+        },
+        "kendall_tau": 0.4670409086817524
+      },
+      "centrality_info": {
+        "n_nodes": 363,
+        "edges_used": {
+          "BEFORE": 799,
+          "SAME_EVENT": 318
+        },
+        "fallback_edges": 259,
+        "include_before": true,
+        "include_same_event": true,
+        "damping": 0.85,
+        "tolerance": 1e-10,
+        "iterations": 98,
+        "converged": true,
+        "fallback_weight": 0.05
+      },
+      "events_choosing_non_longest_version": 36
+    },
+    "taeg-no-before": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.88559505925555,
+        "rouge2_f1": 0.81093713484459,
+        "rougeL_f1": 0.8087464530128526,
+        "bertscore_f1": 0.9346712231636047,
+        "meteor": 0.46880723954507036,
+        "kendall_tau": 0.4672718883596365,
+        "length_chars": 69316
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9855115536072516,
+            "recall": 0.8040737148399612,
+            "f1": 0.88559505925555
+          },
+          "rouge2": {
+            "precision": 0.902437212067172,
+            "recall": 0.7362837223401031,
+            "f1": 0.81093713484459
+          },
+          "rougeL": {
+            "precision": 0.8999925700274909,
+            "recall": 0.7342992240543162,
+            "f1": 0.8087464530128526
+          }
+        },
+        "meteor": 0.46880723954507036,
+        "bertscore": {
+          "precision": 0.9347326755523682,
+          "recall": 0.9346097111701965,
+          "f1": 0.9346712231636047
+        },
+        "kendall_tau": 0.4672718883596365
+      },
+      "centrality_info": {
+        "n_nodes": 363,
+        "edges_used": {
+          "BEFORE": 0,
+          "SAME_EVENT": 318
+        },
+        "fallback_edges": 77,
+        "include_before": false,
+        "include_same_event": true,
+        "damping": 0.85,
+        "tolerance": 1e-10,
+        "iterations": 55,
+        "converged": true,
+        "fallback_weight": 0.05
+      },
+      "events_choosing_non_longest_version": 49
+    },
+    "taeg-no-same-event": {
+      "kind": "timeline-aware",
+      "metrics": {
+        "rouge1_f1": 0.9287042379944861,
+        "rouge2_f1": 0.8653500897666068,
+        "rougeL_f1": 0.8659357568763223,
+        "bertscore_f1": 0.9638000130653381,
+        "meteor": 0.5751405062887051,
+        "kendall_tau": 0.9961015001753689,
+        "length_chars": 75846
+      },
+      "evaluation": {
+        "rouge": {
+          "rouge1": {
+            "precision": 0.9855082324125731,
+            "recall": 0.8780916585838991,
+            "f1": 0.9287042379944861
+          },
+          "rouge2": {
+            "precision": 0.9182826427162006,
+            "recall": 0.818187329493786,
+            "f1": 0.8653500897666068
+          },
+          "rougeL": {
+            "precision": 0.9189005306844469,
+            "recall": 0.8187439379243453,
+            "f1": 0.8659357568763223
+          }
+        },
+        "meteor": 0.5751405062887051,
+        "bertscore": {
+          "precision": 0.9631069898605347,
+          "recall": 0.9644940495491028,
+          "f1": 0.9638000130653381
+        },
+        "kendall_tau": 0.9961015001753689
+      },
+      "centrality_info": {
+        "n_nodes": 363,
+        "edges_used": {
+          "BEFORE": 799,
+          "SAME_EVENT": 0
+        },
+        "fallback_edges": 182,
+        "include_before": true,
+        "include_same_event": false,
+        "damping": 0.85,
+        "tolerance": 1e-10,
+        "iterations": 134,
+        "converged": true,
+        "fallback_weight": 0.05
+      },
+      "events_choosing_non_longest_version": 30
+    },
+    "random": {
+      "kind": "timeline-aware",
+      "n_seeds": 30,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "metrics_mean": {
+        "rouge1_f1": 0.8886068400947558,
+        "rouge2_f1": 0.8155630356056455,
+        "rougeL_f1": 0.8129659782130566,
+        "bertscore_f1": 0.9315442065397899,
+        "meteor": 0.47844052090857786,
+        "kendall_tau": 0.6998249832964728,
+        "length_chars": 70051.6
+      },
+      "metrics_std": {
+        "rouge1_f1": 0.008754441747339938,
+        "rouge2_f1": 0.01277193344294632,
+        "rougeL_f1": 0.014855670481508215,
+        "bertscore_f1": 0.03314937032404418,
+        "meteor": 0.026269874109934106,
+        "kendall_tau": 0.2223060045184639,
+        "length_chars": 1266.9624984243983
+      },
+      "per_seed": [
+        {
+          "seed": 0,
+          "rouge1_f1": 0.8929306339196814,
+          "rouge2_f1": 0.8189723844928306,
+          "rougeL_f1": 0.8172585462993693,
+          "bertscore_f1": 0.9175652861595154,
+          "meteor": 0.4734103904994967,
+          "kendall_tau": 0.467964827393289,
+          "length_chars": 70380
+        },
+        {
+          "seed": 1,
+          "rouge1_f1": 0.9028196721311476,
+          "rouge2_f1": 0.826414846875205,
+          "rougeL_f1": 0.823016393442623,
+          "bertscore_f1": 0.8961202502250671,
+          "meteor": 0.5362517951316487,
+          "kendall_tau": 0.6190092332512062,
+          "length_chars": 72328
+        },
+        {
+          "seed": 2,
+          "rouge1_f1": 0.8971845397234051,
+          "rouge2_f1": 0.8282554877042416,
+          "rougeL_f1": 0.8249001551308709,
+          "bertscore_f1": 0.9070560932159424,
+          "meteor": 0.4756006882570818,
+          "kendall_tau": 0.6181287080260978,
+          "length_chars": 71201
+        },
+        {
+          "seed": 3,
+          "rouge1_f1": 0.90334450358105,
+          "rouge2_f1": 0.8395321330003942,
+          "rougeL_f1": 0.8413167750837769,
+          "bertscore_f1": 0.8808643817901611,
+          "meteor": 0.5370160120836532,
+          "kendall_tau": 0.6250270397907487,
+          "length_chars": 72094
+        },
+        {
+          "seed": 4,
+          "rouge1_f1": 0.8820855614973262,
+          "rouge2_f1": 0.8015910154422088,
+          "rougeL_f1": 0.7952540106951872,
+          "bertscore_f1": 0.8768600821495056,
+          "meteor": 0.4621406483210732,
+          "kendall_tau": 0.6248794014185955,
+          "length_chars": 69242
+        },
+        {
+          "seed": 5,
+          "rouge1_f1": 0.8952632447598613,
+          "rouge2_f1": 0.8207836793978808,
+          "rougeL_f1": 0.8199372833800956,
+          "bertscore_f1": 0.9638000130653381,
+          "meteor": 0.5221030460493499,
+          "kendall_tau": 0.9952807628777787,
+          "length_chars": 71342
+        },
+        {
+          "seed": 6,
+          "rouge1_f1": 0.897607086197779,
+          "rouge2_f1": 0.8340054207708072,
+          "rougeL_f1": 0.8356028556319408,
+          "bertscore_f1": 0.9754802584648132,
+          "meteor": 0.481257000853089,
+          "kendall_tau": 0.995623033784708,
+          "length_chars": 71038
+        },
+        {
+          "seed": 7,
+          "rouge1_f1": 0.8876262626262627,
+          "rouge2_f1": 0.8094636804678674,
+          "rougeL_f1": 0.8038942052099947,
+          "bertscore_f1": 0.9060124158859253,
+          "meteor": 0.4629554348565753,
+          "kendall_tau": 0.4672718883596365,
+          "length_chars": 70104
+        },
+        {
+          "seed": 8,
+          "rouge1_f1": 0.8876527995203678,
+          "rouge2_f1": 0.8166949801805403,
+          "rougeL_f1": 0.8137094893914665,
+          "bertscore_f1": 0.9238232970237732,
+          "meteor": 0.4823782070936651,
+          "kendall_tau": 0.6213573005181618,
+          "length_chars": 69810
+        },
+        {
+          "seed": 9,
+          "rouge1_f1": 0.8912639405204461,
+          "rouge2_f1": 0.8233419637522406,
+          "rougeL_f1": 0.8249468932554436,
+          "bertscore_f1": 0.9346712231636047,
+          "meteor": 0.4911944336965742,
+          "kendall_tau": 0.4672718883596365,
+          "length_chars": 70338
+        },
+        {
+          "seed": 10,
+          "rouge1_f1": 0.8846488003742564,
+          "rouge2_f1": 0.8179387782382035,
+          "rougeL_f1": 0.8147430328142752,
+          "bertscore_f1": 0.9425255060195923,
+          "meteor": 0.45618953080623276,
+          "kendall_tau": 0.9958965941731638,
+          "length_chars": 69430
+        },
+        {
+          "seed": 11,
+          "rouge1_f1": 0.8894357064476441,
+          "rouge2_f1": 0.8090186558478268,
+          "rougeL_f1": 0.8075682505902304,
+          "bertscore_f1": 0.9346712231636047,
+          "meteor": 0.510960971318031,
+          "kendall_tau": 0.4670409086817524,
+          "length_chars": 70189
+        },
+        {
+          "seed": 12,
+          "rouge1_f1": 0.8834691968461849,
+          "rouge2_f1": 0.811760775141998,
+          "rougeL_f1": 0.8108378992382734,
+          "bertscore_f1": 0.9347413778305054,
+          "meteor": 0.4633417819872494,
+          "kendall_tau": 0.4672718883596365,
+          "length_chars": 69320
+        },
+        {
+          "seed": 13,
+          "rouge1_f1": 0.8970005285412261,
+          "rouge2_f1": 0.8266270234555666,
+          "rougeL_f1": 0.827431289640592,
+          "bertscore_f1": 0.9349618554115295,
+          "meteor": 0.47684609754294216,
+          "kendall_tau": 0.46750286803752067,
+          "length_chars": 71136
+        },
+        {
+          "seed": 14,
+          "rouge1_f1": 0.8775393707397334,
+          "rouge2_f1": 0.7992880889217232,
+          "rougeL_f1": 0.7950706826500118,
+          "bertscore_f1": 0.9065371751785278,
+          "meteor": 0.4745987005226863,
+          "kendall_tau": 0.6181287080260978,
+          "length_chars": 68588
+        },
+        {
+          "seed": 15,
+          "rouge1_f1": 0.8866926225416791,
+          "rouge2_f1": 0.8024892675297015,
+          "rougeL_f1": 0.7979102192938671,
+          "bertscore_f1": 0.9238232970237732,
+          "meteor": 0.4815989444306748,
+          "kendall_tau": 0.6222378257432702,
+          "length_chars": 70085
+        },
+        {
+          "seed": 16,
+          "rouge1_f1": 0.8973587649995041,
+          "rouge2_f1": 0.8250851267810506,
+          "rougeL_f1": 0.8252289180522958,
+          "bertscore_f1": 0.9163625836372375,
+          "meteor": 0.47779150728243625,
+          "kendall_tau": 0.4670409086817524,
+          "length_chars": 71045
+        },
+        {
+          "seed": 17,
+          "rouge1_f1": 0.8844459279038718,
+          "rouge2_f1": 0.8147406368916482,
+          "rougeL_f1": 0.8088785046728971,
+          "bertscore_f1": 0.974833071231842,
+          "meteor": 0.46501343409093576,
+          "kendall_tau": 0.9969908357269868,
+          "length_chars": 69559
+        },
+        {
+          "seed": 18,
+          "rouge1_f1": 0.8939318864995212,
+          "rouge2_f1": 0.8126589805424334,
+          "rougeL_f1": 0.8122749644898093,
+          "bertscore_f1": 0.9070560932159424,
+          "meteor": 0.5302236498078592,
+          "kendall_tau": 0.6190092332512062,
+          "length_chars": 71163
+        },
+        {
+          "seed": 19,
+          "rouge1_f1": 0.8899317690131469,
+          "rouge2_f1": 0.8292114635688846,
+          "rougeL_f1": 0.8264270261274754,
+          "bertscore_f1": 0.9947085976600647,
+          "meteor": 0.4585695939608038,
+          "kendall_tau": 0.9986321980577213,
+          "length_chars": 70020
+        },
+        {
+          "seed": 20,
+          "rouge1_f1": 0.8894286760057232,
+          "rouge2_f1": 0.8252637183454794,
+          "rougeL_f1": 0.8252087977905699,
+          "bertscore_f1": 0.9638000130653381,
+          "meteor": 0.46812248969751324,
+          "kendall_tau": 0.9952807628777787,
+          "length_chars": 70003
+        },
+        {
+          "seed": 21,
+          "rouge1_f1": 0.8933055086289707,
+          "rouge2_f1": 0.8201543710868917,
+          "rougeL_f1": 0.8156613335983305,
+          "bertscore_f1": 0.9065371751785278,
+          "meteor": 0.4743508375781215,
+          "kendall_tau": 0.6173940181681279,
+          "length_chars": 70637
+        },
+        {
+          "seed": 22,
+          "rouge1_f1": 0.868142639851276,
+          "rouge2_f1": 0.7805834431937261,
+          "rougeL_f1": 0.7725536589487916,
+          "bertscore_f1": 0.8775691390037537,
+          "meteor": 0.44287022581453717,
+          "kendall_tau": 0.6231183509683786,
+          "length_chars": 67534
+        },
+        {
+          "seed": 23,
+          "rouge1_f1": 0.8796624924663496,
+          "rouge2_f1": 0.7996249665148674,
+          "rougeL_f1": 0.795151677492801,
+          "bertscore_f1": 0.9163625836372375,
+          "meteor": 0.45131525601532674,
+          "kendall_tau": 0.4672718883596365,
+          "length_chars": 68890
+        },
+        {
+          "seed": 24,
+          "rouge1_f1": 0.8739484442041962,
+          "rouge2_f1": 0.8002838125485692,
+          "rougeL_f1": 0.7956349876685023,
+          "bertscore_f1": 0.9947085976600647,
+          "meteor": 0.4661275077802997,
+          "kendall_tau": 0.995623033784708,
+          "length_chars": 67524
+        },
+        {
+          "seed": 25,
+          "rouge1_f1": 0.9008481819975015,
+          "rouge2_f1": 0.8295633876906892,
+          "rougeL_f1": 0.8298375961601683,
+          "bertscore_f1": 0.9175652861595154,
+          "meteor": 0.5078432834793075,
+          "kendall_tau": 0.46750286803752067,
+          "length_chars": 72030
+        },
+        {
+          "seed": 26,
+          "rouge1_f1": 0.8760960474841494,
+          "rouge2_f1": 0.812141652613828,
+          "rougeL_f1": 0.8094563604478618,
+          "bertscore_f1": 0.9425255060195923,
+          "meteor": 0.44573988659598784,
+          "kendall_tau": 0.9953494733962522,
+          "length_chars": 67967
+        },
+        {
+          "seed": 27,
+          "rouge1_f1": 0.8829666287701463,
+          "rouge2_f1": 0.8097913322632424,
+          "rougeL_f1": 0.8041195746672908,
+          "bertscore_f1": 0.9754802584648132,
+          "meteor": 0.4541938746786258,
+          "kendall_tau": 0.9953494733962522,
+          "length_chars": 69278
+        },
+        {
+          "seed": 28,
+          "rouge1_f1": 0.892129246064623,
+          "rouge2_f1": 0.8204023464686973,
+          "rougeL_f1": 0.8187572493786246,
+          "bertscore_f1": 0.9238232970237732,
+          "meteor": 0.47106751139085895,
+          "kendall_tau": 0.6193027416595757,
+          "length_chars": 70632
+        },
+        {
+          "seed": 29,
+          "rouge1_f1": 0.8794445189856434,
+          "rouge2_f1": 0.8012076484401208,
+          "rougeL_f1": 0.7963907151482624,
+          "bertscore_f1": 0.9754802584648132,
+          "meteor": 0.45214288563469957,
+          "kendall_tau": 0.9969908357269868,
+          "length_chars": 68641
+        }
+      ]
+    }
+  },
+  "ablation_divergence": {
+    "taeg-no-before": {
+      "n_different": 36,
+      "n_comparable": 151
+    },
+    "taeg-no-same-event": {
+      "n_different": 23,
+      "n_comparable": 151
+    }
+  },
+  "selection_eval": {
+    "setup": {
+      "oracle_metric": "ROUGE-L F1",
+      "golden_parse": {
+        "expected_segments": 169,
+        "markers_found": 168,
+        "missing_markers": [
+          169
+        ],
+        "empty_segments": [
+          162
+        ],
+        "covered_chars": 83928,
+        "golden_chars": 84659
+      },
+      "n_contested_by_references": 96,
+      "n_evaluated": 88,
+      "excluded_events": {
+        "9": "fewer than 2 non-empty candidate texts",
+        "15": "fewer than 2 non-empty candidate texts",
+        "28": "fewer than 2 non-empty candidate texts",
+        "98": "fewer than 2 non-empty candidate texts",
+        "99": "fewer than 2 non-empty candidate texts",
+        "120": "fewer than 2 non-empty candidate texts",
+        "131": "fewer than 2 non-empty candidate texts",
+        "162": "missing or empty golden segment"
+      },
+      "analytical_random_floor_spec_set": 0.3489583333333332,
+      "empirical_random_floor_evaluated_set": 0.37973484848484845,
+      "oracles": {
+        "1": {
+          "oracle_node": "event_1_john",
+          "oracle_gospel": "john",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_1_matthew": 0.2682926829268293,
+            "event_1_mark": 0.25862068965517243,
+            "event_1_john": 1.0
+          }
+        },
+        "4": {
+          "oracle_node": "event_4_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_4_matthew": 0.47058823529411764,
+            "event_4_mark": 1.0,
+            "event_4_luke": 0.6436781609195401,
+            "event_4_john": 0.13658536585365855
+          }
+        },
+        "5": {
+          "oracle_node": "event_5_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_5_matthew": 0.36000000000000004,
+            "event_5_mark": 0.3150684931506849,
+            "event_5_luke": 1.0
+          }
+        },
+        "7": {
+          "oracle_node": "event_7_john",
+          "oracle_gospel": "john",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_7_matthew": 0.17582417582417584,
+            "event_7_john": 1.0
+          }
+        },
+        "8": {
+          "oracle_node": "event_8_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_8_matthew": 0.3181818181818182,
+            "event_8_mark": 1.0
+          }
+        },
+        "10": {
+          "oracle_node": "event_10_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_10_matthew": 0.6917293233082706,
+            "event_10_mark": 1.0,
+            "event_10_luke": 0.5517241379310346
+          }
+        },
+        "11": {
+          "oracle_node": "event_11_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_11_mark": 0.4050632911392405,
+            "event_11_luke": 1.0
+          }
+        },
+        "16": {
+          "oracle_node": "event_16_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_16_matthew": 0.8137931034482757,
+            "event_16_mark": 1.0,
+            "event_16_luke": 0.7253521126760563
+          }
+        },
+        "18": {
+          "oracle_node": "event_18_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_18_matthew": 1.0,
+            "event_18_mark": 0.5487179487179487,
+            "event_18_luke": 0.4263157894736842
+          }
+        },
+        "19": {
+          "oracle_node": "event_19_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_19_matthew": 1.0,
+            "event_19_mark": 0.4615384615384615,
+            "event_19_luke": 0.4878048780487804
+          }
+        },
+        "20": {
+          "oracle_node": "event_20_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_20_matthew": 1.0,
+            "event_20_mark": 0.40540540540540543,
+            "event_20_luke": 0.45333333333333337
+          }
+        },
+        "22": {
+          "oracle_node": "event_22_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_22_matthew": 1.0,
+            "event_22_mark": 0.6291390728476821,
+            "event_22_luke": 0.4560260586319218
+          }
+        },
+        "23": {
+          "oracle_node": "event_23_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_23_matthew": 0.5571428571428572,
+            "event_23_mark": 0.6340326340326341,
+            "event_23_luke": 1.0
+          }
+        },
+        "24": {
+          "oracle_node": "event_24_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_24_matthew": 0.336,
+            "event_24_mark": 0.9653179190751445,
+            "event_24_luke": 0.14893617021276595
+          }
+        },
+        "25": {
+          "oracle_node": "event_25_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_25_matthew": 1.0,
+            "event_25_mark": 0.5287356321839081,
+            "event_25_luke": 0.4840764331210191
+          }
+        },
+        "26": {
+          "oracle_node": "event_26_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_26_matthew": 1.0,
+            "event_26_mark": 0.18532818532818532,
+            "event_26_luke": 0.21052631578947367
+          }
+        },
+        "29": {
+          "oracle_node": "event_29_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_29_mark": 1.0,
+            "event_29_luke": 0.6385542168674698
+          }
+        },
+        "30": {
+          "oracle_node": "event_30_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_30_matthew": 0.4230769230769231,
+            "event_30_mark": 0.4848484848484848,
+            "event_30_luke": 0.9714285714285714
+          }
+        },
+        "31": {
+          "oracle_node": "event_31_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_31_matthew": 0.575,
+            "event_31_mark": 1.0,
+            "event_31_luke": 0.5483870967741935
+          }
+        },
+        "32": {
+          "oracle_node": "event_32_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_32_matthew": 0.5555555555555556,
+            "event_32_mark": 0.5555555555555556,
+            "event_32_luke": 1.0
+          }
+        },
+        "33": {
+          "oracle_node": "event_33_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_33_matthew": 0.3273809523809524,
+            "event_33_mark": 0.40909090909090906,
+            "event_33_luke": 1.0
+          }
+        },
+        "34": {
+          "oracle_node": "event_34_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_34_matthew": 1.0,
+            "event_34_mark": 0.7737226277372262,
+            "event_34_luke": 0.38132295719844356
+          }
+        },
+        "35": {
+          "oracle_node": "event_35_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_35_matthew": 1.0,
+            "event_35_mark": 0.6124999999999999
+          }
+        },
+        "37": {
+          "oracle_node": "event_37_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_37_matthew": 1.0,
+            "event_37_mark": 0.6918918918918919,
+            "event_37_luke": 0.35051546391752575
+          }
+        },
+        "38": {
+          "oracle_node": "event_38_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_38_matthew": 0.7236842105263158,
+            "event_38_mark": 0.7368421052631579,
+            "event_38_luke": 1.0
+          }
+        },
+        "39": {
+          "oracle_node": "event_39_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_39_matthew": 1.0,
+            "event_39_mark": 1.0
+          }
+        },
+        "42": {
+          "oracle_node": "event_42_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_42_matthew": 1.0,
+            "event_42_mark": 0.1818181818181818,
+            "event_42_luke": 0.17355371900826444
+          }
+        },
+        "49": {
+          "oracle_node": "event_49_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_49_matthew": 1.0,
+            "event_49_mark": 0.48484848484848486,
+            "event_49_luke": 0.26966292134831465
+          }
+        },
+        "50": {
+          "oracle_node": "event_50_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_50_matthew": 1.0,
+            "event_50_mark": 0.5054945054945056,
+            "event_50_luke": 0.3928571428571428
+          }
+        },
+        "54": {
+          "oracle_node": "event_54_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_54_matthew": 0.1111111111111111,
+            "event_54_mark": 0.07142857142857142,
+            "event_54_luke": 0.07462686567164178
+          }
+        },
+        "55": {
+          "oracle_node": "event_55_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_55_matthew": 0.0816326530612245,
+            "event_55_mark": 0.08888888888888889,
+            "event_55_luke": 0.0816326530612245
+          }
+        },
+        "58": {
+          "oracle_node": "event_58_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_58_matthew": 0.08333333333333333,
+            "event_58_mark": 0.1728395061728395,
+            "event_58_luke": 0.11111111111111112,
+            "event_58_john": 0.11612903225806452
+          }
+        },
+        "59": {
+          "oracle_node": "event_59_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_59_matthew": 0.19259259259259257,
+            "event_59_mark": 0.21428571428571425,
+            "event_59_luke": 0.09836065573770493,
+            "event_59_john": 0.1212121212121212
+          }
+        },
+        "63": {
+          "oracle_node": "event_63_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_63_matthew": 0.31746031746031744,
+            "event_63_mark": 0.3548387096774193,
+            "event_63_luke": 0.4307692307692308
+          }
+        },
+        "64": {
+          "oracle_node": "event_64_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_64_matthew": 0.32432432432432434,
+            "event_64_mark": 0.25,
+            "event_64_luke": 0.1875
+          }
+        },
+        "65": {
+          "oracle_node": "event_65_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_65_matthew": 0.10989010989010989,
+            "event_65_mark": 0.11111111111111113,
+            "event_65_luke": 0.11702127659574468
+          }
+        },
+        "67": {
+          "oracle_node": "event_67_john",
+          "oracle_gospel": "john",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_67_luke": 0.12,
+            "event_67_john": 0.13466334164588528
+          }
+        },
+        "71": {
+          "oracle_node": "event_71_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 3,
+          "scores": {
+            "event_71_matthew": 0.033613445378151266,
+            "event_71_mark": 0.033613445378151266,
+            "event_71_luke": 0.08333333333333333
+          }
+        },
+        "72": {
+          "oracle_node": "event_72_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_72_matthew": 0.12987012987012986,
+            "event_72_mark": 0.1291759465478842
+          }
+        },
+        "79": {
+          "oracle_node": "event_79_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_79_matthew": 0.17687074829931973,
+            "event_79_mark": 0.1925925925925926,
+            "event_79_luke": 0.14736842105263157,
+            "event_79_john": 0.14414414414414414
+          }
+        },
+        "80": {
+          "oracle_node": "event_80_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_80_matthew": 0.31683168316831684,
+            "event_80_mark": 0.24074074074074073,
+            "event_80_luke": 0.16666666666666666
+          }
+        },
+        "81": {
+          "oracle_node": "event_81_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_81_matthew": 0.1891891891891892,
+            "event_81_mark": 0.24806201550387597,
+            "event_81_luke": 0.15217391304347827
+          }
+        },
+        "82": {
+          "oracle_node": "event_82_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_82_matthew": 0.16666666666666666,
+            "event_82_mark": 0.13533834586466165
+          }
+        },
+        "83": {
+          "oracle_node": "event_83_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_83_matthew": 0.143646408839779,
+            "event_83_mark": 0.1340782122905028,
+            "event_83_luke": 0.16883116883116883,
+            "event_83_john": 0.1038961038961039
+          }
+        },
+        "85": {
+          "oracle_node": "event_85_john",
+          "oracle_gospel": "john",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_85_matthew": 0.16455696202531644,
+            "event_85_mark": 0.1348314606741573,
+            "event_85_luke": 0.14285714285714285,
+            "event_85_john": 0.16981132075471697
+          }
+        },
+        "86": {
+          "oracle_node": "event_86_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_86_mark": 0.13559322033898302,
+            "event_86_luke": 0.15384615384615383
+          }
+        },
+        "87": {
+          "oracle_node": "event_87_john",
+          "oracle_gospel": "john",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_87_mark": 0.13793103448275862,
+            "event_87_john": 0.15
+          }
+        },
+        "89": {
+          "oracle_node": "event_89_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_89_matthew": 0.2857142857142857,
+            "event_89_mark": 0.2
+          }
+        },
+        "91": {
+          "oracle_node": "event_91_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 4,
+          "n_nonempty": 3,
+          "scores": {
+            "event_91_matthew": 0.23529411764705885,
+            "event_91_mark": 0.19277108433734938,
+            "event_91_john": 0.12068965517241378
+          }
+        },
+        "92": {
+          "oracle_node": "event_92_john",
+          "oracle_gospel": "john",
+          "n_versions": 4,
+          "n_nonempty": 2,
+          "scores": {
+            "event_92_luke": 0.06349206349206349,
+            "event_92_john": 0.07547169811320754
+          }
+        },
+        "95": {
+          "oracle_node": "event_95_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_95_matthew": 0.08771929824561403,
+            "event_95_mark": 0.11981566820276497
+          }
+        },
+        "96": {
+          "oracle_node": "event_96_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_96_matthew": 0.08163265306122448,
+            "event_96_mark": 0.06779661016949153,
+            "event_96_luke": 0.03703703703703704
+          }
+        },
+        "97": {
+          "oracle_node": "event_97_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 2,
+          "scores": {
+            "event_97_luke": 0.2711864406779661,
+            "event_97_john": 0.1587301587301587
+          }
+        },
+        "100": {
+          "oracle_node": "event_100_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_100_matthew": 0.12765957446808512,
+            "event_100_luke": 0.1342281879194631
+          }
+        },
+        "101": {
+          "oracle_node": "event_101_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_101_matthew": 0.12631578947368421,
+            "event_101_luke": 0.14336917562724016
+          }
+        },
+        "103": {
+          "oracle_node": "event_103_john",
+          "oracle_gospel": "john",
+          "n_versions": 4,
+          "n_nonempty": 3,
+          "scores": {
+            "event_103_matthew": 0.07865168539325842,
+            "event_103_luke": 0.1372549019607843,
+            "event_103_john": 0.19081272084805656
+          }
+        },
+        "104": {
+          "oracle_node": "event_104_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_104_matthew": 0.1572052401746725,
+            "event_104_mark": 0.13333333333333333,
+            "event_104_luke": 0.1134020618556701,
+            "event_104_john": 0.12539184952978058
+          }
+        },
+        "108": {
+          "oracle_node": "event_108_john",
+          "oracle_gospel": "john",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_108_matthew": 0.29906542056074764,
+            "event_108_mark": 0.27586206896551724,
+            "event_108_luke": 0.0,
+            "event_108_john": 0.3582089552238806
+          }
+        },
+        "109": {
+          "oracle_node": "event_109_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_109_matthew": 0.1333333333333333,
+            "event_109_mark": 0.12195121951219512,
+            "event_109_luke": 0.12371134020618557,
+            "event_109_john": 0.09411764705882353
+          }
+        },
+        "110": {
+          "oracle_node": "event_110_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_110_matthew": 0.11864406779661017,
+            "event_110_mark": 0.18032786885245905,
+            "event_110_luke": 0.14473684210526316
+          }
+        },
+        "111": {
+          "oracle_node": "event_111_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_111_matthew": 0.135678391959799,
+            "event_111_mark": 0.12276214833759591,
+            "event_111_john": 0.11538461538461539
+          }
+        },
+        "114": {
+          "oracle_node": "event_114_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_114_matthew": 0.09090909090909093,
+            "event_114_mark": 0.12765957446808512,
+            "event_114_luke": 0.13793103448275862,
+            "event_114_john": 0.05555555555555555
+          }
+        },
+        "115": {
+          "oracle_node": "event_115_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_115_matthew": 0.2181818181818182,
+            "event_115_mark": 0.2105263157894737,
+            "event_115_john": 0.17857142857142855
+          }
+        },
+        "116": {
+          "oracle_node": "event_116_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_116_matthew": 0.08620689655172414,
+            "event_116_mark": 0.128,
+            "event_116_luke": 0.12598425196850394
+          }
+        },
+        "118": {
+          "oracle_node": "event_118_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 2,
+          "scores": {
+            "event_118_luke": 0.1,
+            "event_118_john": 0.0625
+          }
+        },
+        "122": {
+          "oracle_node": "event_122_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_122_matthew": 0.0606060606060606,
+            "event_122_mark": 0.0689655172413793,
+            "event_122_luke": 0.0625,
+            "event_122_john": 0.0396039603960396
+          }
+        },
+        "123": {
+          "oracle_node": "event_123_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_123_matthew": 0.031746031746031744,
+            "event_123_mark": 0.047619047619047616,
+            "event_123_luke": 0.032
+          }
+        },
+        "124": {
+          "oracle_node": "event_124_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_124_matthew": 0.14473684210526314,
+            "event_124_mark": 0.15126050420168066,
+            "event_124_luke": 0.3272727272727273
+          }
+        },
+        "128": {
+          "oracle_node": "event_128_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_128_matthew": 0.10714285714285714,
+            "event_128_mark": 0.14285714285714285
+          }
+        },
+        "129": {
+          "oracle_node": "event_129_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_129_matthew": 0.1333333333333333,
+            "event_129_mark": 0.13043478260869565
+          }
+        },
+        "130": {
+          "oracle_node": "event_130_john",
+          "oracle_gospel": "john",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_130_matthew": 0.046511627906976744,
+            "event_130_john": 0.06060606060606061
+          }
+        },
+        "134": {
+          "oracle_node": "event_134_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 4,
+          "n_nonempty": 2,
+          "scores": {
+            "event_134_matthew": 0.07692307692307691,
+            "event_134_mark": 0.028571428571428574
+          }
+        },
+        "135": {
+          "oracle_node": "event_135_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_135_matthew": 0.17204301075268816,
+            "event_135_mark": 0.13636363636363635
+          }
+        },
+        "136": {
+          "oracle_node": "event_136_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_136_matthew": 0.22641509433962262,
+            "event_136_mark": 0.1568627450980392,
+            "event_136_luke": 0.15789473684210525
+          }
+        },
+        "138": {
+          "oracle_node": "event_138_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_138_matthew": 0.11650485436893204,
+            "event_138_mark": 0.09174311926605504,
+            "event_138_luke": 0.0631578947368421
+          }
+        },
+        "140": {
+          "oracle_node": "event_140_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_140_matthew": 0.13740458015267173,
+            "event_140_mark": 0.17341040462427748,
+            "event_140_luke": 0.17931034482758618,
+            "event_140_john": 0.15384615384615385
+          }
+        },
+        "141": {
+          "oracle_node": "event_141_john",
+          "oracle_gospel": "john",
+          "n_versions": 4,
+          "n_nonempty": 4,
+          "scores": {
+            "event_141_matthew": 0.15151515151515152,
+            "event_141_mark": 0.1694915254237288,
+            "event_141_luke": 0.15873015873015875,
+            "event_141_john": 0.18803418803418803
+          }
+        },
+        "142": {
+          "oracle_node": "event_142_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_142_matthew": 0.18749999999999997,
+            "event_142_mark": 0.12121212121212123,
+            "event_142_luke": 0.13953488372093023
+          }
+        },
+        "146": {
+          "oracle_node": "event_146_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 4,
+          "n_nonempty": 3,
+          "scores": {
+            "event_146_matthew": 0.15,
+            "event_146_mark": 0.2150537634408602,
+            "event_146_luke": 0.17283950617283952
+          }
+        },
+        "148": {
+          "oracle_node": "event_148_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_148_mark": 0.25,
+            "event_148_luke": 0.2608695652173913
+          }
+        },
+        "150": {
+          "oracle_node": "event_150_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_150_mark": 0.0923076923076923,
+            "event_150_luke": 0.03389830508474577
+          }
+        },
+        "151": {
+          "oracle_node": "event_151_mark",
+          "oracle_gospel": "mark",
+          "n_versions": 3,
+          "n_nonempty": 2,
+          "scores": {
+            "event_151_matthew": 0.14634146341463414,
+            "event_151_mark": 0.16901408450704225
+          }
+        },
+        "153": {
+          "oracle_node": "event_153_matthew",
+          "oracle_gospel": "matthew",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_153_matthew": 0.11538461538461538,
+            "event_153_mark": 0.043478260869565216
+          }
+        },
+        "158": {
+          "oracle_node": "event_158_john",
+          "oracle_gospel": "john",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_158_luke": 0.08450704225352113,
+            "event_158_john": 0.16181229773462785
+          }
+        },
+        "159": {
+          "oracle_node": "event_159_john",
+          "oracle_gospel": "john",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_159_mark": 0.08333333333333333,
+            "event_159_john": 0.1565217391304348
+          }
+        },
+        "164": {
+          "oracle_node": "event_164_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_164_mark": 0.11290322580645161,
+            "event_164_luke": 0.14035087719298245
+          }
+        },
+        "166": {
+          "oracle_node": "event_166_luke",
+          "oracle_gospel": "luke",
+          "n_versions": 2,
+          "n_nonempty": 2,
+          "scores": {
+            "event_166_mark": 0.09859154929577464,
+            "event_166_luke": 0.1530054644808743
+          }
+        },
+        "167": {
+          "oracle_node": "event_167_john",
+          "oracle_gospel": "john",
+          "n_versions": 3,
+          "n_nonempty": 3,
+          "scores": {
+            "event_167_mark": 0.12195121951219513,
+            "event_167_luke": 0.1818181818181818,
+            "event_167_john": 0.2095238095238095
+          }
+        }
+      }
+    },
+    "strategies": {
+      "longest": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 57,
+          "accuracy": 0.6477272727272727
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.8930015765302624,
+          "rouge2_f1": 0.7572496058133955,
+          "rougeL_f1": 0.7227363081773939,
+          "bertscore_f1": 0.9992521405220032,
+          "meteor": 0.48461068242899813,
+          "kendall_tau": 1.0,
+          "length_chars": 36907
+        }
+      },
+      "priority": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 36,
+          "accuracy": 0.4090909090909091
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.7710862244498395,
+          "rouge2_f1": 0.5807159082008303,
+          "rougeL_f1": 0.5442869449447881,
+          "bertscore_f1": 0.8736845850944519,
+          "meteor": 0.35675778183594503,
+          "kendall_tau": 0.6064111607016485,
+          "length_chars": 27176
+        }
+      },
+      "centroid": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 33,
+          "accuracy": 0.375
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.7791301651290798,
+          "rouge2_f1": 0.5833914863921842,
+          "rougeL_f1": 0.531359020079076,
+          "bertscore_f1": 0.9107112288475037,
+          "meteor": 0.3732490501276734,
+          "kendall_tau": 0.44974589609893845,
+          "length_chars": 27848
+        }
+      },
+      "taeg": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 43,
+          "accuracy": 0.48863636363636365
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.8286359332896366,
+          "rouge2_f1": 0.5927598514094253,
+          "rougeL_f1": 0.529750200276746,
+          "bertscore_f1": 0.879157304763794,
+          "meteor": 0.426376608533908,
+          "kendall_tau": 0.4459008871021001,
+          "length_chars": 32199
+        }
+      },
+      "taeg-no-before": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 30,
+          "accuracy": 0.3409090909090909
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.7673507754974149,
+          "rouge2_f1": 0.5628329677217173,
+          "rougeL_f1": 0.5122982923390256,
+          "bertscore_f1": 0.911045491695404,
+          "meteor": 0.36515992519339474,
+          "kendall_tau": 0.44974589609893845,
+          "length_chars": 27235
+        }
+      },
+      "taeg-no-same-event": {
+        "oracle_accuracy": {
+          "oracle_metric": "ROUGE-L F1",
+          "n_evaluated": 88,
+          "n_hits": 43,
+          "accuracy": 0.48863636363636365
+        },
+        "contested_subset_metrics": {
+          "rouge1_f1": 0.8515205724508049,
+          "rouge2_f1": 0.6438130680598296,
+          "rougeL_f1": 0.5904830053667263,
+          "bertscore_f1": 0.9640882611274719,
+          "meteor": 0.4453837817178283,
+          "kendall_tau": 0.9978500890798292,
+          "length_chars": 33599
+        }
+      },
+      "random": {
+        "n_seeds": 30,
+        "oracle_accuracy_mean": 0.3715909090909091,
+        "oracle_accuracy_std": 0.05238590038487127,
+        "oracle_accuracy_per_seed": [
+          0.3977272727272727,
+          0.36363636363636365,
+          0.3522727272727273,
+          0.4431818181818182,
+          0.29545454545454547,
+          0.42045454545454547,
+          0.4431818181818182,
+          0.4090909090909091,
+          0.4090909090909091,
+          0.42045454545454547,
+          0.4090909090909091,
+          0.29545454545454547,
+          0.4318181818181818,
+          0.4318181818181818,
+          0.2840909090909091,
+          0.2840909090909091,
+          0.3977272727272727,
+          0.3522727272727273,
+          0.32954545454545453,
+          0.42045454545454547,
+          0.3068181818181818,
+          0.375,
+          0.2840909090909091,
+          0.36363636363636365,
+          0.4090909090909091,
+          0.375,
+          0.3977272727272727,
+          0.3409090909090909,
+          0.3977272727272727,
+          0.3068181818181818
+        ],
+        "contested_subset_metrics_mean": {
+          "rouge1_f1": 0.7703481725143774,
+          "rouge2_f1": 0.5558153602274869,
+          "rougeL_f1": 0.503968841929193,
+          "bertscore_f1": 0.911513602733612,
+          "meteor": 0.3691733685065073,
+          "kendall_tau": 0.692718182568083,
+          "length_chars": 27903.866666666665
+        },
+        "contested_subset_metrics_std": {
+          "rouge1_f1": 0.017559210216213667,
+          "rouge2_f1": 0.02514793176055996,
+          "rougeL_f1": 0.028751480913716203,
+          "bertscore_f1": 0.03190566535498635,
+          "meteor": 0.01691113808849612,
+          "kendall_tau": 0.22878171342081505,
+          "length_chars": 1240.6250297200263
+        },
+        "contested_subset_per_seed": [
+          {
+            "rouge1_f1": 0.7807933194154489,
+            "rouge2_f1": 0.5711855231613951,
+            "rougeL_f1": 0.5191370911621433,
+            "bertscore_f1": 0.9143461585044861,
+            "meteor": 0.3716128840540122,
+            "kendall_tau": 0.4465241629781801,
+            "length_chars": 28261
+          },
+          {
+            "rouge1_f1": 0.7948583026385027,
+            "rouge2_f1": 0.5577024283888429,
+            "rougeL_f1": 0.4952266406073818,
+            "bertscore_f1": 0.8743412494659424,
+            "meteor": 0.39915566960832577,
+            "kendall_tau": 0.6133383726080395,
+            "length_chars": 30209
+          },
+          {
+            "rouge1_f1": 0.7914250839182179,
+            "rouge2_f1": 0.5846177323363345,
+            "rougeL_f1": 0.5379920659139457,
+            "bertscore_f1": 0.88475501537323,
+            "meteor": 0.38613280207647993,
+            "kendall_tau": 0.6145929601781605,
+            "length_chars": 29120
+          },
+          {
+            "rouge1_f1": 0.7946138134503365,
+            "rouge2_f1": 0.5822803964591058,
+            "rougeL_f1": 0.5253044859671684,
+            "bertscore_f1": 0.876335859298706,
+            "meteor": 0.3949288403398297,
+            "kendall_tau": 0.617348284531395,
+            "length_chars": 29847
+          },
+          {
+            "rouge1_f1": 0.7583117189342136,
+            "rouge2_f1": 0.5317192044650578,
+            "rougeL_f1": 0.46860017291519296,
+            "bertscore_f1": 0.852899968624115,
+            "meteor": 0.35829514520456485,
+            "kendall_tau": 0.6103140480986503,
+            "length_chars": 27123
+          },
+          {
+            "rouge1_f1": 0.7792903028449067,
+            "rouge2_f1": 0.5491815817653358,
+            "rougeL_f1": 0.49189354542673597,
+            "bertscore_f1": 0.9365598559379578,
+            "meteor": 0.3824271273305382,
+            "kendall_tau": 0.9978500890798292,
+            "length_chars": 29095
+          },
+          {
+            "rouge1_f1": 0.7896469867524312,
+            "rouge2_f1": 0.5901815118327333,
+            "rougeL_f1": 0.5395512673252163,
+            "bertscore_f1": 0.9487837553024292,
+            "meteor": 0.38597194800143797,
+            "kendall_tau": 0.9964892194381705,
+            "length_chars": 28919
+          },
+          {
+            "rouge1_f1": 0.7712976624990293,
+            "rouge2_f1": 0.5629514563106796,
+            "rougeL_f1": 0.5145608449172945,
+            "bertscore_f1": 0.8815116286277771,
+            "meteor": 0.36822763732805686,
+            "kendall_tau": 0.45650542436943753,
+            "length_chars": 27857
+          },
+          {
+            "rouge1_f1": 0.7718696397941681,
+            "rouge2_f1": 0.5720524017467249,
+            "rougeL_f1": 0.5281459535318883,
+            "bertscore_f1": 0.9027726650238037,
+            "meteor": 0.37560639648763006,
+            "kendall_tau": 0.6200078761268668,
+            "length_chars": 27691
+          },
+          {
+            "rouge1_f1": 0.7746533426291733,
+            "rouge2_f1": 0.5596962888355155,
+            "rougeL_f1": 0.5091021767758929,
+            "bertscore_f1": 0.9132883548736572,
+            "meteor": 0.37361728231459573,
+            "kendall_tau": 0.4581997177914431,
+            "length_chars": 28091
+          },
+          {
+            "rouge1_f1": 0.7616274494373179,
+            "rouge2_f1": 0.5804014167650532,
+            "rougeL_f1": 0.535452899976391,
+            "bertscore_f1": 0.9348156452178955,
+            "meteor": 0.35976924402691807,
+            "kendall_tau": 0.9964887162811643,
+            "length_chars": 27183
+          },
+          {
+            "rouge1_f1": 0.7738428083255671,
+            "rouge2_f1": 0.5491688674848532,
+            "rougeL_f1": 0.4984467225846536,
+            "bertscore_f1": 0.911045491695404,
+            "meteor": 0.3743084668831084,
+            "kendall_tau": 0.4480637046628217,
+            "length_chars": 28070
+          },
+          {
+            "rouge1_f1": 0.7596387907341972,
+            "rouge2_f1": 0.5510091887222178,
+            "rougeL_f1": 0.5044365920691009,
+            "bertscore_f1": 0.9112957119941711,
+            "meteor": 0.35698900765770936,
+            "kendall_tau": 0.4475305571638204,
+            "length_chars": 27201
+          },
+          {
+            "rouge1_f1": 0.7797441201256416,
+            "rouge2_f1": 0.5556662324726075,
+            "rougeL_f1": 0.5002681375928905,
+            "bertscore_f1": 0.936732828617096,
+            "meteor": 0.3708648045486128,
+            "kendall_tau": 0.4468621393513097,
+            "length_chars": 28889
+          },
+          {
+            "rouge1_f1": 0.7417407878017789,
+            "rouge2_f1": 0.5107227958697379,
+            "rougeL_f1": 0.4544155019059721,
+            "bertscore_f1": 0.8842524290084839,
+            "meteor": 0.35268286706082597,
+            "kendall_tau": 0.6153947667362961,
+            "length_chars": 26507
+          },
+          {
+            "rouge1_f1": 0.7648888197791945,
+            "rouge2_f1": 0.5244167962674962,
+            "rougeL_f1": 0.46788990825688076,
+            "bertscore_f1": 0.9020994901657104,
+            "meteor": 0.36892759421862154,
+            "kendall_tau": 0.6011334136500629,
+            "length_chars": 28004
+          },
+          {
+            "rouge1_f1": 0.7868852459016393,
+            "rouge2_f1": 0.5563898253141281,
+            "rougeL_f1": 0.5037536387314233,
+            "bertscore_f1": 0.89047771692276,
+            "meteor": 0.3792733446837562,
+            "kendall_tau": 0.4577782944573658,
+            "length_chars": 28926
+          },
+          {
+            "rouge1_f1": 0.7583392198414567,
+            "rouge2_f1": 0.5377188162336133,
+            "rougeL_f1": 0.4798681422180363,
+            "bertscore_f1": 0.9481565356254578,
+            "meteor": 0.3543166344935982,
+            "kendall_tau": 0.9975783398108906,
+            "length_chars": 27312
+          },
+          {
+            "rouge1_f1": 0.7789183392063735,
+            "rouge2_f1": 0.5393809377873123,
+            "rougeL_f1": 0.4862877278994945,
+            "bertscore_f1": 0.8846313953399658,
+            "meteor": 0.38518810506703255,
+            "kendall_tau": 0.607850006483772,
+            "length_chars": 28916
+          },
+          {
+            "rouge1_f1": 0.7756849315068494,
+            "rouge2_f1": 0.5945819710415694,
+            "rougeL_f1": 0.5484122042341221,
+            "bertscore_f1": 0.9680060148239136,
+            "meteor": 0.36700730673616155,
+            "kendall_tau": 0.9994267698480943,
+            "length_chars": 27901
+          },
+          {
+            "rouge1_f1": 0.7759639303482587,
+            "rouge2_f1": 0.5759601928160472,
+            "rougeL_f1": 0.529228855721393,
+            "bertscore_f1": 0.9362643361091614,
+            "meteor": 0.36977388783203,
+            "kendall_tau": 0.9978500890798292,
+            "length_chars": 27922
+          },
+          {
+            "rouge1_f1": 0.7864615384615384,
+            "rouge2_f1": 0.5653177411909525,
+            "rougeL_f1": 0.5093846153846154,
+            "bertscore_f1": 0.8843708634376526,
+            "meteor": 0.37931140853175016,
+            "kendall_tau": 0.6022960470336663,
+            "length_chars": 28556
+          },
+          {
+            "rouge1_f1": 0.7257179735398517,
+            "rouge2_f1": 0.4873325802807811,
+            "rougeL_f1": 0.4335269441755405,
+            "bertscore_f1": 0.8539887070655823,
+            "meteor": 0.3307868208624282,
+            "kendall_tau": 0.6084618051605665,
+            "length_chars": 25453
+          },
+          {
+            "rouge1_f1": 0.7465802166521706,
+            "rouge2_f1": 0.5153024911032028,
+            "rougeL_f1": 0.4554439788092038,
+            "bertscore_f1": 0.89047771692276,
+            "meteor": 0.34611396473789097,
+            "kendall_tau": 0.4588609735147907,
+            "length_chars": 26643
+          },
+          {
+            "rouge1_f1": 0.7424657534246576,
+            "rouge2_f1": 0.5430367504835589,
+            "rougeL_f1": 0.4946011281224819,
+            "bertscore_f1": 0.9702499508857727,
+            "meteor": 0.3449236947789248,
+            "kendall_tau": 0.9984960144382614,
+            "length_chars": 25443
+          },
+          {
+            "rouge1_f1": 0.7935449655276915,
+            "rouge2_f1": 0.5757369099037659,
+            "rougeL_f1": 0.5291309947723313,
+            "bertscore_f1": 0.9144029021263123,
+            "meteor": 0.4040110279323023,
+            "kendall_tau": 0.4589560106767056,
+            "length_chars": 29783
+          },
+          {
+            "rouge1_f1": 0.7478135280430073,
+            "rouge2_f1": 0.5729877216916781,
+            "rougeL_f1": 0.5308513199069245,
+            "bertscore_f1": 0.9348234534263611,
+            "meteor": 0.34488545536162457,
+            "kendall_tau": 0.9956288094355311,
+            "length_chars": 25886
+          },
+          {
+            "rouge1_f1": 0.7685774946921443,
+            "rouge2_f1": 0.581675186787259,
+            "rougeL_f1": 0.5402217504128332,
+            "bertscore_f1": 0.9487837553024292,
+            "meteor": 0.3664123029114739,
+            "kendall_tau": 0.9972848049161398,
+            "length_chars": 27197
+          },
+          {
+            "rouge1_f1": 0.7783767133836438,
+            "rouge2_f1": 0.5573012939001848,
+            "rougeL_f1": 0.4996149699676574,
+            "bertscore_f1": 0.9047195315361023,
+            "meteor": 0.36742155107007984,
+            "kendall_tau": 0.6167984615386221,
+            "length_chars": 28551
+          },
+          {
+            "rouge1_f1": 0.7568723758219124,
+            "rouge2_f1": 0.5387845654068616,
+            "rougeL_f1": 0.48831498059098466,
+            "bertscore_f1": 0.9502190947532654,
+            "meteor": 0.35625783305489767,
+            "kendall_tau": 0.997635597602609,
+            "length_chars": 26560
+          }
+        ]
+      }
+    },
+    "percentile_in_random_distribution": {
+      "taeg": {
+        "oracle_accuracy": 100.0,
+        "rouge1_f1": 100.0,
+        "rouge2_f1": 100.0,
+        "rougeL_f1": 100.0,
+        "bertscore_f1": 16.666666666666668,
+        "meteor": 100.0,
+        "kendall_tau": 6.666666666666667
+      },
+      "longest": {
+        "oracle_accuracy": 100.0,
+        "rouge1_f1": 100.0,
+        "rouge2_f1": 100.0,
+        "rougeL_f1": 100.0,
+        "bertscore_f1": 100.0,
+        "meteor": 100.0,
+        "kendall_tau": 100.0
+      }
+    }
+  },
+  "degradation": {
+    "strategy": "taeg",
+    "note": "Removed events are absent from the output: this measures completeness/content degradation. Kendall's Tau remains 1.0 among surviving events by construction of the timeline loop; the reported tau uses the full-Golden-Sample heuristic matcher.",
+    "levels": {
+      "10%": {
+        "fraction": 0.1,
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "metrics_mean": {
+          "rouge1_f1": 0.8644528245565601,
+          "rouge2_f1": 0.8000202163367303,
+          "rougeL_f1": 0.7945261978132266,
+          "bertscore_f1": 0.8971226334571838,
+          "meteor": 0.47394191177863,
+          "kendall_tau": 0.47683009056539666,
+          "length_chars": 66198.5
+        },
+        "metrics_std": {
+          "rouge1_f1": 0.020383944173703157,
+          "rouge2_f1": 0.020622191430988555,
+          "rougeL_f1": 0.021801855573239198,
+          "bertscore_f1": 0.014548166466898146,
+          "meteor": 0.020896816987259852,
+          "kendall_tau": 0.030954812170505355,
+          "length_chars": 2569.636993385988
+        },
+        "per_seed": [
+          {
+            "seed": 0,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8527974674833115,
+            "rouge2_f1": 0.783344803854095,
+            "rougeL_f1": 0.7764090564998967,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.476184180643621,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 65030
+          },
+          {
+            "seed": 1,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8786146603900471,
+            "rouge2_f1": 0.8116214943842894,
+            "rougeL_f1": 0.8061869535978481,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4630202709566717,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 68238
+          },
+          {
+            "seed": 2,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8609592784913911,
+            "rouge2_f1": 0.7972668261018108,
+            "rougeL_f1": 0.7911997813610275,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4612945304497774,
+            "kendall_tau": 0.46782652843079026,
+            "length_chars": 65588
+          },
+          {
+            "seed": 3,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8856732279517429,
+            "rouge2_f1": 0.8202265967046556,
+            "rougeL_f1": 0.8183003041138924,
+            "bertscore_f1": 0.8806893229484558,
+            "meteor": 0.5094650323233012,
+            "kendall_tau": 0.46680992900386825,
+            "length_chars": 69064
+          },
+          {
+            "seed": 4,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8129455374964358,
+            "rouge2_f1": 0.7500534683111143,
+            "rougeL_f1": 0.7428714000570289,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.45826207482550635,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 59747
+          },
+          {
+            "seed": 5,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8730604103985666,
+            "rouge2_f1": 0.8105074546130702,
+            "rougeL_f1": 0.8063959974307833,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4598774701634867,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 67270
+          },
+          {
+            "seed": 6,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.873904658794871,
+            "rouge2_f1": 0.8121806800879716,
+            "rougeL_f1": 0.8065771221707211,
+            "bertscore_f1": 0.8701635003089905,
+            "meteor": 0.5014552125835501,
+            "kendall_tau": 0.5648855637010648,
+            "length_chars": 67009
+          },
+          {
+            "seed": 7,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8624078624078625,
+            "rouge2_f1": 0.7983072827793325,
+            "rougeL_f1": 0.7911547911547913,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4451612843843199,
+            "kendall_tau": 0.4687504020983899,
+            "length_chars": 65788
+          },
+          {
+            "seed": 8,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8734232863278213,
+            "rouge2_f1": 0.815516250126822,
+            "rougeL_f1": 0.8109972608298671,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4720154576161201,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 67173
+          },
+          {
+            "seed": 9,
+            "n_events_kept": 152,
+            "rouge1_f1": 0.8707418558235512,
+            "rouge2_f1": 0.8011773064041409,
+            "rougeL_f1": 0.7951693109164101,
+            "bertscore_f1": 0.878286600112915,
+            "meteor": 0.4926836038399452,
+            "kendall_tau": 0.46482393901109126,
+            "length_chars": 67078
+          }
+        ]
+      },
+      "25%": {
+        "fraction": 0.25,
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "metrics_mean": {
+          "rouge1_f1": 0.7831972947817846,
+          "rouge2_f1": 0.7297026854399296,
+          "rougeL_f1": 0.7230117458254162,
+          "bertscore_f1": 0.8815512835979462,
+          "meteor": 0.39699886153414027,
+          "kendall_tau": 0.5170075635541195,
+          "length_chars": 55571.6
+        },
+        "metrics_std": {
+          "rouge1_f1": 0.03437188400482716,
+          "rouge2_f1": 0.03528505075460928,
+          "rougeL_f1": 0.03664346972340094,
+          "bertscore_f1": 0.02064269023994542,
+          "meteor": 0.026702876342539712,
+          "kendall_tau": 0.06997850101810407,
+          "length_chars": 3716.063574387404
+        },
+        "per_seed": [
+          {
+            "seed": 0,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7848954327363294,
+            "rouge2_f1": 0.7361635104941211,
+            "rougeL_f1": 0.729150642786507,
+            "bertscore_f1": 0.8573508858680725,
+            "meteor": 0.3954260087495484,
+            "kendall_tau": 0.5706722158763226,
+            "length_chars": 55793
+          },
+          {
+            "seed": 1,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7765356945213061,
+            "rouge2_f1": 0.7232409696343579,
+            "rougeL_f1": 0.7163254012174874,
+            "bertscore_f1": 0.8868725895881653,
+            "meteor": 0.39113000610215454,
+            "kendall_tau": 0.5704255481054753,
+            "length_chars": 54530
+          },
+          {
+            "seed": 2,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.792824200167048,
+            "rouge2_f1": 0.7272199019429817,
+            "rougeL_f1": 0.7179431310600283,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.399438126096043,
+            "kendall_tau": 0.46782652843079026,
+            "length_chars": 56563
+          },
+          {
+            "seed": 3,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.8235627501682546,
+            "rouge2_f1": 0.7691381203726665,
+            "rougeL_f1": 0.7657539584145089,
+            "bertscore_f1": 0.8806893229484558,
+            "meteor": 0.4499013248612539,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 60370
+          },
+          {
+            "seed": 4,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7005402019885697,
+            "rouge2_f1": 0.6483714375195742,
+            "rougeL_f1": 0.639865340953574,
+            "bertscore_f1": 0.8781754970550537,
+            "meteor": 0.36688156363313884,
+            "kendall_tau": 0.4650549074279912,
+            "length_chars": 46997
+          },
+          {
+            "seed": 5,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7935202038587551,
+            "rouge2_f1": 0.7494539100043688,
+            "rougeL_f1": 0.7437204222788497,
+            "bertscore_f1": 0.8458297848701477,
+            "meteor": 0.4304510609111554,
+            "kendall_tau": 0.6615557156846248,
+            "length_chars": 56313
+          },
+          {
+            "seed": 6,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.791358519436045,
+            "rouge2_f1": 0.7399715815936169,
+            "rougeL_f1": 0.7337243615432256,
+            "bertscore_f1": 0.8702709078788757,
+            "meteor": 0.38628880047551445,
+            "kendall_tau": 0.5658679733770667,
+            "length_chars": 56341
+          },
+          {
+            "seed": 7,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7618515205724508,
+            "rouge2_f1": 0.7052553112187849,
+            "rougeL_f1": 0.69752534287418,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.3649162044343906,
+            "kendall_tau": 0.46805749684769016,
+            "length_chars": 53098
+          },
+          {
+            "seed": 8,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.8205128205128205,
+            "rouge2_f1": 0.7725529194487855,
+            "rougeL_f1": 0.767952269337311,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.4063813535147597,
+            "kendall_tau": 0.46805749684769016,
+            "length_chars": 59846
+          },
+          {
+            "seed": 9,
+            "n_events_kept": 127,
+            "rouge1_f1": 0.7863716038562664,
+            "rouge2_f1": 0.7256591921700386,
+            "rougeL_f1": 0.7181565877884896,
+            "bertscore_f1": 0.878286600112915,
+            "meteor": 0.37917416656344405,
+            "kendall_tau": 0.465516844261791,
+            "length_chars": 55865
+          }
+        ]
+      },
+      "50%": {
+        "fraction": 0.5,
+        "n_seeds": 10,
+        "seeds": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "metrics_mean": {
+          "rouge1_f1": 0.5806392925857989,
+          "rouge2_f1": 0.5407687137979696,
+          "rougeL_f1": 0.5341535719944318,
+          "bertscore_f1": 0.8781069457530976,
+          "meteor": 0.24557959833572274,
+          "kendall_tau": 0.4744588932607864,
+          "length_chars": 35193.1
+        },
+        "metrics_std": {
+          "rouge1_f1": 0.035073280992530334,
+          "rouge2_f1": 0.03808782516408202,
+          "rougeL_f1": 0.039882881781157155,
+          "bertscore_f1": 0.03270828780697203,
+          "meteor": 0.025966226693038216,
+          "kendall_tau": 0.046704888025591015,
+          "length_chars": 2834.5370168688924
+        },
+        "per_seed": [
+          {
+            "seed": 0,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5842571587552968,
+            "rouge2_f1": 0.5468087838705535,
+            "rougeL_f1": 0.5424817018362368,
+            "bertscore_f1": 0.8538944721221924,
+            "meteor": 0.24593584162231608,
+            "kendall_tau": 0.565487615862656,
+            "length_chars": 35631
+          },
+          {
+            "seed": 1,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.6311998012751511,
+            "rouge2_f1": 0.5968863862206029,
+            "rougeL_f1": 0.5941872981700753,
+            "bertscore_f1": 0.8812276721000671,
+            "meteor": 0.2931059995675929,
+            "kendall_tau": 0.550498098786852,
+            "length_chars": 39362
+          },
+          {
+            "seed": 2,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5976125973586184,
+            "rouge2_f1": 0.5458470916941834,
+            "rougeL_f1": 0.533525228581104,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.25350061694961445,
+            "kendall_tau": 0.4585758122707801,
+            "length_chars": 36822
+          },
+          {
+            "seed": 3,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.6111716849786127,
+            "rouge2_f1": 0.5675222278141251,
+            "rougeL_f1": 0.5563197181917303,
+            "bertscore_f1": 0.8819419145584106,
+            "meteor": 0.2723548670116312,
+            "kendall_tau": 0.4670409086817524,
+            "length_chars": 37889
+          },
+          {
+            "seed": 4,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5182334780079646,
+            "rouge2_f1": 0.47567906206649657,
+            "rougeL_f1": 0.46802988948051366,
+            "bertscore_f1": 0.8781754970550537,
+            "meteor": 0.2070813573914924,
+            "kendall_tau": 0.45395930909208787,
+            "length_chars": 30123
+          },
+          {
+            "seed": 5,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5642116227594288,
+            "rouge2_f1": 0.5245887408307652,
+            "rougeL_f1": 0.5183802786337399,
+            "bertscore_f1": 0.8332911133766174,
+            "meteor": 0.251123748072335,
+            "kendall_tau": 0.4187909722558697,
+            "length_chars": 33800
+          },
+          {
+            "seed": 6,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5551330798479087,
+            "rouge2_f1": 0.5228375366056208,
+            "rougeL_f1": 0.5173724924609938,
+            "bertscore_f1": 0.8744845390319824,
+            "meteor": 0.22056171381282755,
+            "kendall_tau": 0.4595793999598024,
+            "length_chars": 33004
+          },
+          {
+            "seed": 7,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5423430557388588,
+            "rouge2_f1": 0.4892428175458666,
+            "rougeL_f1": 0.4782015749417096,
+            "bertscore_f1": 0.9060124158859253,
+            "meteor": 0.21809532362414508,
+            "kendall_tau": 0.46690265476319054,
+            "length_chars": 32340
+          },
+          {
+            "seed": 8,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.5921321525885559,
+            "rouge2_f1": 0.564421357404411,
+            "rougeL_f1": 0.5631811989100818,
+            "bertscore_f1": 0.9349310398101807,
+            "meteor": 0.23891302630482983,
+            "kendall_tau": 0.46669443916492614,
+            "length_chars": 35799
+          },
+          {
+            "seed": 9,
+            "n_events_kept": 85,
+            "rouge1_f1": 0.6100982945475931,
+            "rouge2_f1": 0.5738531339270712,
+            "rougeL_f1": 0.5698563387381334,
+            "bertscore_f1": 0.8310983777046204,
+            "meteor": 0.2551234890004429,
+            "kendall_tau": 0.43705972176994695,
+            "length_chars": 37161
+          }
+        ]
+      }
+    }
+  },
+  "generated_at": "2026-06-11T21:33:43.404033+00:00",
+  "git_commit": "4c5b0739cdac4effaff96eb38b65851d1f70735b",
+  "config": {
+    "lexrank_length_sentences": 750,
+    "random_seeds": 30,
+    "degradation_levels": [
+      0.1,
+      0.25,
+      0.5
+    ],
+    "degradation_seeds_per_level": 10,
+    "golden_sample_chars": 84659,
+    "evaluator": {
+      "rouge": "rouge-score, use_stemmer=True",
+      "bertscore": "bert-score lang=en (roberta-large defaults)",
+      "meteor": "nltk meteor_score, lowercased word_tokenize",
+      "kendall_tau": "heuristic event matching vs Golden Sample (unchanged from published code)"
+    }
+  }
+}

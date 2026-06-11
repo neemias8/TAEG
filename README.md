@@ -2,7 +2,7 @@
 # **Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts**
 
 
-This repository contains the official implementation and resources for the paper **"Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts"**, currently under review for the LREC 2026 conference.
+This repository contains the official implementation and resources for the paper **"Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts"**, currently under revision at the **Journal of the Brazilian Computer Society (JBCS)**.
 
 ## **Abstract**
 
@@ -36,26 +36,48 @@ The TAEG is a multi-relational graph designed to separate the challenges of chro
 
 This dual-edge architecture decouples the two primary challenges: BEFORE edges solve the sequencing problem, while SAME\_EVENT edges isolate the version selection problem.
 
-## **Methodology & Results**
+## **Methodology & Results (JBCS revision)**
 
-We used the exact same centrality algorithm, LexRank, for both the standard baseline and our TAEG-based system. The only variable was the underlying graph structure. When applied to the TAEG, LexRank is repurposed into a **version selection engine**.
+The method of the paper (Algorithm 1) applies LexRank centrality **over the TAEG graph**: TF-IDF cosine weights on `BEFORE` and `SAME_EVENT` edges, PageRank-style power iteration, and, per canonical event, selection of the version with the highest centrality within its `SAME_EVENT` cluster.
 
-The results are definitive. The TAEG-based approach is not just incrementally better; it represents a categorical improvement, guaranteeing perfect temporal coherence *by design*.
+**Important relabeling.** The system previously reported in this README as "TAEG-LexRank" selected, per event, the **longest** version (not the centrality argmax). In the revised experimental protocol that system is preserved, relabeled as the **`Timeline+Longest`** baseline, and the true Algorithm 1 implementation is reported as **`TAEG`**. The revision disentangles how much of the performance comes from the **external canonical timeline** (a prior shared by no standard baseline) versus the **graph structure + centrality-based selection**, via a graded ladder of timeline-aware baselines that share the *identical* consolidation loop and differ only in the per-event selection rule:
 
-| Metric | Baseline (Standard LexRank) | TAEG-LexRank | Improvement |
-| :---- | :---- | :---- | :---- |
-| ROUGE-1 F1 | 0.887 | 0.958 | \+8.0% |
-| ROUGE-2 F1 | 0.712 | 0.938 | \+31.7% |
-| ROUGE-L F1 | 0.207 | 0.947 | **\+357.2%** |
-| BERTScore F1 | 0.835 | 0.995 | \+19.1% |
-| METEOR | 0.453 | 0.639 | \+41.0% |
-| Kendall's Tau | 0.320 | **1.000** | \+212.5% |
+| Strategy | Per-event selection rule |
+| :---- | :---- |
+| `random` | uniform among available versions (30 seeds, mean ± std) |
+| `priority` | fixed source order Matthew > Mark > Luke > John |
+| `centroid` | highest mean TF-IDF cosine to the other versions (local only) |
+| `longest` | longest text (the pre-revision published system) |
+| `taeg` | highest LexRank centrality over the full TAEG (Algorithm 1) |
+| `taeg-no-before` / `taeg-no-same-event` | ablations: one edge type removed before centrality |
 
-The perfect Kendall's Tau score is an architectural property of the TAEG, not a learned outcome. This perfect ordering is the direct cause of the massive **\+357.2% improvement in ROUGE-L**, which measures the longest common subsequence.
+### Consolidated results
+
+Produced by `python run_experiments.py --all` (full tables, including the selection-level sections, in `outputs/results_table.md` / `outputs/results_table.tex`; raw data with config and git hash in `outputs/results_all_methods.json`):
+
+| Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Length (chars) |
+| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| LexRank (750 sent.) | 0.887 | 0.712 | 0.206 | 0.835 | 0.453 | 0.320 | 81,418 |
+| Timeline+Random (N=30) | 0.889 ± 0.009 | 0.816 ± 0.013 | 0.813 ± 0.015 | 0.932 ± 0.033 | 0.478 ± 0.026 | 0.700 ± 0.222 | 70,052 ± 1,267 |
+| Timeline+Priority | 0.886 | 0.814 | 0.811 | 0.897 | 0.453 | 0.622 | 69,295 |
+| Timeline+Centroid | 0.891 | 0.821 | 0.818 | 0.935 | 0.472 | 0.467 | 69,929 |
+| Timeline+Longest | 0.958 | 0.938 | 0.947 | 0.995 | 0.639 | 1.000 | 79,154 |
+| TAEG (Algorithm 1) | 0.918 | 0.848 | 0.846 | 0.906 | 0.550 | 0.467 | 74,280 |
+| TAEG w/o BEFORE | 0.886 | 0.811 | 0.809 | 0.935 | 0.469 | 0.467 | 69,316 |
+| TAEG w/o SAME_EVENT | 0.929 | 0.865 | 0.866 | 0.964 | 0.575 | 0.996 | 75,846 |
+| TAEG, timeline -10% (N=10) | 0.864 ± 0.020 | 0.800 ± 0.021 | 0.795 ± 0.022 | 0.897 ± 0.015 | 0.474 ± 0.021 | 0.477 ± 0.031 | 66,198 ± 2,570 |
+| TAEG, timeline -25% (N=10) | 0.783 ± 0.034 | 0.730 ± 0.035 | 0.723 ± 0.037 | 0.882 ± 0.021 | 0.397 ± 0.027 | 0.517 ± 0.070 | 55,572 ± 3,716 |
+| TAEG, timeline -50% (N=10) | 0.581 ± 0.035 | 0.541 ± 0.038 | 0.534 ± 0.040 | 0.878 ± 0.033 | 0.246 ± 0.026 | 0.474 ± 0.047 | 35,193 ± 2,835 |
+
+How to read this (the revision's framing): **the explicit temporal backbone is the dominant factor** — even random per-event selection over the timeline reaches R-L 0.813 vs 0.206 for the timeline-agnostic LexRank. Within the timeline-aware ladder, `taeg` (Algorithm 1) sits at the 100th percentile of the 30-seed random distribution on ROUGE/METEOR and on oracle accuracy (0.489 vs the 0.380 random floor), while `longest` remains the strongest selector on this corpus (oracle accuracy 0.648) — an expected consequence of a reference that was composed favoring complete accounts. The ablations show the `BEFORE` edges carry the selection signal: removing them drops `taeg` to the random floor, while removing `SAME_EVENT` edges barely changes selection. Timeline degradation degrades content metrics roughly linearly with the removed fraction (completeness, not ordering: removed events are absent from the output by construction).
+
+### Selection-level evaluation
+
+Corpus-level metrics are diluted on this dataset (72/169 events have a single version, so every timeline-aware strategy emits identical text for them, and BERTScore saturates). The revision therefore adds a **selection-level evaluation**: per-event golden segments are extracted from the Golden Sample's event markers, the **oracle** for each contested event (≥2 versions) is the version with the highest ROUGE-L F1 against its golden segment, and each strategy is scored by how often it picks the oracle. See the section appended to `outputs/results_table.md` and the full report in `outputs/selection_eval.json`.
 
 ### **Conciseness vs. Consolidation Analysis**
 
-The results for the standard LexRank baseline in the table above reflect a parameter setting of 750 sentences. To prove that the TAEG's superiority is structural and not a matter of parameter tuning, the table below shows the baseline's performance across various summary lengths.
+The results for the standard LexRank baseline reflect a parameter setting of 750 sentences. To show that the timeline-aware advantage is structural and not a matter of parameter tuning, the table below shows the baseline's performance across various summary lengths (the last row is the pre-revision published system, now the `Timeline+Longest` baseline).
 
 | Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Length (chars) |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -64,9 +86,9 @@ The results for the standard LexRank baseline in the table above reflect a param
 | *500 sentences* | 0.804 | 0.655 | 0.206 | 0.835 | 0.361 | 0.305 | 59,408 |
 | *1000 sentences* | 0.862 | 0.728 | 0.199 | 0.835 | 0.483 | 0.320 | 100,770 |
 | *1500 sentences* | 0.784 | 0.733 | 0.188 | 0.835 | 0.484 | 0.320 | 128,930 |
-| **TAEG-LexRank** | **0.958** | **0.938** | **0.947** | **0.995** | **0.639** | **1.000** | **79,154** |
+| **Timeline+Longest** | **0.958** | **0.938** | **0.947** | **0.995** | **0.639** | **1.000** | **79,154** |
 
-This analysis clearly demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence. While some metrics improve up to a point, the temporal coherence (Kendall's Tau) remains consistently low. Even at its peak performance, the standard LexRank approach fails to come close to the quality and temporal integrity of the TAEG-based method. This reinforces our central argument: for long and complex narratives, **comprehensive coverage and chronological soundness are far more critical than mere conciseness**.
+This analysis demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence: the temporal coherence (Kendall's Tau) of the timeline-agnostic baseline remains consistently low at every length. This reinforces the paper's central argument: for long and complex narratives, **an explicit temporal backbone is the dominant factor** — comprehensive coverage and chronological soundness matter far more than conciseness.
 
 ## **The Gospel Consolidation Language Resource**
 
@@ -121,49 +143,52 @@ cd TAEG
 \# Install dependencies  
 pip install \-r requirements.txt
 
-### **Usage**
+### **Reproducing every number of the revised paper**
 
-To run the narrative consolidation process and replicate the paper's core findings, use the following command:
+One command runs the full experimental protocol — the LexRank baseline (750 sentences), all timeline-aware strategies (`random` over 30 seeds with mean ± std), both TAEG ablations, the timeline degradation experiment (10/25/50% × 10 seeds) and the selection-level evaluation:
 
-Bash
-
-\# Run the consolidation using the TAEG-LexRank method  
-python main.py \--method taeg \--output consolidated\_narrative.txt
-
-## �🚀 Usage Examples
-
-### Basic Usage
 ```bash
-# Standard LEXRANK (semantic quality)
-python src/main.py
-
-# LEXRANK-TA (temporal order)
-python src/main.py --summarization-method lexrank-ta --summary-length 1
+python run_experiments.py --all
 ```
 
-### Generated Files
+Generated in `outputs/`:
 
-Each method creates specific files in the `outputs/` folder:
+| File | Content |
+| :---- | :---- |
+| `results_all_methods.json` | every metric for every method + config, timestamp, git commit hash |
+| `results_table.md` / `results_table.tex` | consolidated tables (markdown + LaTeX rows for the paper) |
+| `selection_eval.json` | Task 5b report: golden segments, oracles, accuracies, percentiles |
+| `results_degradation.json` | timeline degradation report (mean ± std per level) |
+| `ablation_divergence.json` | per-event selection divergence of each ablation vs full `taeg` |
+| `selection_report_<method>.json` | per-event candidates, scores and chosen version |
+| `summary_<method>.txt` | consolidated narrative per deterministic method |
 
-- **LEXRANK**: 
-  - `evaluation/LEXRANK_results.json` - Evaluation metrics
+Useful options: `--methods lexrank,longest,taeg` (subset), `--random-seeds N`, `--skip-degradation`, `--output-dir DIR`.
 
-- **LEXRANK-TA**:
-  - `evaluation/LEXRANK-TA_results.json` - Evaluation metrics
+Notes: all methods are evaluated by the same evaluator instance against the same Golden Sample; every randomized component uses fixed, logged seeds; on Windows the runner forces UTF-8 output (the legacy scripts require `PYTHONUTF8=1` because of emoji prints).
 
-### Method Comparison
+### **Single runs (legacy CLI)**
+
 ```bash
-python compare_methods.py
+# Timeline-agnostic LexRank baseline
+python src/main.py --method lexrank --summary-length 750
+
+# Any timeline-aware strategy
+python src/main.py --method taeg
+python src/main.py --method longest
+python src/main.py --method random --seed 42
+
+# "lexrank-ta" is kept as a backward-compatible alias for "longest"
+python src/main.py --method lexrank-ta
 ```
 
-### Advanced Usage
-```bash
-# LEXRANK with 800 sentences (very detailed)
-python src/main.py --summarization-method lexrank --summary-length 800
+### **Tests**
 
-# LEXRANK-TA with 1 sentence per event (optimal temporal preservation)
-python src/main.py --summarization-method lexrank-ta --summary-length 1
+```bash
+python -m pytest tests/
 ```
+
+Covers: byte-identity of `longest` with the pre-revision published output, strategy determinism and tie-breaking, TAEG centrality (synthetic graph + convergence), ablations, timeline degradation, golden-segment parsing and the selection-level oracle (27 tests).
 
 ## Evaluation Metrics
 
@@ -183,16 +208,12 @@ Ranking correlation between sentence order in generated summary and reference te
 - LEXRANK: 0.320 (partial temporal disorder)
 - LEXRANK-TA: 1.000 (perfect temporal order)
 
-## 🔧 Recent Validation
+## 🔧 Kendall's Tau: interpretation note
 
-### Kendall's Tau Metric Validation
-The temporal evaluation metric has been thoroughly validated:
-- **Debug Implementation**: Added position tracking for events in reference and hypothesis texts
-- **Correct Behavior Confirmed**: 
-  - Non-temporal methods (LEXRANK) show realistic partial disorder (τ = 0.320)
-  - Temporal-anchored methods (LEXRANK-TA) achieve perfect order (τ = 1.000)
-- **Event Matching**: Uses keyword overlap detection with NLTK sentence tokenization
-- **Result**: System accurately evaluates temporal preservation differences between summarization approaches
+Kendall's Tau is computed by a heuristic event matcher (keyword overlap with NLTK sentence tokenization), kept unchanged across all methods for comparability with the published baseline numbers. Two facts matter when reading the tables:
+
+- Every timeline-aware method emits events in canonical order **by construction**, so any τ < 1.0 reported for them reflects sensitivity of the heuristic matcher to the per-event *version choice*, not actual disorder.
+- The timeline-agnostic LexRank baseline shows genuine partial disorder (τ ≈ 0.32).
 
 ## Dependencies
 
@@ -205,6 +226,7 @@ The temporal evaluation metric has been thoroughly validated:
 - `transformers`: Language models
 - `torch`: Deep learning framework
 - `scipy`: Scientific computing
+- `scikit-learn`: TF-IDF vectorization (edge weights and centroid strategy)
 - `pandas`: Data manipulation
 - `numpy`: Numerical computing
 

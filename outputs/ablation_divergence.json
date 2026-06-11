@@ -1,0 +1,374 @@
+{
+  "taeg-no-before": {
+    "strategy_a": "taeg",
+    "strategy_b": "taeg-no-before",
+    "n_events": 169,
+    "n_comparable": 151,
+    "n_different": 36,
+    "differences": [
+      {
+        "event_id": 4,
+        "description": "Jesus sends for the donkey's colt",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 8,
+        "description": "Return to Bethany",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 11,
+        "description": "His enemies continue planning",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 18,
+        "description": "Parable of the tenants",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 23,
+        "description": "Question about the resurrection",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 25,
+        "description": "Whose son is the Christ?",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 29,
+        "description": "The example of the poor widow",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 30,
+        "description": "The temple will be destroyed",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 33,
+        "description": "Wars and Persecution",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 37,
+        "description": "The coming of the Son of Man",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 63,
+        "description": "Institution of the Supper: the bread",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 65,
+        "description": "Jesus will not drink wine again",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 67,
+        "description": "Jesus predicts Peter's denial",
+        "chosen_a": "john",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 81,
+        "description": "Jesus prays the second time",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 85,
+        "description": "Peter cuts off Malchus's ear",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 86,
+        "description": "Jesus questions manner of arrest",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 91,
+        "description": "Peter follows into the courtyard",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 100,
+        "description": "Jesus looks at Peter, who weeps",
+        "chosen_a": "luke",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 101,
+        "description": "The Sanhedrin condemns Jesus",
+        "chosen_a": "luke",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 103,
+        "description": "Before Pilate",
+        "chosen_a": "john",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 104,
+        "description": "Pilate interrogates Jesus",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 110,
+        "description": "\"Crucify him!\"",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 111,
+        "description": "Crown of thorns",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 116,
+        "description": "Simon of Cyrene",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 129,
+        "description": "\"Why have you forsaken me?\"",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 130,
+        "description": "\"I am thirsty\"",
+        "chosen_a": "john",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 136,
+        "description": "The centurion believes",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 141,
+        "description": "Jesus is buried",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 142,
+        "description": "The women observe",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 146,
+        "description": "The women go to the tomb",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 148,
+        "description": "The women see that it is!",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 151,
+        "description": "Angels proclaim the resurrection",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 158,
+        "description": "Peter and John see the tomb",
+        "chosen_a": "john",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 159,
+        "description": "Jesus appears to Mary Magdalene",
+        "chosen_a": "john",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 164,
+        "description": "Jesus appears to Cleopas and another",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 166,
+        "description": "They return to Jerusalem",
+        "chosen_a": "luke",
+        "chosen_b": "mark"
+      }
+    ]
+  },
+  "taeg-no-same-event": {
+    "strategy_a": "taeg",
+    "strategy_b": "taeg-no-same-event",
+    "n_events": 169,
+    "n_comparable": 151,
+    "n_different": 23,
+    "differences": [
+      {
+        "event_id": 1,
+        "description": "Mary anoints Jesus",
+        "chosen_a": "mark",
+        "chosen_b": "john"
+      },
+      {
+        "event_id": 5,
+        "description": "The Triumphal Entry",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 16,
+        "description": "The authority of Jesus questioned",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 26,
+        "description": "Jesus condemns pride",
+        "chosen_a": "luke",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 31,
+        "description": "The disciples ask questions",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 34,
+        "description": "Abomination and Tribulation",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 37,
+        "description": "The coming of the Son of Man",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 38,
+        "description": "The Lesson of the Fig Tree",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 49,
+        "description": "The plot against Jesus",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 50,
+        "description": "Judas agrees to betray Jesus",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 54,
+        "description": "Preparations for the Lord's Supper",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 58,
+        "description": "Jesus talks about his betrayer",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 71,
+        "description": "They go out to the Mount of Olives",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 80,
+        "description": "Jesus prays in agony",
+        "chosen_a": "matthew",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 104,
+        "description": "Pilate interrogates Jesus",
+        "chosen_a": "matthew",
+        "chosen_b": "john"
+      },
+      {
+        "event_id": 110,
+        "description": "\"Crucify him!\"",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 111,
+        "description": "Crown of thorns",
+        "chosen_a": "mark",
+        "chosen_b": "john"
+      },
+      {
+        "event_id": 114,
+        "description": "Barrabas is released",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 122,
+        "description": "The written notice above his head",
+        "chosen_a": "mark",
+        "chosen_b": "matthew"
+      },
+      {
+        "event_id": 123,
+        "description": "They crucify two robbers with him",
+        "chosen_a": "matthew",
+        "chosen_b": "mark"
+      },
+      {
+        "event_id": 138,
+        "description": "The women and his followers",
+        "chosen_a": "mark",
+        "chosen_b": "luke"
+      },
+      {
+        "event_id": 141,
+        "description": "Jesus is buried",
+        "chosen_a": "matthew",
+        "chosen_b": "john"
+      },
+      {
+        "event_id": 162,
+        "description": "Women tell news to disciples",
+        "chosen_a": "john",
+        "chosen_b": "luke"
+      }
+    ]
+  }
+}
