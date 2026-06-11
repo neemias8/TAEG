@@ -7,6 +7,7 @@ from lexrank import LexRank
 from typing import List, Dict, Any, Tuple
 import numpy as np
 from data_loader import ChronologyLoader, BiblicalDataLoader
+from selection_strategies import LongestStrategy, SelectionStrategy, sort_candidates
 import sys
 from pathlib import Path
 # Add parent directory to path to import improved_graph_builder
@@ -345,17 +346,109 @@ class LexRankTemporalAnchoring:
         similarity = len(intersection) / len(union)
         return similarity >= threshold
 
+    def consolidate_with_strategy(self, strategy: SelectionStrategy,
+                                  graph: Dict[str, Any] = None,
+                                  events: List[Dict] = None,
+                                  verbose: bool = True) -> Tuple[str, List[Dict]]:
+        """
+        Shared consolidation loop (the timeline iteration of Algorithm 1).
+
+        Iterates the canonical timeline and, per event, picks ONE gospel
+        version via ``strategy``. Every timeline-aware method goes through
+        this exact loop and differs only in the selection criterion
+        (fairness requirement — JBCS revision, Task 2).
+
+        Args:
+            strategy: per-event selection strategy (see selection_strategies)
+            graph: prebuilt TAEG (built fresh when None)
+            events: canonical timeline (loaded fresh when None; pass a
+                filtered list for the timeline-degradation experiment)
+            verbose: print per-event selection lines
+
+        Returns:
+            (consolidated narrative, per-event selection records)
+        """
+        if graph is None:
+            graph = ImprovedTemporalGraphBuilder().build_improved_temporal_graph(verbose=verbose)
+        if events is None:
+            events = self.chrono_loader.load_chronology()
+
+        # Group nodes by event_id for chronological processing
+        event_nodes = {}
+        for node_id, node_data in graph['nodes'].items():
+            event_nodes.setdefault(node_data['event_id'], []).append((node_id, node_data))
+
+        summaries = []
+        records = []
+
+        for event in events:
+            event_id = event['id']
+            gospel_versions = event_nodes.get(event_id, [])
+            candidates = [(node_id, node_data) for node_id, node_data in gospel_versions
+                          if node_data['text']]
+
+            record = {
+                'event_id': event_id,
+                'description': event['description'],
+                'strategy': strategy.key,
+                'n_candidates': len(candidates),
+                'candidates': [],
+                'chosen_node': None,
+                'chosen_gospel': None,
+                'fallback': False,
+            }
+
+            if candidates:
+                (chosen_id, chosen_data), scores = strategy.select(candidates)
+                summaries.append(chosen_data['text'])
+                record['candidates'] = [
+                    {
+                        'node_id': nid,
+                        'gospel': nd['gospel'],
+                        'reference': nd['reference'],
+                        'text_length': len(nd['text']),
+                        'score': (scores.get(nid) if scores is not None else None),
+                    }
+                    for nid, nd in sort_candidates(candidates)
+                ]
+                record['chosen_node'] = chosen_id
+                record['chosen_gospel'] = chosen_data['gospel']
+                if verbose:
+                    print(f"📝 Event {event_id} ({event['description']}): selected "
+                          f"{chosen_data['gospel'].capitalize()} via '{strategy.key}' "
+                          f"({len(chosen_data['text'])} chars)")
+            else:
+                # No usable text in any version: keep the event present in the
+                # narrative via its description (identical for all strategies).
+                summaries.append(f"{event['description']}.")
+                record['fallback'] = True
+                if verbose:
+                    print(f"⚠️ Event {event_id} ({event['description']}): no text found, using description")
+
+            records.append(record)
+
+        full_summary = ' '.join(summaries)
+        if verbose:
+            print(f"\n✅ Generated summary with {len(summaries)} event summaries")
+        return full_summary, records
+
     def summarize_with_temporal_anchoring(self, summary_length_per_event: int = 3, use_best_gospel: bool = False) -> str:
         """
         Generate summary using temporal anchoring approach with gospel-specific nodes.
 
         Args:
             summary_length_per_event: Number of sentences per event (ignored if use_best_gospel=True)
-            use_best_gospel: If True, select the best gospel for each event instead of summarizing
+            use_best_gospel: If True, select per event the version chosen by the
+                'longest' strategy (the pre-revision published behavior,
+                relabeled per JBCS_REVISION_SPEC.md)
 
         Returns:
             Concatenated summary of all events in chronological order
         """
+        if use_best_gospel:
+            summary, _ = self.consolidate_with_strategy(LongestStrategy())
+            return summary
+
         # Build the improved temporal graph with gospel-specific nodes
         graph_builder = ImprovedTemporalGraphBuilder()
         graph = graph_builder.build_improved_temporal_graph()
@@ -381,23 +474,16 @@ class LexRankTemporalAnchoring:
                 event_texts = [(node_id, node_data) for node_id, node_data in gospel_versions if node_data['text']]
 
                 if event_texts:
-                    if use_best_gospel:
-                        # Select the best gospel (longest text) for this event
-                        best_node_id, best_node_data = max(event_texts, key=lambda x: len(x[1]['text']))
-                        event_summary = best_node_data['text']
-                        gospel_name = best_node_data['gospel'].capitalize()
-                        print(f"📝 Event {event_id} ({event['description']}): Using complete text from {gospel_name} ({len(event_summary)} chars)")
+                    # Use multi-document LexRank if multiple gospels describe this event
+                    texts_only = [node_data['text'] for node_id, node_data in event_texts]
+                    if len(texts_only) > 1:
+                        event_summary = self._summarize_multi_doc(texts_only, summary_length_per_event)
+                        print(f"📝 Event {event_id} ({event['description']}): Multi-doc summary from {len(texts_only)} gospels")
                     else:
-                        # Use multi-document LexRank if multiple gospels describe this event
-                        texts_only = [node_data['text'] for node_id, node_data in event_texts]
-                        if len(texts_only) > 1:
-                            event_summary = self._summarize_multi_doc(texts_only, summary_length_per_event)
-                            print(f"📝 Event {event_id} ({event['description']}): Multi-doc summary from {len(texts_only)} gospels")
-                        else:
-                            # Single document summary
-                            event_summary = self._summarize_single_doc(texts_only[0], summary_length_per_event)
-                            gospel_name = event_texts[0][1]['gospel'].capitalize()
-                            print(f"📝 Event {event_id} ({event['description']}): Single-doc summary from {gospel_name}")
+                        # Single document summary
+                        event_summary = self._summarize_single_doc(texts_only[0], summary_length_per_event)
+                        gospel_name = event_texts[0][1]['gospel'].capitalize()
+                        print(f"📝 Event {event_id} ({event['description']}): Single-doc summary from {gospel_name}")
 
                     summaries.append(event_summary)
                 else:

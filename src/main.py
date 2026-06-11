@@ -14,6 +14,12 @@ sys.path.insert(0, str(Path(__file__).parent))
 from data_loader import BiblicalDataLoader
 from summarizer import LexRankSummarizer, LexRankTemporalAnchoring
 from evaluator import SummarizationEvaluator
+from selection_strategies import get_strategy
+
+# Timeline-aware selection strategies (JBCS revision, Task 2).
+# "lexrank-ta" is kept as a backward-compatible alias for "longest",
+# which is the pre-revision published behavior.
+STRATEGY_METHODS = ["longest", "random", "priority", "centroid"]
 
 
 class TAEGPipeline:
@@ -31,12 +37,16 @@ class TAEGPipeline:
         self.summarizer_ta = LexRankTemporalAnchoring()
         self.evaluator = SummarizationEvaluator()
 
-    def run_pipeline(self, summary_length: int = 500, summarization_method: str = "lexrank") -> Dict[str, Any]:
+    def run_pipeline(self, summary_length: int = 500, summarization_method: str = "lexrank",
+                     seed: int = None) -> Dict[str, Any]:
         """
         Run the complete TAEG pipeline using multi-document LEXRANK.
 
         Args:
             summary_length: Number of sentences in the final summary
+            summarization_method: "lexrank", "lexrank-ta" (alias for "longest")
+                or a selection-strategy key (see STRATEGY_METHODS)
+            seed: random seed (required by the "random" strategy)
 
         Returns:
             Dictionary with results and evaluation metrics
@@ -63,13 +73,19 @@ class TAEGPipeline:
 
         # Step 2: Create consolidated summary
         print(f"\n2. Creating consolidated summary using {summarization_method.upper()}...")
+        selection_records = None
         try:
-            if summarization_method.lower() == "lexrank":
+            method = summarization_method.lower()
+            if method == "lexrank":
                 texts_list = list(gospel_texts.values())
                 consolidated_summary = self.summarizer_lexrank.summarize_texts(texts_list, summary_length)
-            elif summarization_method.lower() == "lexrank-ta":
-                # For LEXRANK-TA, use the optimized approach with best gospel selection
-                consolidated_summary = self.summarizer_ta.summarize_with_temporal_anchoring(summary_length, use_best_gospel=True)
+            elif method == "lexrank-ta" or method in STRATEGY_METHODS:
+                # Timeline-aware consolidation: identical loop for every
+                # strategy, differing only in the per-event selection rule.
+                strategy_key = "longest" if method == "lexrank-ta" else method
+                strategy = get_strategy(strategy_key, seed=seed)
+                consolidated_summary, selection_records = \
+                    self.summarizer_ta.consolidate_with_strategy(strategy)
             else:
                 raise ValueError(f"Unknown summarization method: {summarization_method}")
 
@@ -84,7 +100,7 @@ class TAEGPipeline:
         print("\n3. Evaluating summary against Golden Sample...")
         try:
             # Determine if this is a temporal anchoring method
-            is_temporal_anchored = summarization_method.lower() == "lexrank-ta"
+            is_temporal_anchored = summarization_method.lower() != "lexrank"
             evaluation_results = self.evaluator.evaluate_summary(consolidated_summary, golden_sample, is_temporal_anchored)
 
             print("   Evaluation completed successfully")
@@ -104,7 +120,9 @@ class TAEGPipeline:
             "consolidated_summary": consolidated_summary,
             "evaluation": evaluation_results,
             "summary_length": summary_length,
-            "summarization_method": summarization_method
+            "summarization_method": summarization_method,
+            "seed": seed,
+            "selection_records": selection_records
         }
 
         return results
@@ -137,9 +155,22 @@ class TAEGPipeline:
             eval_results["summarization_method"] = method
             json.dump(eval_results, f, indent=2)
 
+        # Save per-event selection report for timeline-aware strategies
+        report_file = None
+        if results.get("selection_records"):
+            report_file = output_path / f"selection_report_{method.lower()}.json"
+            with open(report_file, 'w', encoding='utf-8') as f:
+                json.dump({
+                    "method": method.lower(),
+                    "seed": results.get("seed"),
+                    "events": results["selection_records"]
+                }, f, indent=2)
+
         print(f"\nResults saved to {output_path}/")
         print(f"  📄 Summary: {summary_file.name}")
         print(f"  📊 Evaluation: {eval_file.name}")
+        if report_file is not None:
+            print(f"  🧾 Selection report: {report_file.name}")
 
 
 def main():
@@ -149,16 +180,20 @@ def main():
     parser = argparse.ArgumentParser(description="TAEG - Text Analysis of Evangelic Gospels")
     parser.add_argument("--data-dir", default="data", help="Directory containing data files")
     parser.add_argument("--summary-length", type=int, default=500, help="Number of sentences in summary (or sentences per event for lexrank-ta)")
-    parser.add_argument("--method", choices=["lexrank", "lexrank-ta"],
+    parser.add_argument("--method", choices=["lexrank", "lexrank-ta"] + STRATEGY_METHODS,
                        default="lexrank",
-                       help="Summarization method: lexrank (semantic quality) or lexrank-ta (optimized temporal anchoring)")
+                       help="Summarization method: lexrank (timeline-agnostic baseline), "
+                            "lexrank-ta (alias for longest) or a timeline-aware "
+                            "selection strategy (longest/random/priority/centroid)")
+    parser.add_argument("--seed", type=int, default=None,
+                       help="Random seed (required for --method random)")
     parser.add_argument("--output-dir", default="outputs", help="Directory to save results")
 
     args = parser.parse_args()
 
     # Initialize and run pipeline
     pipeline = TAEGPipeline(args.data_dir)
-    results = pipeline.run_pipeline(args.summary_length, args.method)
+    results = pipeline.run_pipeline(args.summary_length, args.method, seed=args.seed)
 
     if "error" not in results:
         pipeline.save_results(results, args.output_dir)

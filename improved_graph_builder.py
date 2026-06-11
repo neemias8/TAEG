@@ -23,8 +23,9 @@ class ImprovedTemporalGraphBuilder:
         """Initialize the improved graph builder."""
         self.chrono_loader = ChronologyLoader()
         self.biblical_loader = BiblicalDataLoader()
+        self.verbose = True
 
-    def build_improved_temporal_graph(self) -> Dict[str, Any]:
+    def build_improved_temporal_graph(self, events: List[Dict] = None, verbose: bool = True) -> Dict[str, Any]:
         """
         Build temporal graph with separate nodes for each gospel version of events.
 
@@ -32,12 +33,24 @@ class ImprovedTemporalGraphBuilder:
         - event_{id}_{gospel} for gospel-specific versions
         - event_{id}_combined for multi-gospel events (when needed)
 
+        Args:
+            events: canonical timeline to build over (loaded fresh when None;
+                pass a filtered list for the timeline-degradation experiment)
+            verbose: print construction progress and statistics
+
         Returns:
             Dictionary representing the improved temporal graph
         """
-        print("🔍 Loading chronology data...")
-        events = self.chrono_loader.load_chronology()
-        print(f"✅ Loaded {len(events)} chronological events")
+        self.verbose = verbose
+
+        def vprint(*args, **kwargs):
+            if verbose:
+                print(*args, **kwargs)
+
+        vprint("🔍 Loading chronology data...")
+        if events is None:
+            events = self.chrono_loader.load_chronology()
+        vprint(f"✅ Loaded {len(events)} chronological events")
 
         graph = {
             'nodes': {},
@@ -55,7 +68,7 @@ class ImprovedTemporalGraphBuilder:
         }
 
         # Create nodes for each event
-        print("🏗️ Creating gospel-specific nodes...")
+        vprint("🏗️ Creating gospel-specific nodes...")
         for event in events:
             event_id = event['id']
 
@@ -88,23 +101,24 @@ class ImprovedTemporalGraphBuilder:
                 }
                 graph['statistics']['gospel_specific_nodes'] += 1
 
-                print(f"  📄 Created node {node_id}: '{event['description']}' ({gospel} {reference}) - {len(verse_text) if verse_text else 0} chars")
+                vprint(f"  📄 Created node {node_id}: '{event['description']}' ({gospel} {reference}) - {len(verse_text) if verse_text else 0} chars")
 
         graph['statistics']['total_nodes'] = len(graph['nodes'])
-        print(f"✅ Created {len(graph['nodes'])} gospel-specific nodes")
+        vprint(f"✅ Created {len(graph['nodes'])} gospel-specific nodes")
 
         # Create BEFORE edges between consecutive events (across all gospels)
-        print("🔗 Creating BEFORE edges...")
+        vprint("🔗 Creating BEFORE edges...")
         self._create_before_edges(graph, events)
-        print(f"✅ Created {graph['statistics']['before_edges']} BEFORE edges")
+        vprint(f"✅ Created {graph['statistics']['before_edges']} BEFORE edges")
 
         # Create SAME_EVENT edges between different gospel versions of the same event
-        print("🔗 Creating SAME_EVENT edges...")
+        vprint("🔗 Creating SAME_EVENT edges...")
         self._create_same_event_edges(graph, events)
-        print(f"✅ Created {graph['statistics']['same_event_edges']} SAME_EVENT edges")
+        vprint(f"✅ Created {graph['statistics']['same_event_edges']} SAME_EVENT edges")
 
         # Print detailed statistics
-        self._print_improved_graph_statistics(graph)
+        if verbose:
+            self._print_improved_graph_statistics(graph)
 
         return graph
 
@@ -169,7 +183,8 @@ class ImprovedTemporalGraphBuilder:
                     return ' '.join(verses_text)
 
         except Exception as e:
-            print(f"Warning: Could not extract verses for {gospel} {reference}: {e}")
+            if self.verbose:
+                print(f"Warning: Could not extract verses for {gospel} {reference}: {e}")
             return ""
 
         return ""
