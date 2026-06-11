@@ -134,6 +134,42 @@ class TAEGStrategy(SelectionStrategy):
         return {nid: float(self.centrality[nid]) for nid, _ in candidates}
 
 
+def selection_divergence(records_a: List[Dict], records_b: List[Dict]) -> Dict:
+    """
+    Count per-event selection differences between two strategy runs over the
+    SAME timeline (Task 3 acceptance: ablation divergence vs full taeg).
+
+    Returns a dict with the comparable-event count, the number of differing
+    choices, and the per-event detail of each difference.
+    """
+    ids_a = [r['event_id'] for r in records_a]
+    ids_b = [r['event_id'] for r in records_b]
+    if ids_a != ids_b:
+        raise ValueError("Selection records cover different timelines")
+
+    differences = []
+    comparable = 0
+    for ra, rb in zip(records_a, records_b):
+        if ra['fallback'] or rb['fallback']:
+            continue
+        comparable += 1
+        if ra['chosen_node'] != rb['chosen_node']:
+            differences.append({
+                'event_id': ra['event_id'],
+                'description': ra['description'],
+                'chosen_a': ra['chosen_gospel'],
+                'chosen_b': rb['chosen_gospel'],
+            })
+    return {
+        'strategy_a': records_a[0]['strategy'] if records_a else None,
+        'strategy_b': records_b[0]['strategy'] if records_b else None,
+        'n_events': len(records_a),
+        'n_comparable': comparable,
+        'n_different': len(differences),
+        'differences': differences,
+    }
+
+
 def get_strategy(key: str, seed: Optional[int] = None,
                  priority_order: Tuple[str, ...] = GOSPEL_ORDER,
                  centrality: Optional[Dict[str, float]] = None) -> SelectionStrategy:

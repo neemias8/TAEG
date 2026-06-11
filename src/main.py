@@ -16,11 +16,14 @@ from summarizer import LexRankSummarizer, LexRankTemporalAnchoring
 from evaluator import SummarizationEvaluator
 from selection_strategies import get_strategy
 
-# Timeline-aware selection strategies (JBCS revision, Tasks 1-2).
+# Timeline-aware selection strategies (JBCS revision, Tasks 1-3).
 # "lexrank-ta" is kept as a backward-compatible alias for "longest",
 # which is the pre-revision published behavior. "taeg" is Algorithm 1 of
-# the paper: max LexRank centrality over the TAEG graph.
-STRATEGY_METHODS = ["longest", "random", "priority", "centroid", "taeg"]
+# the paper: max LexRank centrality over the TAEG graph. The taeg-no-*
+# variants are the Task 3 ablations (edges removed before centrality only;
+# the timeline loop is identical).
+STRATEGY_METHODS = ["longest", "random", "priority", "centroid",
+                    "taeg", "taeg-no-before", "taeg-no-same-event"]
 
 
 class TAEGPipeline:
