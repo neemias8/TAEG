@@ -412,8 +412,16 @@ class ExperimentRunner:
                 length_tex = f"{metrics['length_chars']}"
             md_lines.append("| " + label.replace('\\_', '_') + " | "
                             + " | ".join(md_cells) + f" | {length_md} |")
-            tex_lines.append(label + " & " + " & ".join(tex_cells)
+            tex_lines.append(label.replace('%', '\\%') + " & " + " & ".join(tex_cells)
                              + f" & {length_tex} \\\\")
+
+        kendall_note = (
+            "Note: every timeline-aware method emits events in canonical order "
+            "by construction; Kendall's Tau is measured by the published "
+            "heuristic event matcher (kept unchanged for comparability) and is "
+            "sensitive to the per-event version choice, not only to ordering.")
+        md_lines += ["", kendall_note]
+        tex_lines.append("% " + kendall_note)
 
         sel_md, sel_tex = self._selection_eval_tables()
         md = "\n".join(md_lines) + "\n" + sel_md
