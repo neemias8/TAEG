@@ -15,8 +15,14 @@ from data_loader import ChronologyLoader
 class SummarizationEvaluator:
     """Evaluator for text summarization using multiple metrics."""
 
-    def __init__(self):
-        """Initialize the evaluator."""
+    def __init__(self, verbose: bool = True):
+        """
+        Initialize the evaluator.
+
+        Args:
+            verbose: print Kendall's Tau DEBUG traces (default True preserves
+                the original behavior; the experiment runner uses False)
+        """
         # Download required NLTK data for METEOR
         try:
             nltk.data.find('wordnet')
@@ -29,6 +35,11 @@ class SummarizationEvaluator:
             nltk.download('omw-1.4')
 
         self.rouge_scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
+        self.verbose = verbose
+        # Cached BERTScorer so repeated evaluations (experiment runner) do not
+        # reload roberta-large for every call. Numerically identical to
+        # bert_score.score(..., lang='en') — same model, layers and defaults.
+        self._bert_scorer = None
 
     def calculate_rouge(self, hypothesis: str, reference: str) -> Dict[str, Dict[str, float]]:
         """
@@ -97,7 +108,10 @@ class SummarizationEvaluator:
             Dictionary with BERTScore metrics
         """
         try:
-            P, R, F1 = bert_score([hypothesis], [reference], lang='en', verbose=False)
+            if self._bert_scorer is None:
+                from bert_score import BERTScorer
+                self._bert_scorer = BERTScorer(lang='en')
+            P, R, F1 = self._bert_scorer.score([hypothesis], [reference], verbose=False)
 
             return {
                 'precision': P.item(),
@@ -276,7 +290,8 @@ class SummarizationEvaluator:
                     # Look for event in reference sentences
                     if any(keyword in sentence for keyword in event_desc.split()[:3]):  # Use first 3 words for matching
                         ref_event_positions[event_id] = j
-                        print(f"DEBUG: Event {event_id} ('{event_desc}') found in reference at position {j}")
+                        if self.verbose:
+                            print(f"DEBUG: Event {event_id} ('{event_desc}') found in reference at position {j}")
                         break
 
             # Find the same events in hypothesis (generated summary)
@@ -286,14 +301,16 @@ class SummarizationEvaluator:
                     # Look for event in hypothesis sentences
                     if any(keyword in sentence for keyword in event_desc.split()[:3]):  # Use first 3 words for matching
                         hyp_event_positions[event_id] = j
-                        print(f"DEBUG: Event {event_id} ('{event_desc}') found in hypothesis at position {j}")
+                        if self.verbose:
+                            print(f"DEBUG: Event {event_id} ('{event_desc}') found in hypothesis at position {j}")
                         break
 
             # Only consider events found in both texts
             common_events = set(ref_event_positions.keys()) & set(hyp_event_positions.keys())
 
-            print(f"DEBUG: Found {len(common_events)} common events out of {len(events)} total events")
-            print(f"DEBUG: Common events: {sorted(common_events)}")
+            if self.verbose:
+                print(f"DEBUG: Found {len(common_events)} common events out of {len(events)} total events")
+                print(f"DEBUG: Common events: {sorted(common_events)}")
 
             if len(common_events) < 2:
                 # If we can't find enough events, return a low score
@@ -309,12 +326,14 @@ class SummarizationEvaluator:
             # Found order: order in generated summary
             found_order = [hyp_event_positions[event_id] for event_id in common_event_list]
 
-            print(f"DEBUG: Expected order (Golden Sample positions): {expected_order}")
-            print(f"DEBUG: Found order (summary positions): {found_order}")
+            if self.verbose:
+                print(f"DEBUG: Expected order (Golden Sample positions): {expected_order}")
+                print(f"DEBUG: Found order (summary positions): {found_order}")
 
             # Calculate Kendall's Tau between the two orderings
             tau, _ = kendalltau(expected_order, found_order)
-            print(f"DEBUG: Kendall's Tau = {tau}")
+            if self.verbose:
+                print(f"DEBUG: Kendall's Tau = {tau}")
             return tau if not np.isnan(tau) else 0.0
 
         except Exception as e:
