@@ -46,6 +46,7 @@ from data_loader import BiblicalDataLoader, ChronologyLoader  # noqa: E402
 from degradation import DEGRADATION_LEVELS, DEGRADATION_SEEDS, consolidate_degraded  # noqa: E402
 from evaluator import SummarizationEvaluator  # noqa: E402
 from improved_graph_builder import ImprovedTemporalGraphBuilder  # noqa: E402
+from selection_eval import SelectionEvaluator, percentile_in_distribution  # noqa: E402
 from selection_strategies import get_strategy, selection_divergence  # noqa: E402
 from summarizer import LexRankSummarizer, LexRankTemporalAnchoring  # noqa: E402
 from taeg_centrality import ablation_flags, compute_taeg_centrality  # noqa: E402
@@ -278,6 +279,81 @@ class ExperimentRunner:
         self.results['degradation'] = degradation
         self._write_json('results_degradation.json', degradation)
 
+    def run_selection_level_eval(self):
+        """Selection-level (discriminative) evaluation — Task 5b."""
+        if not self.records:
+            return
+        print("\n=== selection-level evaluation (Task 5b) ===")
+        se = SelectionEvaluator(self.graph, self.golden)
+        pr = se.parse_report
+        print(f"  golden segments: {pr['markers_found']}/{pr['expected_segments']} markers "
+              f"(missing: {pr['missing_markers']}, empty: {pr['empty_segments']})")
+        print(f"  contested events: {len(se.contested_ids)} by references, "
+              f"{len(se.oracles)} evaluated, {len(se.excluded)} excluded")
+        print(f"  random floors: analytical {se.analytical_floor:.3f} (96-event spec set), "
+              f"empirical {se.empirical_floor:.3f} (evaluated set)")
+
+        report = {'setup': se.summary(), 'strategies': {}}
+
+        # Deterministic timeline-aware strategies.
+        for key, records in self.records.items():
+            acc = se.oracle_accuracy(records)
+            hyp, ref = se.contested_subset_texts(records)
+            ev = self.evaluator.evaluate_summary(hyp, ref)
+            report['strategies'][key] = {
+                'oracle_accuracy': acc,
+                'contested_subset_metrics': {**flatten_metrics(ev),
+                                             'length_chars': len(hyp)},
+            }
+            print(f"  {key}: oracle accuracy {acc['n_hits']}/{acc['n_evaluated']} "
+                  f"= {acc['accuracy']:.3f}")
+
+        # Random distribution: per-seed oracle accuracy + contested metrics.
+        if self.random_runs:
+            accs, contested_per_seed = [], []
+            for run in self.random_runs:
+                accs.append(se.oracle_accuracy(run['records'])['accuracy'])
+                hyp, ref = se.contested_subset_texts(run['records'])
+                ev = self.evaluator.evaluate_summary(hyp, ref)
+                contested_per_seed.append({**flatten_metrics(ev),
+                                           'length_chars': len(hyp)})
+            mean_c, std_c = mean_std(contested_per_seed)
+            acc_mean = statistics.mean(accs)
+            acc_std = statistics.stdev(accs) if len(accs) > 1 else 0.0
+            report['strategies']['random'] = {
+                'n_seeds': len(accs),
+                'oracle_accuracy_mean': acc_mean,
+                'oracle_accuracy_std': acc_std,
+                'oracle_accuracy_per_seed': accs,
+                'contested_subset_metrics_mean': mean_c,
+                'contested_subset_metrics_std': std_c,
+                'contested_subset_per_seed': contested_per_seed,
+            }
+            print(f"  random: oracle accuracy {acc_mean:.3f} ± {acc_std:.3f} "
+                  f"(N={len(accs)})")
+
+            # Percentile placement of taeg and longest within the random
+            # distribution, per full-corpus metric and for oracle accuracy.
+            percentiles = {}
+            full_dist = {k: [r['metrics'][k] for r in self.random_runs]
+                         for k in METRIC_KEYS}
+            for key in ('taeg', 'longest'):
+                if key not in self.records or key not in self.results['methods']:
+                    continue
+                entry = {'oracle_accuracy': percentile_in_distribution(
+                    report['strategies'][key]['oracle_accuracy']['accuracy'], accs)}
+                for mk in METRIC_KEYS:
+                    entry[mk] = percentile_in_distribution(
+                        self.results['methods'][key]['metrics'][mk], full_dist[mk])
+                percentiles[key] = entry
+                print(f"  {key} percentile in random dist: "
+                      f"oracle acc {entry['oracle_accuracy']:.0f}%, "
+                      f"R-L {entry['rougeL_f1']:.0f}%")
+            report['percentile_in_random_distribution'] = percentiles
+
+        self.results['selection_eval'] = report
+        self._write_json('selection_eval.json', report)
+
     # ---------------- reporting ----------------
 
     def _table_rows(self):
@@ -339,13 +415,90 @@ class ExperimentRunner:
             tex_lines.append(label + " & " + " & ".join(tex_cells)
                              + f" & {length_tex} \\\\")
 
-        md = "\n".join(md_lines) + "\n"
-        tex = "\n".join(tex_lines) + "\n"
+        sel_md, sel_tex = self._selection_eval_tables()
+        md = "\n".join(md_lines) + "\n" + sel_md
+        tex = "\n".join(tex_lines) + "\n" + sel_tex
         (self.output_dir / 'results_table.md').write_text(md, encoding='utf-8')
         (self.output_dir / 'results_table.tex').write_text(tex, encoding='utf-8')
         print(f"  wrote {self.output_dir / 'results_table.md'}")
         print(f"  wrote {self.output_dir / 'results_table.tex'}")
         return md
+
+    def _selection_eval_tables(self):
+        """Markdown + LaTeX sections for the selection-level evaluation."""
+        sel = self.results.get('selection_eval')
+        if not sel:
+            return "", ""
+        setup = sel['setup']
+        strategies = sel['strategies']
+
+        label_map = [('random', 'Timeline+Random'), ('priority', 'Timeline+Priority'),
+                     ('centroid', 'Timeline+Centroid'), ('longest', 'Timeline+Longest'),
+                     ('taeg', 'TAEG (Algorithm 1)'), ('taeg-no-before', 'TAEG w/o BEFORE'),
+                     ('taeg-no-same-event', 'TAEG w/o SAME_EVENT')]
+
+        md = ["\n## Selection-level evaluation (Task 5b)\n",
+              f"Oracle = version with highest {setup['oracle_metric']} vs the event's "
+              f"golden segment. Contested events: {setup['n_contested_by_references']} "
+              f"by references, {setup['n_evaluated']} evaluated "
+              f"(excluded: {', '.join(setup['excluded_events']) or 'none'}; see selection_eval.json).",
+              f"Random floor: analytical {setup['analytical_random_floor_spec_set']:.3f} "
+              f"(spec 96-event set), empirical "
+              f"{setup['empirical_random_floor_evaluated_set']:.3f} (evaluated set).\n",
+              "| Strategy | Oracle accuracy | " +
+              " | ".join(METRIC_LABELS[k] + "*" for k in METRIC_KEYS) + " | Length* |",
+              "|" + " :---- |" * (len(METRIC_KEYS) + 3)]
+        tex = ["\n% --- Selection-level evaluation (Task 5b) ---",
+               f"% Oracle metric: {setup['oracle_metric']}; "
+               f"{setup['n_evaluated']} contested events evaluated; "
+               f"random floor {setup['empirical_random_floor_evaluated_set']:.3f}",
+               "% Columns: Strategy & Oracle acc. & " +
+               " & ".join(METRIC_LABELS[k] for k in METRIC_KEYS) + " & Length \\\\"]
+
+        for key, label in label_map:
+            if key not in strategies:
+                continue
+            s = strategies[key]
+            if key == 'random':
+                acc_md = f"{s['oracle_accuracy_mean']:.3f} ± {s['oracle_accuracy_std']:.3f}"
+                acc_tex = f"${s['oracle_accuracy_mean']:.3f} \\pm {s['oracle_accuracy_std']:.3f}$"
+                m, sd = s['contested_subset_metrics_mean'], s['contested_subset_metrics_std']
+                cells_md = [f"{m[k]:.3f} ± {sd[k]:.3f}" for k in METRIC_KEYS]
+                cells_tex = [f"${m[k]:.3f} \\pm {sd[k]:.3f}$" for k in METRIC_KEYS]
+                len_md = f"{m['length_chars']:,.0f} ± {sd['length_chars']:,.0f}"
+                len_tex = f"${m['length_chars']:.0f} \\pm {sd['length_chars']:.0f}$"
+            else:
+                acc = s['oracle_accuracy']
+                acc_md = f"{acc['accuracy']:.3f} ({acc['n_hits']}/{acc['n_evaluated']})"
+                acc_tex = f"{acc['accuracy']:.3f}"
+                m = s['contested_subset_metrics']
+                cells_md = [f"{m[k]:.3f}" for k in METRIC_KEYS]
+                cells_tex = [f"{m[k]:.3f}" for k in METRIC_KEYS]
+                len_md = f"{m['length_chars']:,}"
+                len_tex = f"{m['length_chars']}"
+            md.append(f"| {label} | {acc_md} | " + " | ".join(cells_md) + f" | {len_md} |")
+            tex.append(label.replace('_', '\\_') + f" & {acc_tex} & "
+                       + " & ".join(cells_tex) + f" & {len_tex} \\\\")
+
+        md.append("\n\\* corpus metrics restricted to the evaluated contested events "
+                  "(hypothesis and reference sides).")
+
+        pct = sel.get('percentile_in_random_distribution')
+        if pct:
+            md += ["\n### Percentile within the seeded random distribution\n",
+                   "| Method | Oracle accuracy | " +
+                   " | ".join(METRIC_LABELS[k] for k in METRIC_KEYS) + " |",
+                   "|" + " :---- |" * (len(METRIC_KEYS) + 2)]
+            tex.append("% Percentile of each method within the random distribution "
+                       "(full-corpus metrics + oracle accuracy)")
+            for key, entry in pct.items():
+                row = [f"{entry['oracle_accuracy']:.0f}%"] + \
+                      [f"{entry[k]:.0f}%" for k in METRIC_KEYS]
+                md.append(f"| {key} | " + " | ".join(row) + " |")
+                tex.append(key + " & " + " & ".join(
+                    f"{entry[k]:.0f}\\%" for k in ['oracle_accuracy'] + METRIC_KEYS) + " \\\\")
+
+        return "\n".join(md) + "\n", "\n".join(tex) + "\n"
 
     def write_results(self):
         self.results['generated_at'] = datetime.now(timezone.utc).isoformat()
@@ -404,6 +557,7 @@ def main():
     if 'random' in methods:
         runner.run_random()
     runner.run_ablation_divergence()
+    runner.run_selection_level_eval()
     if degradation:
         runner.run_degradation()
 
