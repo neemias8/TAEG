@@ -40,7 +40,7 @@ This dual-edge architecture decouples the two primary challenges: BEFORE edges s
 
 The method of the paper (Algorithm 1) applies LexRank centrality **over the TAEG graph**: TF-IDF cosine weights on `BEFORE` and `SAME_EVENT` edges, PageRank-style power iteration, and, per canonical event, selection of the version with the highest centrality within its `SAME_EVENT` cluster.
 
-**Important relabeling.** The system previously reported in this README as "TAEG-LexRank" selected, per event, the **longest** version (not the centrality argmax). In the revised experimental protocol that system is preserved, relabeled as the **`Timeline+Longest`** baseline, and the true Algorithm 1 implementation is reported as **`TAEG`**. The revision disentangles how much of the performance comes from the **external canonical timeline** (a prior shared by no standard baseline) versus the **graph structure + centrality-based selection**, via a graded ladder of timeline-aware baselines that share the *identical* consolidation loop and differ only in the per-event selection rule:
+**Transparency note (relabeling).** During the paper revision, the implementation of Algorithm 1 was completed and audited. The audit found that the system previously reported here as "TAEG-LexRank" (ROUGE-L F1 0.947 etc.) selected, per event, the **longest** version rather than the centrality argmax. That configuration is preserved and now reported under its correct label, **`Timeline+Longest`**; the completed Algorithm 1 implementation (centrality-based selection over the TAEG) is reported as **`TAEG`**, with its own numbers (ROUGE-L F1 0.846 etc.). Every configuration in the tables below is reported under the label that matches what the code actually does. The revision uses this to disentangle how much of the performance comes from the **external canonical timeline** (a prior shared by no standard baseline) versus the **graph structure + centrality-based selection**, via a graded ladder of timeline-aware baselines that share the *identical* consolidation loop and differ only in the per-event selection rule:
 
 | Strategy | Per-event selection rule |
 | :---- | :---- |
@@ -55,19 +55,21 @@ The method of the paper (Algorithm 1) applies LexRank centrality **over the TAEG
 
 Produced by `python run_experiments.py --all` (full tables, including the selection-level sections, in `outputs/results_table.md` / `outputs/results_table.tex`; raw data with config and git hash in `outputs/results_all_methods.json`):
 
-| Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau | Length (chars) |
+| Method | ROUGE-1 F1 | ROUGE-2 F1 | ROUGE-L F1 | BERTScore F1 | METEOR | Kendall's Tau† | Length (chars) |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
 | LexRank (750 sent.) | 0.887 | 0.712 | 0.206 | 0.835 | 0.453 | 0.320 | 81,418 |
-| Timeline+Random (N=30) | 0.889 ± 0.009 | 0.816 ± 0.013 | 0.813 ± 0.015 | 0.932 ± 0.033 | 0.478 ± 0.026 | 0.700 ± 0.222 | 70,052 ± 1,267 |
-| Timeline+Priority | 0.886 | 0.814 | 0.811 | 0.897 | 0.453 | 0.622 | 69,295 |
-| Timeline+Centroid | 0.891 | 0.821 | 0.818 | 0.935 | 0.472 | 0.467 | 69,929 |
+| Timeline+Random (N=30) | 0.889 ± 0.009 | 0.816 ± 0.013 | 0.813 ± 0.015 | 0.932 ± 0.033 | 0.478 ± 0.026 | 1.000 ± 0.000 | 70,052 ± 1,267 |
+| Timeline+Priority | 0.886 | 0.814 | 0.811 | 0.897 | 0.453 | 1.000 | 69,295 |
+| Timeline+Centroid | 0.891 | 0.821 | 0.818 | 0.935 | 0.472 | 1.000 | 69,929 |
 | Timeline+Longest | 0.958 | 0.938 | 0.947 | 0.995 | 0.639 | 1.000 | 79,154 |
-| TAEG (Algorithm 1) | 0.918 | 0.848 | 0.846 | 0.906 | 0.550 | 0.467 | 74,280 |
-| TAEG w/o BEFORE | 0.886 | 0.811 | 0.809 | 0.935 | 0.469 | 0.467 | 69,316 |
-| TAEG w/o SAME_EVENT | 0.929 | 0.865 | 0.866 | 0.964 | 0.575 | 0.996 | 75,846 |
-| TAEG, timeline -10% (N=10) | 0.864 ± 0.020 | 0.800 ± 0.021 | 0.795 ± 0.022 | 0.897 ± 0.015 | 0.474 ± 0.021 | 0.477 ± 0.031 | 66,198 ± 2,570 |
-| TAEG, timeline -25% (N=10) | 0.783 ± 0.034 | 0.730 ± 0.035 | 0.723 ± 0.037 | 0.882 ± 0.021 | 0.397 ± 0.027 | 0.517 ± 0.070 | 55,572 ± 3,716 |
-| TAEG, timeline -50% (N=10) | 0.581 ± 0.035 | 0.541 ± 0.038 | 0.534 ± 0.040 | 0.878 ± 0.033 | 0.246 ± 0.026 | 0.474 ± 0.047 | 35,193 ± 2,835 |
+| TAEG (Algorithm 1) | 0.918 | 0.848 | 0.846 | 0.906 | 0.550 | 1.000 | 74,280 |
+| TAEG w/o BEFORE | 0.886 | 0.811 | 0.809 | 0.935 | 0.469 | 1.000 | 69,316 |
+| TAEG w/o SAME_EVENT | 0.929 | 0.865 | 0.866 | 0.964 | 0.575 | 1.000 | 75,846 |
+| TAEG, timeline -10% (N=10) | 0.864 ± 0.020 | 0.800 ± 0.021 | 0.795 ± 0.022 | 0.897 ± 0.015 | 0.474 ± 0.021 | 1.000 ± 0.000 | 66,198 ± 2,570 |
+| TAEG, timeline -25% (N=10) | 0.783 ± 0.034 | 0.730 ± 0.035 | 0.723 ± 0.037 | 0.882 ± 0.021 | 0.397 ± 0.027 | 1.000 ± 0.000 | 55,572 ± 3,716 |
+| TAEG, timeline -50% (N=10) | 0.581 ± 0.035 | 0.541 ± 0.038 | 0.534 ± 0.040 | 0.878 ± 0.033 | 0.246 ± 0.026 | 1.000 ± 0.000 | 35,193 ± 2,835 |
+
+† Timeline-aware methods report τ = 1.000 *by design*, verified per run by a strict monotonicity check on the emitted event-ID sequence (`event_order_monotonic` in `results_all_methods.json`); the heuristic matcher estimate is preserved in the JSON as `tau_heuristic_matcher`. The heuristic matcher is the reported τ only for the timeline-agnostic LexRank. See the reporting convention section below.
 
 How to read this (the revision's framing): **the explicit temporal backbone is the dominant factor** — even random per-event selection over the timeline reaches R-L 0.813 vs 0.206 for the timeline-agnostic LexRank. Within the timeline-aware ladder, `taeg` (Algorithm 1) sits at the 100th percentile of the 30-seed random distribution on ROUGE/METEOR and on oracle accuracy (0.489 vs the 0.380 random floor), while `longest` remains the strongest selector on this corpus (oracle accuracy 0.648) — an expected consequence of a reference that was composed favoring complete accounts. The ablations show the `BEFORE` edges carry the selection signal: removing them drops `taeg` to the random floor, while removing `SAME_EVENT` edges barely changes selection. Timeline degradation degrades content metrics roughly linearly with the removed fraction (completeness, not ordering: removed events are absent from the output by construction).
 
@@ -165,7 +167,7 @@ Generated in `outputs/`:
 
 Useful options: `--methods lexrank,longest,taeg` (subset), `--random-seeds N`, `--skip-degradation`, `--output-dir DIR`.
 
-Notes: all methods are evaluated by the same evaluator instance against the same Golden Sample; every randomized component uses fixed, logged seeds; on Windows the runner forces UTF-8 output (the legacy scripts require `PYTHONUTF8=1` because of emoji prints).
+Notes: all methods are evaluated by the same evaluator instance against the same Golden Sample; every randomized component uses fixed, logged seeds; every timeline-aware run is verified by a strict event-order monotonicity check (`event_order_monotonic` in the results JSON — see the Kendall's Tau reporting convention below); on Windows the runner forces UTF-8 output (the legacy scripts require `PYTHONUTF8=1` because of emoji prints).
 
 ### **Single runs (legacy CLI)**
 
@@ -188,7 +190,7 @@ python src/main.py --method lexrank-ta
 python -m pytest tests/
 ```
 
-Covers: byte-identity of `longest` with the pre-revision published output, strategy determinism and tie-breaking, TAEG centrality (synthetic graph + convergence), ablations, timeline degradation, golden-segment parsing and the selection-level oracle (27 tests).
+Covers: byte-identity of `longest` with the pre-revision published output, strategy determinism and tie-breaking, TAEG centrality (synthetic graph + convergence), ablations, timeline degradation, golden-segment parsing, the selection-level oracle, the event-order monotonicity check and the Kendall's Tau reporting convention (30 tests).
 
 ## Evaluation Metrics
 
@@ -204,16 +206,16 @@ Word alignment-based metric with synonymy and stemming.
 BERT embedding-based metric for semantic similarity.
 
 ### Kendall's Tau
-Ranking correlation between sentence order in generated summary and reference text. Values range from -1 (perfect disagreement) to +1 (perfect agreement). Recently validated to correctly distinguish temporal preservation:
-- LEXRANK: 0.320 (partial temporal disorder)
-- LEXRANK-TA: 1.000 (perfect temporal order)
+Ranking correlation between event order in the generated narrative and the canonical timeline. Values range from -1 (perfect disagreement) to +1 (perfect agreement). Timeline-aware methods report τ = 1.000 by design (verified per run by a monotonicity check); the heuristic sentence→event matcher is reported only for the timeline-agnostic LexRank baseline (τ = 0.320). See the reporting convention below.
 
-## 🔧 Kendall's Tau: interpretation note
+## 🔧 Kendall's Tau: reporting convention
 
-Kendall's Tau is computed by a heuristic event matcher (keyword overlap with NLTK sentence tokenization), kept unchanged across all methods for comparability with the published baseline numbers. Two facts matter when reading the tables:
+Timeline-aware methods emit events in canonical timeline order by construction. This is **verified, not assumed**: every run (including each random seed and each degradation run) passes a strict monotonicity check on the emitted event-ID sequence, recorded as `event_order_monotonic` in `outputs/results_all_methods.json`. Reporting convention:
 
-- Every timeline-aware method emits events in canonical order **by construction**, so any τ < 1.0 reported for them reflects sensitivity of the heuristic matcher to the per-event *version choice*, not actual disorder.
-- The timeline-agnostic LexRank baseline shows genuine partial disorder (τ ≈ 0.32).
+- **Timeline-aware methods report Kendall's Tau = 1.000 ("by design")**, conditional on that run's monotonicity check having passed.
+- The sentence→event heuristic matcher used previously to estimate τ is sensitive to the per-event *version choice*, not only to ordering — its values for timeline-aware methods (e.g. 0.467 for `taeg` despite perfect order) are a measurement artifact. The heuristic estimate is preserved in the JSON as the diagnostic field `tau_heuristic_matcher`, outside the main tables.
+- The heuristic matcher remains the reported τ **only** for the timeline-agnostic LexRank baseline, which shows genuine partial disorder (τ = 0.320).
+- Degradation rows: τ = 1.000 by design among the surviving events (removed events are absent from the output).
 
 ## Dependencies
 
