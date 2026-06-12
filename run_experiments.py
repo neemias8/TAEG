@@ -88,6 +88,18 @@ def mean_std(per_seed_metrics):
     return mean, std
 
 
+def event_order_monotonic(records):
+    """Ordering-by-design verification (JBCS revision follow-up).
+
+    True iff the sequence of event IDs emitted by the consolidation loop is
+    strictly increasing — one output segment per surviving event, in
+    canonical timeline order. Checked automatically for every timeline-aware
+    run (including each degradation run) and recorded in the results JSON as
+    ``event_order_monotonic``."""
+    ids = [r['event_id'] for r in records]
+    return all(a < b for a, b in zip(ids, ids[1:]))
+
+
 def git_commit_hash():
     try:
         return subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=REPO_ROOT,
@@ -171,8 +183,12 @@ class ExperimentRunner:
         evaluated = self._evaluate(summary)
         self.summaries[key] = summary
         self.records[key] = records
+        monotonic = event_order_monotonic(records)
+        if not monotonic:
+            print(f"  WARNING: {key} emitted a NON-monotonic event-ID sequence!")
         entry = {
             'kind': 'timeline-aware',
+            'event_order_monotonic': monotonic,
             'metrics': evaluated['flat'],
             'evaluation': evaluated['full'],
         }
@@ -205,9 +221,13 @@ class ExperimentRunner:
             summary, records = self.consolidator.consolidate_with_strategy(
                 strategy, graph=self.graph, events=self.events, verbose=False)
             evaluated = self._evaluate(summary)
+            monotonic = event_order_monotonic(records)
+            if not monotonic:
+                print(f"  WARNING: random seed {seed} emitted a NON-monotonic event-ID sequence!")
             self.random_runs.append({'seed': seed, 'summary': summary,
                                      'records': records, 'metrics': evaluated['flat']})
-            per_seed.append({'seed': seed, **evaluated['flat']})
+            per_seed.append({'seed': seed, 'event_order_monotonic': monotonic,
+                             **evaluated['flat']})
             compact_choices[str(seed)] = {
                 str(r['event_id']): r['chosen_gospel']
                 for r in records if not r['fallback']
@@ -219,6 +239,8 @@ class ExperimentRunner:
             'kind': 'timeline-aware',
             'n_seeds': n,
             'seeds': list(range(n)),
+            'event_order_monotonic_all_seeds': all(p['event_order_monotonic']
+                                                   for p in per_seed),
             'metrics_mean': mean,
             'metrics_std': std,
             'per_seed': per_seed,
@@ -254,8 +276,13 @@ class ExperimentRunner:
                 t0 = time.time()
                 run = consolidate_degraded(fraction, seed)
                 evaluated = self._evaluate(run['summary'])
+                monotonic = event_order_monotonic(run['records'])
+                if not monotonic:
+                    print(f"  WARNING: degradation {int(fraction*100)}% seed {seed} "
+                          f"emitted a NON-monotonic event-ID sequence!")
                 per_seed.append({'seed': seed,
                                  'n_events_kept': run['n_events_kept'],
+                                 'event_order_monotonic': monotonic,
                                  **evaluated['flat']})
                 print(f"  {int(fraction*100)}% seed {seed}: "
                       f"R-L {evaluated['flat']['rougeL_f1']:.3f} ({time.time()-t0:.1f}s)")
@@ -264,6 +291,8 @@ class ExperimentRunner:
                 'fraction': fraction,
                 'n_seeds': len(DEGRADATION_SEEDS),
                 'seeds': list(DEGRADATION_SEEDS),
+                'event_order_monotonic_all_seeds': all(p['event_order_monotonic']
+                                                       for p in per_seed),
                 'metrics_mean': mean,
                 'metrics_std': std,
                 'per_seed': per_seed,
