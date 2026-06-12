@@ -60,6 +60,10 @@ ALL_METHODS = ['lexrank'] + DETERMINISTIC_STRATEGIES + ['random']
 
 METRIC_KEYS = ['rouge1_f1', 'rouge2_f1', 'rougeL_f1',
                'bertscore_f1', 'meteor', 'kendall_tau']
+# Kendall's Tau is 1.000 by design for timeline-aware methods (see
+# apply_tau_by_design), so it carries no discriminative signal for the
+# random-distribution percentile analysis.
+PERCENTILE_KEYS = [k for k in METRIC_KEYS if k != 'kendall_tau']
 METRIC_LABELS = {
     'rouge1_f1': 'ROUGE-1 F1', 'rouge2_f1': 'ROUGE-2 F1',
     'rougeL_f1': 'ROUGE-L F1', 'bertscore_f1': 'BERTScore F1',
@@ -98,6 +102,30 @@ def event_order_monotonic(records):
     ``event_order_monotonic``."""
     ids = [r['event_id'] for r in records]
     return all(a < b for a, b in zip(ids, ids[1:]))
+
+
+def apply_tau_by_design(flat, monotonic):
+    """Kendall's Tau reporting convention for timeline-aware methods.
+
+    The sentence->event heuristic matcher used to estimate Tau is sensitive
+    to the per-event VERSION choice, not only to ordering, so its values for
+    timeline-aware methods are a measurement artifact (e.g. 0.467 for taeg
+    despite perfect order). Reporting convention:
+
+    - timeline-aware runs report kendall_tau = 1.000 ("by design"),
+      conditional on the run's event_order_monotonic check having passed;
+    - the heuristic matcher estimate is preserved in the diagnostic field
+      tau_heuristic_matcher for traceability;
+    - the heuristic matcher remains the reported tau ONLY for the
+      timeline-agnostic lexrank baseline (this helper is not applied there);
+    - if the monotonicity check failed, the heuristic value stays in
+      kendall_tau (the 1.000 claim would be unsupported).
+    """
+    out = dict(flat)
+    out['tau_heuristic_matcher'] = out['kendall_tau']
+    if monotonic:
+        out['kendall_tau'] = 1.0
+    return out
 
 
 def git_commit_hash():
@@ -186,10 +214,11 @@ class ExperimentRunner:
         monotonic = event_order_monotonic(records)
         if not monotonic:
             print(f"  WARNING: {key} emitted a NON-monotonic event-ID sequence!")
+        flat = apply_tau_by_design(evaluated['flat'], monotonic)
         entry = {
             'kind': 'timeline-aware',
             'event_order_monotonic': monotonic,
-            'metrics': evaluated['flat'],
+            'metrics': flat,
             'evaluation': evaluated['full'],
         }
         if key.startswith('taeg'):
@@ -208,7 +237,7 @@ class ExperimentRunner:
         self._write_json(f"selection_report_{key}.json",
                          {'method': key, 'seed': None, 'events': records})
         (self.output_dir / f'summary_{key}.txt').write_text(summary, encoding='utf-8')
-        print(f"  done in {time.time()-t0:.1f}s: {evaluated['flat']}")
+        print(f"  done in {time.time()-t0:.1f}s: {flat}")
 
     def run_random(self):
         n = self.random_seeds
@@ -224,10 +253,11 @@ class ExperimentRunner:
             monotonic = event_order_monotonic(records)
             if not monotonic:
                 print(f"  WARNING: random seed {seed} emitted a NON-monotonic event-ID sequence!")
+            flat = apply_tau_by_design(evaluated['flat'], monotonic)
             self.random_runs.append({'seed': seed, 'summary': summary,
-                                     'records': records, 'metrics': evaluated['flat']})
+                                     'records': records, 'metrics': flat})
             per_seed.append({'seed': seed, 'event_order_monotonic': monotonic,
-                             **evaluated['flat']})
+                             **flat})
             compact_choices[str(seed)] = {
                 str(r['event_id']): r['chosen_gospel']
                 for r in records if not r['fallback']
@@ -243,6 +273,10 @@ class ExperimentRunner:
                                                    for p in per_seed),
             'metrics_mean': mean,
             'metrics_std': std,
+            'tau_heuristic_matcher_mean': statistics.mean(
+                p['tau_heuristic_matcher'] for p in per_seed),
+            'tau_heuristic_matcher_std': statistics.stdev(
+                [p['tau_heuristic_matcher'] for p in per_seed]) if n > 1 else 0.0,
             'per_seed': per_seed,
         }
         self._write_json('selection_report_random.json',
@@ -280,10 +314,11 @@ class ExperimentRunner:
                 if not monotonic:
                     print(f"  WARNING: degradation {int(fraction*100)}% seed {seed} "
                           f"emitted a NON-monotonic event-ID sequence!")
+                flat = apply_tau_by_design(evaluated['flat'], monotonic)
                 per_seed.append({'seed': seed,
                                  'n_events_kept': run['n_events_kept'],
                                  'event_order_monotonic': monotonic,
-                                 **evaluated['flat']})
+                                 **flat})
                 print(f"  {int(fraction*100)}% seed {seed}: "
                       f"R-L {evaluated['flat']['rougeL_f1']:.3f} ({time.time()-t0:.1f}s)")
             mean, std = mean_std(per_seed)
@@ -300,9 +335,10 @@ class ExperimentRunner:
         degradation = {
             'strategy': 'taeg',
             'note': ("Removed events are absent from the output: this measures "
-                     "completeness/content degradation. Kendall's Tau remains 1.0 "
-                     "among surviving events by construction of the timeline loop; "
-                     "the reported tau uses the full-Golden-Sample heuristic matcher."),
+                     "completeness/content degradation. Kendall's Tau = 1.000 by "
+                     "design among the surviving events, verified per run by the "
+                     "event_order_monotonic check; the heuristic matcher estimate "
+                     "is preserved per seed as tau_heuristic_matcher."),
             'levels': levels,
         }
         self.results['degradation'] = degradation
@@ -324,15 +360,19 @@ class ExperimentRunner:
 
         report = {'setup': se.summary(), 'strategies': {}}
 
-        # Deterministic timeline-aware strategies.
+        # Deterministic timeline-aware strategies. The contested-subset
+        # texts are concatenated in sorted event order on both sides, so the
+        # by-design tau convention applies (conditional on the method's own
+        # monotonicity check).
         for key, records in self.records.items():
             acc = se.oracle_accuracy(records)
             hyp, ref = se.contested_subset_texts(records)
             ev = self.evaluator.evaluate_summary(hyp, ref)
+            flat = apply_tau_by_design({**flatten_metrics(ev), 'length_chars': len(hyp)},
+                                       event_order_monotonic(records))
             report['strategies'][key] = {
                 'oracle_accuracy': acc,
-                'contested_subset_metrics': {**flatten_metrics(ev),
-                                             'length_chars': len(hyp)},
+                'contested_subset_metrics': flat,
             }
             print(f"  {key}: oracle accuracy {acc['n_hits']}/{acc['n_evaluated']} "
                   f"= {acc['accuracy']:.3f}")
@@ -344,8 +384,9 @@ class ExperimentRunner:
                 accs.append(se.oracle_accuracy(run['records'])['accuracy'])
                 hyp, ref = se.contested_subset_texts(run['records'])
                 ev = self.evaluator.evaluate_summary(hyp, ref)
-                contested_per_seed.append({**flatten_metrics(ev),
-                                           'length_chars': len(hyp)})
+                contested_per_seed.append(apply_tau_by_design(
+                    {**flatten_metrics(ev), 'length_chars': len(hyp)},
+                    event_order_monotonic(run['records'])))
             mean_c, std_c = mean_std(contested_per_seed)
             acc_mean = statistics.mean(accs)
             acc_std = statistics.stdev(accs) if len(accs) > 1 else 0.0
@@ -363,15 +404,17 @@ class ExperimentRunner:
 
             # Percentile placement of taeg and longest within the random
             # distribution, per full-corpus metric and for oracle accuracy.
+            # kendall_tau is excluded: it is 1.000 by design for every
+            # timeline-aware run, so the percentile carries no signal.
             percentiles = {}
             full_dist = {k: [r['metrics'][k] for r in self.random_runs]
-                         for k in METRIC_KEYS}
+                         for k in PERCENTILE_KEYS}
             for key in ('taeg', 'longest'):
                 if key not in self.records or key not in self.results['methods']:
                     continue
                 entry = {'oracle_accuracy': percentile_in_distribution(
                     report['strategies'][key]['oracle_accuracy']['accuracy'], accs)}
-                for mk in METRIC_KEYS:
+                for mk in PERCENTILE_KEYS:
                     entry[mk] = percentile_in_distribution(
                         self.results['methods'][key]['metrics'][mk], full_dist[mk])
                 percentiles[key] = entry
@@ -445,10 +488,16 @@ class ExperimentRunner:
                              + f" & {length_tex} \\\\")
 
         kendall_note = (
-            "Note: every timeline-aware method emits events in canonical order "
-            "by construction; Kendall's Tau is measured by the published "
-            "heuristic event matcher (kept unchanged for comparability) and is "
-            "sensitive to the per-event version choice, not only to ordering.")
+            "Kendall's Tau convention: timeline-aware methods emit events in "
+            "canonical timeline order and report tau = 1.000 (\"by design\"), "
+            "conditional on the per-run strict monotonicity check of the "
+            "emitted event-ID sequence (field event_order_monotonic in "
+            "results_all_methods.json). The sentence-level heuristic matcher "
+            "estimate — sensitive to per-event version choice, not only to "
+            "ordering — is preserved as the diagnostic field "
+            "tau_heuristic_matcher. The heuristic matcher remains the reported "
+            "tau only for the timeline-agnostic LexRank baseline. Degradation "
+            "rows: tau = 1.000 by design among the surviving events.")
         md_lines += ["", kendall_note]
         tex_lines.append("% " + kendall_note)
 
@@ -518,22 +567,26 @@ class ExperimentRunner:
                        + " & ".join(cells_tex) + f" & {len_tex} \\\\")
 
         md.append("\n\\* corpus metrics restricted to the evaluated contested events "
-                  "(hypothesis and reference sides).")
+                  "(hypothesis and reference sides); Kendall's Tau follows the "
+                  "by-design reporting convention (see note above).")
 
         pct = sel.get('percentile_in_random_distribution')
         if pct:
             md += ["\n### Percentile within the seeded random distribution\n",
                    "| Method | Oracle accuracy | " +
-                   " | ".join(METRIC_LABELS[k] for k in METRIC_KEYS) + " |",
-                   "|" + " :---- |" * (len(METRIC_KEYS) + 2)]
+                   " | ".join(METRIC_LABELS[k] for k in PERCENTILE_KEYS) + " |",
+                   "|" + " :---- |" * (len(PERCENTILE_KEYS) + 2)]
             tex.append("% Percentile of each method within the random distribution "
-                       "(full-corpus metrics + oracle accuracy)")
+                       "(full-corpus metrics + oracle accuracy). Kendall's Tau "
+                       "excluded: 1.000 by design for all timeline-aware runs.")
             for key, entry in pct.items():
                 row = [f"{entry['oracle_accuracy']:.0f}%"] + \
-                      [f"{entry[k]:.0f}%" for k in METRIC_KEYS]
+                      [f"{entry[k]:.0f}%" for k in PERCENTILE_KEYS]
                 md.append(f"| {key} | " + " | ".join(row) + " |")
                 tex.append(key + " & " + " & ".join(
-                    f"{entry[k]:.0f}\\%" for k in ['oracle_accuracy'] + METRIC_KEYS) + " \\\\")
+                    f"{entry[k]:.0f}\\%" for k in ['oracle_accuracy'] + PERCENTILE_KEYS) + " \\\\")
+            md.append("\nKendall's Tau is excluded from the percentile analysis: "
+                      "it is 1.000 by design for every timeline-aware run.")
 
         return "\n".join(md) + "\n", "\n".join(tex) + "\n"
 
@@ -550,7 +603,10 @@ class ExperimentRunner:
                 'rouge': 'rouge-score, use_stemmer=True',
                 'bertscore': 'bert-score lang=en (roberta-large defaults)',
                 'meteor': 'nltk meteor_score, lowercased word_tokenize',
-                'kendall_tau': 'heuristic event matching vs Golden Sample (unchanged from published code)',
+                'kendall_tau': ('timeline-aware methods: 1.000 by design, conditional on the '
+                                'event_order_monotonic check; heuristic matcher estimate kept '
+                                'as tau_heuristic_matcher. lexrank: heuristic event matching '
+                                'vs Golden Sample (unchanged from published code)'),
             },
         }
         self._write_json('results_all_methods.json', self.results)

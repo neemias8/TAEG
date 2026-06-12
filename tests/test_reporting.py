@@ -37,6 +37,25 @@ def test_event_order_monotonic_synthetic(runner_module):
     assert f([]) is True
 
 
+def test_apply_tau_by_design(runner_module):
+    flat = {'rouge1_f1': 0.9, 'kendall_tau': 0.467}
+
+    reported = runner_module.apply_tau_by_design(flat, monotonic=True)
+    assert reported['kendall_tau'] == 1.0
+    assert reported['tau_heuristic_matcher'] == 0.467
+    assert reported['rouge1_f1'] == 0.9
+
+    # A failed monotonicity check forbids the by-design claim: the heuristic
+    # value stays in kendall_tau.
+    unreported = runner_module.apply_tau_by_design(flat, monotonic=False)
+    assert unreported['kendall_tau'] == 0.467
+    assert unreported['tau_heuristic_matcher'] == 0.467
+
+    # The input dict is never mutated.
+    assert flat['kendall_tau'] == 0.467
+    assert 'tau_heuristic_matcher' not in flat
+
+
 def test_event_order_monotonic_on_real_runs(runner_module):
     """Every timeline-aware consolidation — full and degraded — must emit a
     strictly increasing event-ID sequence."""
