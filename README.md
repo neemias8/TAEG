@@ -2,11 +2,13 @@
 # **Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts**
 
 
-This repository contains the official implementation and resources for the paper **"Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts"**, currently under revision at the **Journal of the Brazilian Computer Society (JBCS)**.
+This repository contains the official implementation and resources for the paper **"Narrative Consolidation: Formulating a New Task for Unifying Multi-Perspective Accounts"**, **accepted for publication** at the **Journal of the Brazilian Computer Society (JBCS)**.
 
 ## **Abstract**
 
-Processing overlapping narrative documents, such as legal testimonies or historical accounts, often aims not for compression but for a unified, coherent, and chronologically sound text. Standard Multi-Document Summarization (MDS), with its focus on conciseness, fails to preserve narrative flow. This paper formally defines this challenge as a new NLP task: **Narrative Consolidation**, where the central objectives are chronological integrity, completeness, and the fusion of complementary details. To demonstrate the critical role of temporal structure in this task, we introduce **Temporal Alignment Event Graph (TAEG)**, a graph structure that explicitly models chronology and event alignment. By applying a standard centrality algorithm to TAEG, our method functions as a version selection mechanism, choosing the most central representation of each event in its correct temporal position. In a study on the four Biblical Gospels, this structure-focused approach guarantees perfect temporal ordering (Kendall's Tau of 1.000) by design and dramatically improves content metrics (e.g., +357.2% in ROUGE-L F1). The success of this baseline method validates the formulation of Narrative Consolidation as a relevant task and establishes that an explicit temporal backbone is a fundamental component for its resolution.
+Processing overlapping narrative documents, such as legal testimonies or historical accounts, often aims not for compression but for a unified, coherent, and chronologically sound text. Standard Multi-Document Summarization (MDS), with its focus on conciseness, fails to preserve narrative flow. This paper formally defines this challenge as a new NLP task, **Narrative Consolidation**, whose central objectives are chronological integrity, completeness, and the fusion of complementary details, and establishes the resources needed to study it: a formal task definition, an evaluation paradigm that includes a selection-level metric, the **Gospel Consolidation Language Resource** — a benchmark built from the four Biblical Gospels, with 169 canonical events, cross-document alignments, and a manually created reference consolidation — and a suite of reference systems, ranging from a timeline-agnostic centrality method to timeline-aware heuristics and the **Temporal Alignment Event Graph (TAEG)**, a multi-relational graph that explicitly models chronology and event alignment.
+
+Benchmarking these systems yields three findings that characterize the task. First, **the explicit temporal backbone is the dominant factor**: every system granted the canonical timeline raises ROUGE-L F1 from 0.206 to at least 0.81, whereas content-selection sophistication accounts for a far smaller margin. Second, on a fusion-style reference, **a simple length heuristic — selecting the longest available account of each event — is remarkably strong** (0.947 ROUGE-L F1; 0.648 selection accuracy), outperforming the graph-based selection (0.846; 0.489), which is nevertheless clearly above the random floor. Third, ablations show that **the discriminative signal resides in the temporal edges, while intra-cluster lexical similarity is uninformative** — a negative result that constrains the design of future models. Together, these results establish Narrative Consolidation as a task distinct from summarization, provide the first reference points for it, and pose an explicit open challenge: to surpass that heuristic with a principled selection mechanism, and to move beyond version selection towards the fusion of complementary details.
 
 
 ## **The Core Problem: Summarization vs. Narrative Consolidation**
@@ -19,11 +21,23 @@ Classic graph-based algorithms like LexRank are fundamentally mismatched for thi
 
 This project advocates for a paradigm shift from summarization to **Narrative Consolidation**, where coherence, completeness, and temporal integrity are prioritized over brevity.
 
-## **Temporal Alignment Event Graph (TAEG)**
+## **Reference Systems for Narrative Consolidation**
 
-As a narrative consolidation experiment, we introduce the **Temporal Alignment Event Graph (TAEG)**, a structure that prioritizes temporal order and event alignment over simple semantic similarity.
+A new task requires reference points against which future work can be measured. This repository implements a graded ladder of reference systems, organized along the two factors that plausibly drive performance on the task: access to a canonical timeline, and the sophistication of the per-event version-selection criterion. **None of these systems is advanced as *the* solution to Narrative Consolidation** — their role is to delimit what is easy, what is hard, and what remains open.
 
-Unlike standard methods that infer structure from textual similarity, the TAEG's construction is driven by external knowledge—a pre-defined, canonical chronology of events that serves as a structural backbone.
+### **Timeline-agnostic reference: LexRank**
+
+At the bottom of the ladder sits the standard approach for graph-based extractive summarization, treating the four Gospels as a single multi-document collection: sentences are nodes, edge weights are TF-IDF cosine similarity, and LexRank ranks and selects the top-scoring sentences. This baseline inherently ignores chronological flow (see the *Conciseness vs. Consolidation* analysis below).
+
+### **Timeline-aware heuristic baselines**
+
+Above it sit four heuristics that receive *exactly the same* canonical timeline (the 169-event Holy Week chronology) and iterate over it, differing only in the per-event selection rule: `Timeline+Random` (uniform, establishing the performance floor), `Timeline+Priority` (fixed source order Matthew ≻ Mark ≻ Luke ≻ John), `Timeline+Centroid` (highest mean TF-IDF similarity to the event's other versions — local only), and `Timeline+Longest` (the longest available version). See the results tables below for how they compare.
+
+### **The Temporal Alignment Event Graph (TAEG): a structured, diagnostic reference system**
+
+Finally, the **Temporal Alignment Event Graph (TAEG)** combines the timeline with an explicit relational structure over event versions. **Its purpose in this study is diagnostic**: it lets us test whether a structured prior over event versions improves selection beyond what the timeline alone provides — not to serve as the proposed solution to the task. As reported below, the answer is a qualified "yes, but less than a length heuristic."
+
+Unlike the heuristics above, which only consult a single event's candidate versions, the TAEG's construction is driven by external knowledge — the same pre-defined, canonical chronology — but represented as an explicit multi-relational graph over which centrality is computed.
 
 ### **TAEG Architecture**
 
@@ -71,7 +85,7 @@ Produced by `python run_experiments.py --all` (full tables, including the select
 
 † Timeline-aware methods report τ = 1.000 *by design*, verified per run by a strict monotonicity check on the emitted event-ID sequence (`event_order_monotonic` in `results_all_methods.json`); the heuristic matcher estimate is preserved in the JSON as `tau_heuristic_matcher`. The heuristic matcher is the reported τ only for the timeline-agnostic LexRank. See the reporting convention section below.
 
-How to read this (the revision's framing): **the explicit temporal backbone is the dominant factor** — even random per-event selection over the timeline reaches R-L 0.813 vs 0.206 for the timeline-agnostic LexRank. Within the timeline-aware ladder, `taeg` (Algorithm 1) sits at the 100th percentile of the 30-seed random distribution on ROUGE/METEOR and on oracle accuracy (0.489 vs the 0.380 random floor), while `longest` remains the strongest selector on this corpus (oracle accuracy 0.648) — an expected consequence of a reference that was composed favoring complete accounts. The ablations show the `BEFORE` edges carry the selection signal: removing them drops `taeg` to the random floor, while removing `SAME_EVENT` edges barely changes selection. Timeline degradation degrades content metrics roughly linearly with the removed fraction (completeness, not ordering: removed events are absent from the output by construction).
+How to read this: the spread among timeline-aware systems (ROUGE-L F1 0.811–0.947) is an order of magnitude smaller than the gap separating them from the timeline-agnostic LexRank (0.206) — once the chronological structure is given, most of the task is already solved, and the choice of version accounts for the remainder. Within that remainder, `taeg` (Algorithm 1) sits at the 100th percentile of the 30-seed random distribution on ROUGE/METEOR and on oracle accuracy (0.489 vs. the 0.380 random floor) — the graph carries genuine signal — but `longest` remains the strongest selector on this corpus (oracle accuracy 0.648). See **Findings** below for the full picture and its implications.
 
 ### Selection-level evaluation
 
@@ -91,6 +105,17 @@ The results for the standard LexRank baseline reflect a parameter setting of 750
 | **Timeline+Longest** | **0.958** | **0.938** | **0.947** | **0.995** | **0.639** | **1.000** | **79,154** |
 
 This analysis demonstrates that simply increasing the number of sentences does not address the fundamental problem of narrative coherence: the temporal coherence (Kendall's Tau) of the timeline-agnostic baseline remains consistently low at every length. This reinforces the paper's central argument: for long and complex narratives, **an explicit temporal backbone is the dominant factor** — comprehensive coverage and chronological soundness matter far more than conciseness.
+
+## **Findings**
+
+Benchmarking the reference systems above yields four findings that characterize Narrative Consolidation as a task, not just a ranking of methods (full discussion in Section 8 of the paper):
+
+1. **Chronological structure, not content selection, is the defining difficulty.** Granting any system the canonical timeline moves ROUGE-L F1 from 0.206 to at least 0.811 — a gap an order of magnitude larger than the spread among timeline-aware selection criteria (0.811–0.947). This is the empirical justification for treating Narrative Consolidation as a task distinct from Multi-Document Summarization.
+2. **A length heuristic is a strong reference point on fusion-style references.** `Timeline+Longest` reaches 0.947 ROUGE-L F1 and 0.648 oracle selection accuracy, ahead of every other system, because the Golden Sample fuses complementary, non-conflicting sources and the most detailed account tends to overlap it most. Any future system evaluated on this resource should be compared against it, not only against a random or centrality-based baseline.
+3. **An explicit relational prior yields signal, but not enough.** The TAEG's centrality-based selection (oracle accuracy 0.489) sits well above the random floor (≈0.37) and at the 100th percentile of a 30-seed random distribution — the graph carries genuine information — yet remains behind `Timeline+Longest`. Surpassing the length heuristic with a principled selection mechanism, on this benchmark, is the concrete open challenge the resource poses.
+4. **Intra-event lexical similarity is uninformative for version selection.** Ablating the `SAME_EVENT` edges leaves oracle accuracy unchanged (0.489 → 0.489) and even slightly improves corpus metrics; ablating `BEFORE` edges collapses it to the random floor (0.341). The discriminative signal resides entirely in the temporal relations — parallel accounts of the same event are nearly equidistant in TF-IDF space, so future models built on this structure (including GNNs) will need intra-event edge weights derived from semantic, discourse, or factuality features, not surface overlap.
+
+We report Findings 2–4 candidly even though they are unfavorable to the TAEG: a benchmark that documents where simple methods are hard to beat is, in our view, more useful to the community than one reporting only favorable comparisons. **The TAEG is offered as one reference point among several, not as the solution to Narrative Consolidation.**
 
 ## **The Gospel Consolidation Language Resource**
 
@@ -129,6 +154,13 @@ XML
 \</bible\>
 
 Our system aligns both passages to the same canonical event by parsing the attributes book name="Matthew", chapter number="21", and verse number="1", making the framework highly adaptable and reusable across different XML-formatted biblical texts.
+
+## **Companion Studies**
+
+This task formulation is the basis of an ongoing research program, not a one-off experiment:
+
+- **Abstractive Narrative Consolidation** — grounding a GNN encoder and an LLM decoder on the TAEG to *fuse* (not just select) the versions within each `SAME_EVENT` cluster, addressing the Representativeness objective in its strongest form. Accepted at IJCNN 2026 (Finger et al., 2026).
+- **Automatic timeline induction** — removing the assumption of a known canonical timeline, which Section 8/9 of the paper identifies as the decisive open problem for the task (cross-document event extraction, coreference, and temporal ordering). Currently in progress.
 
 ## **Getting Started**
 
